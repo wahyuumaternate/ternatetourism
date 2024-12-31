@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Struktur Dinas Pariwisata</title>
+        <style>
+            body {
+                margin: 0;
+                padding: 20px;
+                background: linear-gradient(
+                    rgba(0, 128, 128, 0.9),
+                    rgba(0, 128, 128, 0.9)
+                );
+                font-family: Arial, sans-serif;
+                min-height: 100vh;
+            }
+
+            .header {
+                text-align: center;
+                margin-bottom: 50px;
+            }
+
+            .header h1 {
+                color: white;
+                background: red;
+                padding: 15px 30px;
+                display: inline-block;
+                border-radius: 8px;
+                font-size: 24px;
+                margin-top: 20px;
+            }
+
+            .org-chart {
+                max-width: 1400px;
+                margin: 0 auto;
+                padding: 20px;
+            }
+
+            .box {
+                background: white;
+                border: 2px solid #ffd700;
+                border-radius: 8px;
+                padding: 15px;
+                margin: 10px;
+                display: flex;
+                align-items: center;
+                gap: 15px;
+                width: fit-content;
+                min-width: 300px;
+                position: relative;
+            }
+
+            .box::after {
+                content: "";
+                position: absolute;
+                width: 2px;
+                height: 20px;
+                background: #ffd700;
+                bottom: -22px;
+                left: 50%;
+                transform: translateX(-50%);
+            }
+
+            .profile-img {
+                width: 70px;
+                height: 70px;
+                border-radius: 5px;
+            }
+
+            .info {
+                flex: 1;
+            }
+
+            .title {
+                font-weight: bold;
+                color: #003366;
+                margin-bottom: 5px;
+                font-size: 14px;
+            }
+
+            .name {
+                font-size: 13px;
+                margin-bottom: 3px;
+            }
+
+            .nip {
+                font-size: 12px;
+                color: #666;
+            }
+
+            .level {
+                display: flex;
+                justify-content: center;
+                gap: 50px;
+                margin: 30px 0;
+                flex-wrap: wrap;
+            }
+
+            .section {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .sub-section {
+                display: flex;
+                gap: 30px;
+                margin-top: 30px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            @media (max-width: 768px) {
+                .header h1 {
+                    font-size: 18px;
+                    padding: 10px 15px;
+                }
+
+                .box {
+                    min-width: 250px;
+                    flex-direction: column;
+                    text-align: center;
+                }
+
+                .level {
+                    gap: 20px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="header">
+            <h1>STRUKTUR DINAS PARIWISATA DAN KEBUDAYAAN KOTA AMBON</h1>
+        </div>
+
+        <div class="org-chart">
+            <!-- Kepala Dinas -->
+            <div class="level">
+                <div class="box">
+                    <img src="kepala.jpg" class="profile-img" />
+                    <div class="info">
+                        <div class="title">KEPALA DINAS</div>
+                        <div class="name">M.S.S. RUSTAM HAYAT, SE. M.Si</div>
+                        <div class="nip">NIP. 19651209 199603 1 003</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Level 2 -->
+            <div class="level">
+                <div class="box">
+                    <div class="title">KELOMPOK JABATAN FUNGSIONAL</div>
+                </div>
+                <div class="box">
+                    <img src="sekretaris.jpg" class="profile-img" />
+                    <div class="info">
+                        <div class="title">SEKRETARIS</div>
+                        <div class="name">B.G. TITY M. ORATMANGUN, SE</div>
+                        <div class="nip">NIP. 19690306 200012 2 001</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Level 3 -->
+            <div class="level">
+                <div class="box">
+                    <img src="sub1.jpg" class="profile-img" />
+                    <div class="info">
+                        <div class="title">
+                            SUB BAGIAN PERENCANAAN, KEPEGAWAIAN DAN UMUM
+                        </div>
+                        <div class="name">HELLEN M. TULALESSY, SE, M.Si</div>
+                        <div class="nip">NIP. 19830322 201001 2 014</div>
+                    </div>
+                </div>
+                <div class="box">
+                    <img src="sub2.jpg" class="profile-img" />
+                    <div class="info">
+                        <div class="title">
+                            ANALIS KEUANGAN PUSAT DAN DAERAH AHLI MUDA
+                        </div>
+                        <div class="name">IRENE ALEXANDER, S.Sos</div>
+                        <div class="nip">NIP. 19690108 199803 2 004</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Level 4 -->
+            <div class="level">
+                <div class="section">
+                    <div class="box">
+                        <img src="bidang1.jpg" class="profile-img" />
+                        <div class="info">
+                            <div class="title">
+                                BIDANG DESTINASI DAN PEMASARAN PARIWISATA
+                            </div>
+                            <div class="name">SHINTA EYKENDORP, SE. MM</div>
+                            <div class="nip">NIP. 19770921 200012 2 003</div>
+                        </div>
+                    </div>
+                    <div class="sub-section">
+                        <div class="box">
+                            <img src="analis1.jpg" class="profile-img" />
+                            <div class="info">
+                                <div class="title">
+                                    ANALIS KEBIJAKAN AHLI MUDA
+                                </div>
+                                <div class="name">
+                                    P. J. LATUPEIRISSA, S.Sos
+                                </div>
+                                <div class="nip">
+                                    NIP. 19680404 198911 1 002
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <img src="analis2.jpg" class="profile-img" />
+                            <div class="info">
+                                <div class="title">
+                                    ANALIS KEBIJAKAN AHLI MUDA
+                                </div>
+                                <div class="name">
+                                    OLIVIA SYARANAMUAL, S.STP M. Tr.I.P
+                                </div>
+                                <div class="nip">
+                                    NIP. 19911022 201206 2 003
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <img src="analis3.jpg" class="profile-img" />
+                            <div class="info">
+                                <div class="title">
+                                    ANALIS KEBIJAKAN AHLI MUDA
+                                </div>
+                                <div class="name">NADRAH RUMONIN, SH</div>
+                                <div class="nip">
+                                    NIP. 19840821 200904 2 009
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="box">
+                        <img src="bidang2.jpg" class="profile-img" />
+                        <div class="info">
+                            <div class="title">
+                                BIDANG PENGEMBANGAN SUMBER DAYA EKONOMI KREATIF
+                                DAN PARIWISATA
+                            </div>
+                            <div class="name">SANDRA G. BERHITU, SE</div>
+                            <div class="nip">NIP. 19740909 200012 2 006</div>
+                        </div>
+                    </div>
+                    <div class="sub-section">
+                        <div class="box">
+                            <img src="analis4.jpg" class="profile-img" />
+                            <div class="info">
+                                <div class="title">
+                                    ANALIS KEBIJAKAN AHLI MUDA
+                                </div>
+                                <div class="name">
+                                    GREYT F. LIMAHELUW, S.IP. M. Tr. I.P
+                                </div>
+                                <div class="nip">
+                                    NIP. 19910510 201206 2 001
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="section">
+                    <div class="box">
+                        <img src="bidang3.jpg" class="profile-img" />
+                        <div class="info">
+                            <div class="title">BIDANG KEBUDAYAAN</div>
+                            <div class="name">ESAF MALIOY, S.Pi, M.Si</div>
+                            <div class="nip">NIP. 19670516 199803 1 008</div>
+                        </div>
+                    </div>
+                    <div class="sub-section">
+                        <div class="box">
+                            <img src="pamong1.jpg" class="profile-img" />
+                            <div class="info">
+                                <div class="title">PAMONG BUDAYA AHLI MUDA</div>
+                                <div class="name">RATNA, S.Pd</div>
+                                <div class="nip">
+                                    NIP. 19731102 199703 2 007
+                                </div>
+                            </div>
+                        </div>
+                        <div class="box">
+                            <img src="pamong2.jpg" class="profile-img" />
+                            <div class="info">
+                                <div class="title">PAMONG BUDAYA AHLI MUDA</div>
+                                <div class="name">FREIDA A. HAYER, S.Sos</div>
+                                <div class="nip">
+                                    NIP. 19660712 199002 2 001
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- UPT -->
+            <div class="level">
+                <div class="box">
+                    <div class="title">UPT</div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
