@@ -1,4 +1,4 @@
-@extends('admin.layouts.main', ['title' => 'Daftar Berita'])
+@extends('admin.layouts.main', ['title' => 'Daftar Events'])
 
 @section('main')
     <div class="row">
@@ -6,53 +6,54 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-between align-items-center">
-                        <h5 class="card-title">List Berita</h5>
+                        <h5 class="card-title">List Events</h5>
 
-                        <!-- Tombol Add Berita -->
-                        <a href="{{ route('berita.create') }}" class="btn btn-primary">
-                            <i class="bi bi-plus-circle"></i> Add Berita
+                        <!-- Tombol Add Event -->
+                        <a href="{{ route('events.create') }}" class="btn btn-primary">
+                            <i class="bi bi-plus-circle"></i> Add Event
                         </a>
                     </div>
 
                     <!-- Table with stripped rows -->
-                    <table id="beritaTable" class="table datatable">
+                    <table id="eventsTable" class="table datatable">
                         <thead>
                             <tr>
-
-                                <th>Gambar</th>
-                                <th>Judul</th>
-                                <th>Penulis</th>
-                                <th>Views</th>
+                                <th>Poster</th>
+                                <th>Nama Event</th>
+                                <th>Lokasi</th>
+                                <th>Tanggal</th>
+                                <th>Waktu</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($berita as $item)
+                            @foreach ($events as $event)
                                 <tr>
-                                    <td><img src="{{ $item->image }}" alt="" width="70"></td>
-                                    <td>{{ $item->title }}</td>
-                                    <td>{{ $item->user->name }}</td>
-                                    <td>{{ $item->views }}</td>
+                                    <td><img src="{{ $event->poster }}" alt="" width="70"></td>
+                                    <td>{{ $event->name }}</td>
+                                    <td>{{ $event->location }}</td>
+                                    <td>{{ $event->date }}</td>
+                                    <td>{{ $event->time }}</td>
                                     <td>
                                         <!-- Tombol Edit -->
-                                        <a href="{{ route('berita.edit', $item->id) }}" class="btn btn-warning btn-sm">
+                                        <a href="{{ route('events.edit', $event->id) }}" class="btn btn-warning btn-sm">
                                             <i class="bi bi-pencil"></i>
                                         </a>
 
                                         <button type="button" class="btn btn-danger btn-sm"
-                                            onclick="confirmDelete({{ $item->id }})">
+                                            onclick="confirmDelete({{ $event->id }})">
                                             <i class="bi bi-trash"></i>
                                         </button>
 
-                                        <form id="delete-form-{{ $item->id }}"
-                                            action="{{ route('berita.destroy', $item->id) }}" method="POST"
+                                        <form id="delete-form-{{ $event->id }}"
+                                            action="{{ route('events.destroy', $event->id) }}" method="POST"
                                             style="display:none;">
                                             @csrf
                                             @method('DELETE')
 
                                             <!-- Tombol Hapus -->
                                             <button type="button" class="btn btn-danger btn-sm"
-                                                onclick="confirmDelete({{ $item->id }})">
+                                                onclick="confirmDelete({{ $event->id }})">
                                                 <i class="bi bi-trash"></i>
                                             </button>
                                         </form>

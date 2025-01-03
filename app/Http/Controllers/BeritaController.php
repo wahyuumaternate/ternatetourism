@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Berita;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class BeritaController extends Controller
 {
@@ -52,7 +53,8 @@ class BeritaController extends Controller
             'user_id' => auth()->id(),
         ]);
 
-        return redirect()->route('berita.index')->with('success', 'Berita berhasil ditambahkan');
+        notify()->success('Berita berhasil ditambahkan');
+        return redirect()->route('berita.index');
     }
 
     // Menampilkan form untuk mengedit berita
@@ -64,34 +66,44 @@ class BeritaController extends Controller
             return redirect()->route('berita.index')->with('error', 'Berita tidak ditemukan');
         }
 
-        return view('berita.edit', compact('berita')); // Menampilkan form edit berita
+        return view('admin.publikasi.berita_edit', compact('berita')); // Menampilkan form edit berita
     }
 
     // Memperbarui berita
     public function update(Request $request, $id)
-    {
-        $berita = Berita::find($id);
+{
+    $berita = Berita::findOrFail($id);
+// dd($berita->id);
+    $request->validate([
+        'title' => 'sometimes|required|string|max:255',
+        'slug' => [
+            'required',
+            'string',
+            'max:255',
+            Rule::unique('berita', 'slug')->ignore($id), // Abaikan slug milik record yang sedang diedit
+        ],
+        'content' => 'sometimes|required',
+        'image' => 'sometimes|required|string',
+        'excerpt' => 'sometimes|nullable|string|max:255',
+    ]);
 
-        if (!$berita) {
-            return redirect()->route('berita.index')->with('error', 'Berita tidak ditemukan');
-        }
+     // Tetap gunakan slug lama jika tidak ada perubahan
+     $slug = $request->slug ?? $berita->slug;
 
-        $request->validate([
-            'title' => 'sometimes|required|string|max:255',
-            'slug' => 'sometimes|required|string|max:255|unique:berita,slug,' . $id,
-            'content' => 'sometimes|required',
-            'image' => 'sometimes|required|string',
-            'excerpt' => 'sometimes|nullable|string|max:255',
-        ]);
 
-        $excerpt = $request->excerpt ?? substr(strip_tags($request->content), 0, 150);
+    // Update excerpt jika tidak ada input
+    $excerpt = $request->excerpt ?? substr(strip_tags($request->content), 0, 150);
 
-        $berita->update(array_merge($request->only(['title', 'slug', 'content', 'image']), [
-            'excerpt' => $excerpt,
-        ]));
-
-        return redirect()->route('berita.index')->with('success', 'Berita berhasil diperbarui');
-    }
+    $berita->update([
+        'title' => $request->title,
+        'slug' => $slug,
+        'content' => $request->content,
+        'image' => $request->image,
+        'excerpt' => $excerpt,
+    ]);
+    notify()->success('Berita berhasil diperbarui');
+    return redirect()->route('berita.index');
+}
 
     // Menghapus berita
     public function destroy($id)
@@ -103,7 +115,7 @@ class BeritaController extends Controller
         }
 
         $berita->delete();
-
-        return redirect()->route('berita.index')->with('success', 'Berita berhasil dihapus');
+        notify()->success('Berita berhasil dihapus');
+        return redirect()->route('berita.index');
     }
 }

@@ -16,12 +16,12 @@
             </a>
             <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="components-alerts.html">
+                    <a href="{{ route('visimisi.index') }}">
                         <i class="bi bi-circle"></i><span>Visi & Misi</span>
                     </a>
                 </li>
                 <li>
-                    <a href="components-accordion.html">
+                    <a href="{{ route('struktur.index') }}">
                         <i class="bi bi-circle"></i><span>Struktur Organisasi</span>
                     </a>
                 </li>
@@ -35,12 +35,12 @@
             </a>
             <ul id="publikasi" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="forms-layouts.html">
+                    <a href="{{ route('berita.index') }}">
                         <i class="bi bi-circle"></i><span>Berita</span>
                     </a>
                 </li>
                 <li>
-                    <a href="forms-elements.html">
+                    <a href="{{ route('events.index') }}">
                         <i class="bi bi-circle"></i><span>Events</span>
                     </a>
                 </li>
