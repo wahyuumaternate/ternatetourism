@@ -1,138 +1,68 @@
-@extends('admin.layouts.main', ['title' => 'Berita'])
+@extends('admin.layouts.main', ['title' => 'Daftar Berita'])
 
 @section('main')
-    <!-- Reports -->
-    <div class="col-12">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Berita</h5>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <h5 class="card-title">List Berita</h5>
 
-                <form action="" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <div class="mb-3">
-                        <label for="title" class="form-label">Judul</label>
-                        <input type="text" class="form-control @error('title') is-invalid @enderror" id="title"
-                            name="title" value="{{ old('title') }}" required>
-                        @error('title')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
+                        <!-- Tombol Add Berita -->
+                        <a href="{{ route('berita.create') }}" class="btn btn-primary">
+                            <i class="bi bi-plus-circle"></i> Add Berita
+                        </a>
                     </div>
 
-                    <div class="mb-3">
-                        <label for="slug" class="form-label">Slug</label>
-                        <input type="text" class="form-control @error('slug') is-invalid @enderror" id="slug"
-                            name="slug" value="{{ old('slug') }}" readonly>
-                        @error('slug')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
+                    <!-- Table with stripped rows -->
+                    <table id="beritaTable" class="table datatable">
+                        <thead>
+                            <tr>
 
-                    <div class="mb-3">
-                        <label for="content" class="form-label">Konten</label>
-                        <textarea id="content" name="content" class="form-control @error('content') is-invalid @enderror">{{ old('content') }}</textarea>
-                        @error('content')
-                            <div class="invalid-feedback">
-                                {{ $message }}
-                            </div>
-                        @enderror
-                    </div>
+                                <th>Gambar</th>
+                                <th>Judul</th>
+                                <th>Views</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($berita as $item)
+                                <tr>
+                                    <td><img src="{{ $item->image }}" alt="" width="70"></td>
+                                    <td>{{ $item->title }}</td>
+                                    <td>{{ $item->views }}</td>
+                                    <td>
+                                        <!-- Tombol Edit -->
+                                        <a href="{{ route('berita.edit', $item->id) }}" class="btn btn-warning btn-sm">
+                                            <i class="bi bi-pencil"></i> Edit
+                                        </a>
 
-                    <div class="mb-3">
-                        <label for="image" class="form-label">Gambar</label>
-                        <div class="input-group">
-                            <input type="text" class="form-control @error('image') is-invalid @enderror" id="image-url"
-                                name="image" readonly>
-                            <button class="btn btn-outline-secondary" type="button" id="select-image">Pilih Gambar</button>
-                            @error('image')
-                                <div class="invalid-feedback">
-                                    {{ $message }}
-                                </div>
-                            @enderror
-                        </div>
-                    </div>
+                                        <button type="button" class="btn btn-danger btn-sm"
+                                            onclick="confirmDelete({{ $item->id }})">
+                                            <i class="bi bi-trash"></i> Hapus
+                                        </button>
 
-                    <!-- Preview Image -->
-                    <div class="mb-3" id="image-preview-container" style="display: none;">
-                        <label for="image-preview" class="form-label">Preview Gambar</label>
-                        <img id="image-preview" src="#" alt="Preview Gambar" class="img-thumbnail"
-                            style="max-width: 100%; height: auto;">
-                    </div>
+                                        {{-- <form id="delete-form-{{ $item->id }}"
+                                            action="{{ route('berita.destroy', $item->id) }}" method="POST"
+                                            style="display:inline;">
+                                            @csrf
+                                            @method('DELETE')
 
+                                            <!-- Tombol Hapus -->
+                                            <button type="button" class="btn btn-danger btn-sm"
+                                                onclick="confirmDelete({{ $item->id }})">
+                                                <i class="bi bi-trash"></i> Hapus
+                                            </button>
+                                        </form> --}}
 
-
-                    <button type="submit" class="btn btn-outline-primary">Simpan Berita</button>
-                </form>
-
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                    <!-- End Table with stripped rows -->
+                </div>
             </div>
         </div>
-    </div><!-- End Reports -->
-@endsection
-
-@section('scripts')
-    <script>
-        tinymce.init({
-            selector: '#content',
-            height: 500,
-            menubar: 'file edit view insert format tools table help',
-            plugins: [
-                'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen',
-                'insertdatetime media table paste code help wordcount'
-            ],
-            toolbar: 'undo redo | formatselect | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist | removeformat | table link image media | code fullscreen preview',
-            toolbar_mode: 'sliding',
-            content_css: [
-                'https://www.tiny.cloud/css/codepen.min.css'
-            ],
-            file_picker_callback: function(callback, value, meta) {
-                if (meta.filetype === 'image') {
-                    let route_prefix = "{{ url('filemanager') }}";
-                    window.open(route_prefix + '?type=file', 'FileManager', 'width=800,height=600');
-                    window.SetUrl = function(items) {
-                        let file_url = items[0].url;
-                        callback(file_url, {
-                            alt: items[0].name
-                        });
-                    };
-                }
-            },
-            setup: function(editor) {
-                editor.on('change', function() {
-                    editor.save();
-                });
-            }
-        });
-    </script>
-    <script>
-        // Generate slug from title
-        document.getElementById('title').addEventListener('keyup', function() {
-            const title = this.value;
-            const slug = title.toLowerCase()
-                .replace(/[^a-z0-9-]/g, '-')
-                .replace(/-+/g, '-')
-                .replace(/^-|-$/g, '');
-            document.getElementById('slug').value = slug;
-        });
-    </script>
-    <script>
-        document.getElementById('select-image').addEventListener('click', function() {
-            let route_prefix = "{{ url('filemanager') }}"; // URL ke Laravel File Manager
-            window.open(route_prefix + '?type=file', 'FileManager', 'width=800,height=600');
-
-            // Fungsi untuk mengatur URL gambar
-            window.SetUrl = function(items) {
-                let file_url = items[0].url; // Ambil URL gambar
-                document.getElementById('image-url').value = file_url; // Set URL ke input text
-
-                // Menampilkan preview gambar
-                let imagePreview = document.getElementById('image-preview');
-                imagePreview.src = file_url;
-                document.getElementById('image-preview-container').style.display =
-                    'block'; // Menampilkan container preview
-            };
-        });
-    </script>
+    </div>
 @endsection

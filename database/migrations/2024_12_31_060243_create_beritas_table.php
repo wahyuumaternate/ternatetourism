@@ -11,8 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('beritas', function (Blueprint $table) {
+        Schema::create('berita', function (Blueprint $table) {
             $table->id();
+            $table->string('title');
+            $table->string('slug');
+            $table->string('excerpt');
+            $table->string('image');
+            $table->integer('views');
+            $table->longText('content'); 
+            $table->unsignedBigInteger('user_id'); // Kolom user_id sebagai foreign key    
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');     
             $table->timestamps();
         });
     }
@@ -22,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('beritas');
+        Schema::dropIfExists('berita');
     }
 };

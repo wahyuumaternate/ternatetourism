@@ -8,7 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Berita extends Model
 {
+
     use HasFactory, Sluggable;
+    protected $table = 'berita';
+    protected $guarded = ['id'];
     public function sluggable(): array
     {
         return [

@@ -18,9 +18,6 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/berita', function () {
-    return view('admin.publikasi.berita');
-});
 
 Route::group(['prefix' => 'filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
@@ -37,3 +34,4 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+require __DIR__.'/admin.php';
