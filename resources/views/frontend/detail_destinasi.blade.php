@@ -1,6 +1,25 @@
 @extends('frontend.layouts.main')
 
 @include('frontend.layouts.navbar')
+@push('meta')
+    <!-- Meta untuk SEO -->
+    <meta name="description" content="{{ $destination->description }}">
+    <meta name="keywords" content="{{ $destination->name }}, destinasi wisata, tempat wisata populer">
+    <meta name="author" content="Ternate Tourism">
+
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="{{ $destination->name }}">
+    <meta property="og:description" content="{{ $destination->description }}">
+    <meta property="og:image" content="{{ $destination->image }}">
+    <meta property="og:url" content="{{ request()->fullUrl() }}">
+    <meta property="og:type" content="article">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $destination->name }}">
+    <meta name="twitter:description" content="{{ $destination->description }}">
+    <meta name="twitter:image" content="{{ $destination->image }}">
+@endpush
 
 @push('css')
     <style>

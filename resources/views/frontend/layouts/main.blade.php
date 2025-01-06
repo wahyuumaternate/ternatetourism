@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="{{ asset('leaflet/leaflet.css') }}" />
     @stack('css')
     <link href="{{ asset('admin/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-
+    @stack('meta')
 </head>
 
 <body>
