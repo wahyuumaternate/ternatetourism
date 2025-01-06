@@ -1,6 +1,9 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Models\Berita;
+use App\Models\Destination;
+use App\Models\Media;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,7 +18,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+
+    return view('frontend.index',[
+        'destinasi'=>Destination::latest()->get(),
+        'galeri'=>Media::where('type','photo')->latest()->get(),
+        'video'=>Media::where('type','video')->latest()->get(),
+        'berita'=>Berita::orderBy('created_at', 'desc')->get(),
+    ]);
 });
 
 

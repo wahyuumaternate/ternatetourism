@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\EbookController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\MediaController;
@@ -31,5 +32,9 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::delete('ebooks/{kode_buku}', [EbookController::class, 'destroy'])->name('ebooks.destroy'); // Hapus e-book
     Route::get('ebooks/{kode_buku}', [EbookController::class, 'show'])->name('ebooks.show');
     Route::get('media', [MediaController::class, 'manajemen'])->name('manajemen.media.index'); // Halaman daftar e-book
+    // 
+    Route::resource('destinations', DestinationController::class)->parameters([
+        'destinations' => 'destination:slug',
+    ]);;
 
 });
