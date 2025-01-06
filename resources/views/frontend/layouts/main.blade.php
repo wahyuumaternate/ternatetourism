@@ -5,6 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ternate Tourism</title>
+    @yield('meta')
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Fancyapps CSS -->
@@ -22,7 +23,7 @@
     <link rel="stylesheet" href="{{ asset('leaflet/leaflet.css') }}" />
     @stack('css')
     <link href="{{ asset('admin/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-    @stack('meta')
+
 </head>
 
 <body>
