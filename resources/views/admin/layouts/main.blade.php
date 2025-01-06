@@ -162,7 +162,7 @@
         function confirmDelete(id) {
             Swal.fire({
                 title: 'Apakah Anda yakin?',
-                text: "Judul ini akan dihapus secara permanen!",
+                text: "Data ini akan dihapus secara permanen!",
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',

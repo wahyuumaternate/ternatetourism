@@ -53,17 +53,17 @@
             </a>
             <ul id="media" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="forms-layouts.html">
+                    <a href="{{ route('media.index') }}">
                         <i class="bi bi-circle"></i><span>Foto</span>
                     </a>
                 </li>
                 <li>
-                    <a href="forms-elements.html">
+                    <a href="{{ route('indexVidio.index') }}">
                         <i class="bi bi-circle"></i><span>Vidio</span>
                     </a>
                 </li>
                 <li>
-                    <a href="forms-elements.html">
+                    <a href="{{ route('ebooks.index') }}">
                         <i class="bi bi-circle"></i><span>E-Book</span>
                     </a>
                 </li>
