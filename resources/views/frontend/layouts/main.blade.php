@@ -18,6 +18,10 @@
         href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css" />
 
     <link rel="stylesheet" href="{{ asset('dataaos/aos.css') }}">
+    <!-- CSS untuk Leaflet -->
+    <link rel="stylesheet" href="{{ asset('leaflet/leaflet.css') }}" />
+    @stack('css')
+    <link href="{{ asset('admin/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
 
 </head>
 
@@ -74,6 +78,9 @@
             AOS.init();
         });
     </script>
+
+    <!-- JS untuk Leaflet -->
+    <script src="{{ asset('leaflet/leaflet.js') }}"></script>
     <script>
         $(document).ready(function() {
             $(".owl-carousel").owlCarousel({
@@ -96,6 +103,7 @@
             });
         });
     </script>
+    @stack('scripts')
 </body>
 
 </html>

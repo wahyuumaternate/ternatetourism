@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Berita;
 use App\Models\Destination;
@@ -26,6 +27,7 @@ Route::get('/', function () {
         'berita'=>Berita::orderBy('created_at', 'desc')->get(),
     ]);
 });
+Route::get('/destinasi/{slug}', [DestinationController::class, 'front'])->name('destinasi.show');
 
 
 Route::group(['prefix' => 'filemanager', 'middleware' => ['web', 'auth']], function () {

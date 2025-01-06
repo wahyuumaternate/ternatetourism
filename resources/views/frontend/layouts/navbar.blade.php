@@ -15,7 +15,7 @@
                     alt=""
                     width="100"
             /></a> -->
-         <a href="#"><img class="navbar-brand" src="{{ asset('assets/logo.png') }}" alt=""
+         <a href="/"><img class="navbar-brand" src="{{ asset('assets/logo.png') }}" alt=""
                  width="80" /></a>
 
          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">

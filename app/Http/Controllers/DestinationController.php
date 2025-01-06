@@ -83,4 +83,14 @@ class DestinationController extends Controller
         return redirect()->route('destinations.index');
     }
 
+
+    public function front($slug)
+    {
+        // Ambil data destinasi berdasarkan slug
+        $destination = Destination::where('slug', $slug)->firstOrFail();
+
+        // Kirim data ke view
+        return view('frontend.detail_destinasi', compact('destination'));
+    }
+
 }

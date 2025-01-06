@@ -33,9 +33,9 @@
                                     width: 100%;
                                 ">
                                 <h5 class="mb-3">{{ $item->name }}</h5>
-                                <button class="btn text-white btn-sm">
+                                <a href="{{ route('destinasi.show', $item->slug) }}" class="btn text-white btn-sm">
                                     View Details
-                                </button>
+                                </a>
                             </div>
                         </div>
                     </div>
