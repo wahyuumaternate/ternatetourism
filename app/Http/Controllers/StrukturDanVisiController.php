@@ -41,7 +41,7 @@ class StrukturDanVisiController extends Controller
        $struktur = StrukturDanVisi::find(2);
 
         $request->validate([
-            'content' => 'required|string|max:255',
+            'content' => 'required|string',
         ]);
     
         if ($request->has('content')) {

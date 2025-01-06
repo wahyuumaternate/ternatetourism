@@ -13,6 +13,11 @@ class MediaController extends Controller
         $media = Media::where('type','photo')->latest()->get();
         return view('admin.media.foto', compact('media'));
     }
+    public function manajemen()
+    {
+       
+        return view('admin.media.manajemen_media');
+    }
 
     public function indexVidio()
     {

@@ -30,5 +30,6 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::put('ebooks/{kode_buku}', [EbookController::class, 'update'])->name('ebooks.update'); // Update e-book
     Route::delete('ebooks/{kode_buku}', [EbookController::class, 'destroy'])->name('ebooks.destroy'); // Hapus e-book
     Route::get('ebooks/{kode_buku}', [EbookController::class, 'show'])->name('ebooks.show');
+    Route::get('media', [MediaController::class, 'manajemen'])->name('manajemen.media.index'); // Halaman daftar e-book
 
 });
