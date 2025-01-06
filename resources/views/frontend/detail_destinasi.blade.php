@@ -177,6 +177,7 @@
                         <i class="bi bi-whatsapp fs-3"></i>
                     </a>
                 </div>
+
             </div>
 
             {{-- <!-- Konten -->
