@@ -1,6 +1,5 @@
 @extends('frontend.layouts.main')
 
-@include('frontend.layouts.navbar')
 @section('meta')
     <!-- SEO Meta Tags -->
     <meta name="title" content="{{ $destination->name }}">
@@ -24,9 +23,119 @@
     <meta name="twitter:image" content="{{ asset($destination->image) }}">
 @endsection
 
+
 @push('css')
     <style>
-        /* Add your CSS styles here */
+        /* Memberikan padding atas agar tidak mentok navbar */
+        body {
+            padding-top: 100px;
+            /* Sesuaikan dengan tinggi navbar */
+        }
+
+        /* Section untuk card utama */
+        .destination-section {
+            display: flex;
+            flex-wrap: wrap;
+            background-color: #ffffff;
+            /* Latar belakang ungu pucat */
+            border-radius: 15px;
+            padding: 30px;
+            align-items: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Gaya untuk gambar */
+        .destination-image {
+            width: 100%;
+            height: auto;
+            max-height: 400px;
+            /* Batasi tinggi gambar */
+            object-fit: cover;
+            /* Menjaga rasio gambar */
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Konten teks di sebelah kanan gambar */
+        .destination-content {
+            padding: 20px;
+        }
+
+        .destination-title {
+            font-size: 2rem;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .destination-description {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .destination-description a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .destination-description a:hover {
+            text-decoration: underline;
+        }
+
+        /* Tombol modern */
+        .btn-destination {
+            background-color: #ffffff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: bold;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .btn-destination:hover {
+            background-color: #7d3c98;
+            transform: translateY(-2px);
+        }
+
+        /* Teks kecil untuk footer */
+        .powered-by {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 10px;
+        }
+
+        .badge-beta {
+            background-color: #e6e6fa;
+            color: #333;
+            font-weight: bold;
+            font-size: 0.7rem;
+            border-radius: 5px;
+            padding: 3px 6px;
+        }
+
+        #map {
+            width: 100%;
+            height: 400px;
+            border-radius: 15px;
+            margin-top: 20px;
+        }
+
+        .share-buttons a i {
+            font-size: 1.5rem;
+            /* Ukuran ikon */
+            transition: transform 0.2s ease;
+        }
+
+        .share-buttons a i:hover {
+            transform: scale(1.2);
+            /* Membesarkan ikon saat hover */
+        }
     </style>
 @endpush
 

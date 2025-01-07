@@ -7,7 +7,8 @@
     @if (request() == '/')
         <title>Ternate Tourism</title>
     @endif
-    @yield('meta')
+    @stack('meta')
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Fancyapps CSS -->
@@ -32,7 +33,7 @@
     <button id="backToTopBtn" onclick="scrollToTop()">Up</button>
 
     {{-- navbar --}}
-
+    @include('frontend.layouts.navbar')
     {{-- hero --}}
 
     @yield('body')
