@@ -1,6 +1,6 @@
 @extends('frontend.layouts.main')
 
-@section('meta')
+@push('meta')
     <!-- SEO Meta Tags -->
     <meta name="title" content="{{ $destination->name }}">
     <meta name="description" content="{{ Str::limit(strip_tags($destination->description), 160) }}">
@@ -21,7 +21,7 @@
     <meta name="twitter:title" content="{{ $destination->name }}">
     <meta name="twitter:description" content="{{ Str::limit(strip_tags($destination->description), 160) }}">
     <meta name="twitter:image" content="{{ asset($destination->image) }}">
-@endsection
+@endpush
 
 
 @push('css')
