@@ -2,7 +2,7 @@
 
 @push('meta')
     <!-- SEO Meta Tags -->
-    <title>{{ $destination->name }} - Your Website Name</title>
+    <title>{{ $destination->name }} - Wonderful Ternate</title>
     <meta name="description" content="{{ Str::limit(strip_tags($destination->description), 160) }}">
     <meta name="keywords" content="{{ implode(',', ['destination', $destination->name, 'travel', 'tourism']) }}">
     <meta name="author" content="Your Website Name">
@@ -174,7 +174,7 @@
                         <i class="bi bi-instagram fs-3"></i>
                     </a>
 
-                    <a href="https://api.whatsapp.com/send?text=Lihat%20destinasi%20wisata%20ini:%20{{ urlencode(route('destinasi.show', $destination->slug)) }}"
+                    <a href="https://api.whatsapp.com/send?text={{ route('destinasi.show', $destination->slug) }}"
                         class="text-success" target="_blank" rel="noopener" title="Bagikan ke WhatsApp">
                         <i class="bi bi-whatsapp fs-3"></i>
                     </a>
