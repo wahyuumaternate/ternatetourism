@@ -1,11 +1,8 @@
 @extends('frontend.layouts.main')
 
+@include('frontend.layouts.navbar')
 @push('meta')
     <!-- SEO Meta Tags -->
-@endpush
-
-
-@push('css')
     <meta name="title" content="{{ $destination->name }}">
     <meta name="description" content="{{ Str::limit(strip_tags($destination->description), 160) }}">
     <meta name="keywords" content="{{ implode(',', ['destination', $destination->name, 'travel', 'tourism']) }}">
@@ -25,7 +22,10 @@
     <meta name="twitter:title" content="{{ $destination->name }}">
     <meta name="twitter:description" content="{{ Str::limit(strip_tags($destination->description), 160) }}">
     <meta name="twitter:image" content="{{ $destination->image }}">
-    
+@endpush
+
+
+@push('css')
     <style>
         /* Memberikan padding atas agar tidak mentok navbar */
         body {
@@ -142,61 +142,84 @@
 
 @section('body')
     <div class="container my-5">
+        <!-- Section Destinasi -->
         <div class="destination-section">
-            {{-- Image Section --}}
+            <!-- Gambar -->
             <div class="col-12 col-md-6">
-                <img src="{{ asset($destination->image) }}" alt="{{ $destination->name }}" class="destination-image">
+                <img src="{{ $destination->image }}" alt="{{ $destination->name }}" class="destination-image">
             </div>
 
-            {{-- Content Section --}}
+            <!-- Konten -->
             <div class="col-12 col-md-6 destination-content">
                 <h2 class="destination-title">Things to Do in {{ $destination->name }}</h2>
 
+                <!-- Tombol Bagikan -->
                 <div class="share-buttons mt-4 d-flex align-items-center gap-3">
                     <p class="mb-0 me-3">Bagikan ke:</p>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ route('destinasi.show', $destination->slug) }}"
-                        class="text-primary" target="_blank" title="Bagikan ke Facebook">
+
+                    <!-- Facebook -->
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(request()->url()) }}"
+                        class="text-primary" target="_blank" rel="noopener" title="Bagikan ke Facebook">
                         <i class="bi bi-facebook fs-3"></i>
                     </a>
-                    <a href="https://twitter.com/intent/tweet?url={{ route('destinasi.show', $destination->slug) }}"
-                        class="text-info" target="_blank" title="Bagikan ke Twitter">
+
+                    <!-- X (Twitter) -->
+                    <a href="https://twitter.com/intent/tweet?url={{ urlencode(request()->url()) }}&text={{ urlencode($destination->name) }}"
+                        class="text-info" target="_blank" rel="noopener" title="Bagikan ke Twitter">
                         <i class="bi bi-twitter fs-3"></i>
                     </a>
-                    <a href="https://www.instagram.com/{{ route('destinasi.show', $destination->slug) }}"
-                        class="text-danger" target="_blank" title="Bagikan ke Instagram">
+
+                    <!-- Instagram -->
+                    <a href="https://www.instagram.com/" class="text-danger" target="_blank" rel="noopener"
+                        title="Bagikan ke Instagram">
                         <i class="bi bi-instagram fs-3"></i>
                     </a>
-                    <a href="https://api.whatsapp.com/send?text={{ route('destinasi.show', $destination->slug) }}"
-                        class="text-success" target="_blank" title="Bagikan ke WhatsApp">
+
+                    <!-- WhatsApp -->
+                    <a href="https://api.whatsapp.com/send?text={{ urlencode($destination->name . ' ' . request()->url()) }}"
+                        class="text-success" target="_blank" rel="noopener" title="Bagikan ke WhatsApp">
                         <i class="bi bi-whatsapp fs-3"></i>
                     </a>
                 </div>
 
-                <p class="destination-description">{!! $destination->description !!}</p>
             </div>
-        </div>
-    </div>
 
+            {{-- <!-- Konten -->
+            <div class="col-12 col-md-12 destination-content">
+                <p class="destination-description">
+                    {!! $destination->description !!}
+                </p>
+
+            </div> --}}
+        </div>
+
+    </div>
     <div class="container mt-5">
         <div class="row">
             <div class="col-12 col-md-8 destination-content">
                 <div class="destination-section">
-                    <p class="destination-description text-center">{!! $destination->description !!}</p>
+                    <!-- Konten (8 kolom) -->
+                    <p class="destination-description text-center">
+                        {!! $destination->description !!}
+                    </p>
                 </div>
             </div>
 
+            <!-- Peta (4 kolom) -->
             <div class="col-12 col-md-4">
                 <div class="destination-section">
-                    <div id="map"></div>
+                    <div id="map" style="height: 400px; border-radius: 15px;"></div>
                 </div>
             </div>
         </div>
     </div>
 @endsection
-
 @push('scripts')
+    <!-- Script Peta (Leaflet) -->
     <script>
         var map = L.map('map').setView([{{ $destination->lat }}, {{ $destination->long }}], 16);
+
+        // Layer Satelit dari Esri
         L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
             attribution: '&copy; <a href="https://www.esri.com/en-us/home">Esri</a>',
         }).addTo(map);
