@@ -12,7 +12,7 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="{{ $destination->name }}">
     <meta property="og:description" content="{{ Str::limit(strip_tags($destination->description), 160) }}">
-    <meta property="og:image" content="{{ asset($destination->image) }}">
+    <meta property="og:image" content="{{ $destination->image }}">
     <meta property="og:url" content="{{ request()->url() }}">
     <meta property="og:site_name" content="Your Website Name">
 
@@ -20,7 +20,7 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ $destination->name }}">
     <meta name="twitter:description" content="{{ Str::limit(strip_tags($destination->description), 160) }}">
-    <meta name="twitter:image" content="{{ asset($destination->image) }}">
+    <meta name="twitter:image" content="{{ $destination->image }}">
 @endpush
 
 
