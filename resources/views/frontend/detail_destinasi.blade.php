@@ -2,6 +2,10 @@
 
 @push('meta')
     <!-- SEO Meta Tags -->
+@endpush
+
+
+@push('css')
     <meta name="title" content="{{ $destination->name }}">
     <meta name="description" content="{{ Str::limit(strip_tags($destination->description), 160) }}">
     <meta name="keywords" content="{{ implode(',', ['destination', $destination->name, 'travel', 'tourism']) }}">
@@ -21,10 +25,7 @@
     <meta name="twitter:title" content="{{ $destination->name }}">
     <meta name="twitter:description" content="{{ Str::limit(strip_tags($destination->description), 160) }}">
     <meta name="twitter:image" content="{{ $destination->image }}">
-@endpush
-
-
-@push('css')
+    
     <style>
         /* Memberikan padding atas agar tidak mentok navbar */
         body {
