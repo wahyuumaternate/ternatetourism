@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\ProfileController;
 use App\Models\Berita;
@@ -28,6 +29,7 @@ Route::get('/', function () {
     ]);
 });
 Route::get('/destinasi/{slug}', [DestinationController::class, 'front'])->name('destinasi.show');
+Route::get('/berita/{slug}', [BeritaController::class, 'front'])->name('berita.detail');
 
 
 Route::group(['prefix' => 'filemanager', 'middleware' => ['web', 'auth']], function () {

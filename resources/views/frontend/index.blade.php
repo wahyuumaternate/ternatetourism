@@ -89,7 +89,7 @@
                                 <p class="card-text">
                                     {!! Str::limit($news->content, 100, '...') !!}
                                 </p>
-                                <a href="{{ route('berita.show', $news->slug) }}" class="btn tombol-read text-white">
+                                <a href="{{ route('berita.detail', $news->slug) }}" class="btn tombol-read text-white">
                                     Read More
                                 </a>
                             </div>

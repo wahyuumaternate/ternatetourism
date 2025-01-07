@@ -118,4 +118,13 @@ class BeritaController extends Controller
         notify()->success('Berita berhasil dihapus');
         return redirect()->route('berita.index');
     }
+
+    public function front($slug)
+    {
+        // Ambil data destinasi berdasarkan slug
+        $news = Berita::where('slug', $slug)->firstOrFail();
+
+        // Kirim data ke view
+        return view('frontend.detail_berita', compact('news'));
+    }
 }
