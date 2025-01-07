@@ -153,19 +153,20 @@
 
                 <div class="share-buttons mt-4 d-flex align-items-center gap-3">
                     <p class="mb-0 me-3">Bagikan ke:</p>
-                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(request()->url()) }}"
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ route('destinasi.show', $destination->slug) }}"
                         class="text-primary" target="_blank" title="Bagikan ke Facebook">
                         <i class="bi bi-facebook fs-3"></i>
                     </a>
-                    <a href="https://twitter.com/intent/tweet?url={{ urlencode(request()->url()) }}" class="text-info"
-                        target="_blank" title="Bagikan ke Twitter">
+                    <a href="https://twitter.com/intent/tweet?url={{ route('destinasi.show', $destination->slug) }}"
+                        class="text-info" target="_blank" title="Bagikan ke Twitter">
                         <i class="bi bi-twitter fs-3"></i>
                     </a>
-                    <a href="https://www.instagram.com/" class="text-danger" target="_blank" title="Bagikan ke Instagram">
+                    <a href="https://www.instagram.com/{{ route('destinasi.show', $destination->slug) }}"
+                        class="text-danger" target="_blank" title="Bagikan ke Instagram">
                         <i class="bi bi-instagram fs-3"></i>
                     </a>
-                    <a href="https://api.whatsapp.com/send?text={{ request()->url() }}" class="text-success"
-                        target="_blank" title="Bagikan ke WhatsApp">
+                    <a href="https://api.whatsapp.com/send?text={{ route('destinasi.show', $destination->slug) }}"
+                        class="text-success" target="_blank" title="Bagikan ke WhatsApp">
                         <i class="bi bi-whatsapp fs-3"></i>
                     </a>
                 </div>
