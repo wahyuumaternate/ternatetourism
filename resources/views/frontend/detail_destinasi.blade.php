@@ -174,8 +174,7 @@
                         <i class="bi bi-instagram fs-3"></i>
                     </a>
 
-                    <!-- WhatsApp -->
-                    <a href="https://api.whatsapp.com/send?text={{ route('destinasi.show', $destination->slug) }}"
+                    <a href="https://api.whatsapp.com/send?text=Lihat%20destinasi%20wisata%20ini:%20{{ urlencode(route('destinasi.show', $destination->slug)) }}"
                         class="text-success" target="_blank" rel="noopener" title="Bagikan ke WhatsApp">
                         <i class="bi bi-whatsapp fs-3"></i>
                     </a>
