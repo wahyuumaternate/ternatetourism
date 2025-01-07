@@ -1,25 +1,24 @@
 @extends('frontend.layouts.main')
 
-@include('frontend.layouts.navbar')
 @push('meta')
     <!-- SEO Meta Tags -->
-    <meta name="title" content="{{ $destination->name }}">
+    <title>{{ $destination->name }} - Your Website Name</title>
     <meta name="description" content="{{ Str::limit(strip_tags($destination->description), 160) }}">
     <meta name="keywords" content="{{ implode(',', ['destination', $destination->name, 'travel', 'tourism']) }}">
     <meta name="author" content="Your Website Name">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="{{ $destination->name }}">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="{{ $destination->name }} - Your Website Name">
     <meta property="og:description" content="{{ Str::limit(strip_tags($destination->description), 160) }}">
     <meta property="og:image" content="{{ $destination->image }}">
-    <meta property="og:url" content="{{ request()->url() }}">
+    <meta property="og:url" content="{{ route('destinasi.show', $destination->slug) }}">
     <meta property="og:site_name" content="Your Website Name">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ $destination->name }}">
+    <meta name="twitter:title" content="{{ $destination->name }} - Your Website Name">
     <meta name="twitter:description" content="{{ Str::limit(strip_tags($destination->description), 160) }}">
     <meta name="twitter:image" content="{{ $destination->image }}">
 @endpush
@@ -158,13 +157,13 @@
                     <p class="mb-0 me-3">Bagikan ke:</p>
 
                     <!-- Facebook -->
-                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode(request()->url()) }}"
+                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ route('destinasi.show', $destination->slug) }}"
                         class="text-primary" target="_blank" rel="noopener" title="Bagikan ke Facebook">
                         <i class="bi bi-facebook fs-3"></i>
                     </a>
 
                     <!-- X (Twitter) -->
-                    <a href="https://twitter.com/intent/tweet?url={{ urlencode(request()->url()) }}&text={{ urlencode($destination->name) }}"
+                    <a href="https://twitter.com/intent/tweet?url={{ route('destinasi.show', $destination->slug) }}"
                         class="text-info" target="_blank" rel="noopener" title="Bagikan ke Twitter">
                         <i class="bi bi-twitter fs-3"></i>
                     </a>
@@ -176,7 +175,7 @@
                     </a>
 
                     <!-- WhatsApp -->
-                    <a href="https://api.whatsapp.com/send?text={{ urlencode($destination->name . ' ' . request()->url()) }}"
+                    <a href="https://api.whatsapp.com/send?text={{ route('destinasi.show', $destination->slug) }}"
                         class="text-success" target="_blank" rel="noopener" title="Bagikan ke WhatsApp">
                         <i class="bi bi-whatsapp fs-3"></i>
                     </a>
