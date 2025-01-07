@@ -1,7 +1,7 @@
 @extends('frontend.layouts.main')
 
 @include('frontend.layouts.navbar')
-@push('meta')
+{{-- @section('meta')
     <!-- SEO Meta Tags -->
     <meta name="title" content="{{ $destination->name }}">
     <meta name="description" content="{{ Str::limit(strip_tags($destination->description), 160) }}">
@@ -22,10 +22,30 @@
     <meta name="twitter:title" content="{{ $destination->name }}">
     <meta name="twitter:description" content="{{ Str::limit(strip_tags($destination->description), 160) }}">
     <meta name="twitter:image" content="{{ $destination->image }}">
-@endpush
+@endsection --}}
 
 
 @push('css')
+    <!-- SEO Meta Tags -->
+    <meta name="title" content="{{ $destination->name }}">
+    <meta name="description" content="{{ Str::limit(strip_tags($destination->description), 160) }}">
+    <meta name="keywords" content="{{ implode(',', ['destination', $destination->name, 'travel', 'tourism']) }}">
+    <meta name="author" content="Your Website Name">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="{{ $destination->name }}">
+    <meta property="og:description" content="{{ Str::limit(strip_tags($destination->description), 160) }}">
+    <meta property="og:image" content="{{ $destination->image }}">
+    <meta property="og:url" content="{{ request()->url() }}">
+    <meta property="og:site_name" content="Your Website Name">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $destination->name }}">
+    <meta name="twitter:description" content="{{ Str::limit(strip_tags($destination->description), 160) }}">
+    <meta name="twitter:image" content="{{ $destination->image }}">
     <style>
         /* Memberikan padding atas agar tidak mentok navbar */
         body {
