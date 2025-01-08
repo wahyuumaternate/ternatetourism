@@ -42,19 +42,23 @@
              <div class="d-flex justify-content-center gap-4 mt-3">
                  <!-- Facebook -->
                  <a href="https://www.facebook.com" target="_blank" class="social-link">
-                     <img src="https://www.facebook.com/favicon.ico" alt="Facebook" class="social-icon" />
+                     <i class="bi bi-facebook social-icon facebook"></i>
                  </a>
                  <!-- Twitter -->
                  <a href="https://www.twitter.com" target="_blank" class="social-link">
-                     <img src="https://www.twitter.com/favicon.ico" alt="Twitter" class="social-icon" />
+                     <i class="bi bi-twitter social-icon twitter"></i>
                  </a>
                  <!-- Instagram -->
                  <a href="https://www.instagram.com" target="_blank" class="social-link">
-                     <img src="https://www.instagram.com/favicon.ico" alt="Instagram" class="social-icon" />
+                     <i class="bi bi-instagram social-icon instagram"></i>
                  </a>
                  <!-- YouTube -->
                  <a href="https://www.youtube.com" target="_blank" class="social-link">
-                     <img src="https://www.youtube.com/favicon.ico" alt="YouTube" class="social-icon" />
+                     <i class="bi bi-youtube social-icon youtube"></i>
+                 </a>
+                 <!-- TikTok -->
+                 <a href="https://www.tiktok.com" target="_blank" class="social-link">
+                     <i class="bi bi-tiktok social-icon tiktok"></i>
                  </a>
              </div>
          </div>

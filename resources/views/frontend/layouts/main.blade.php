@@ -51,11 +51,50 @@
             background-color: #ff660080;
             /* border-color: #ff6500; */
         }
+
+        .social-icon {
+            font-size: 2rem;
+            /* Mengubah ukuran ikon */
+            transition: color 0.3s;
+            /* Efek transisi saat hover */
+        }
+
+        /* Warna untuk masing-masing ikon sosial media */
+        .facebook {
+            color: #3b5998;
+            /* Warna Facebook */
+        }
+
+        .twitter {
+            color: #1da1f2;
+            /* Warna Twitter */
+        }
+
+        .instagram {
+            color: #c32aa3;
+            /* Warna Instagram */
+        }
+
+        .youtube {
+            color: #ff0000;
+            /* Warna YouTube */
+        }
+
+        .tiktok {
+            color: #69c9d0;
+            /* Warna TikTok */
+        }
+
+        /* Efek hover */
+        .social-link:hover .social-icon {
+            opacity: 0.8;
+            /* Mengurangi ketebalan saat hover */
+        }
     </style>
 </head>
 
 <body>
-    <button id="backToTopBtn" onclick="scrollToTop()">Up</button>
+    <button id="backToTopBtn" onclick="scrollToTop()"> <i class="bi bi-arrow-up arrow-icon"></i></button>
 
     {{-- navbar --}}
     @include('frontend.layouts.navbar')
