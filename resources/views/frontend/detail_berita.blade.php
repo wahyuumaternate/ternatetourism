@@ -22,12 +22,27 @@
     <meta name="twitter:description" content="{{ Str::limit(strip_tags($news->content), 160) }}">
     <meta name="twitter:image" content="{{ $news->image }}">
 @endpush
+@push('css')
+    <style>
+        .card {
+            margin-top: 150px;
+            margin-bottom: 50px;
+        }
 
+        @media (min-width: 992px) {
+            .card-img-top {
+                max-height: 800px;
+                /* max-width: 800px; */
+                object-fit: cover;
+            }
+        }
+    </style>
+@endpush
 
 @section('body')
-    <div class="container my-5 pt-5">
+    <div class="container">
         <div class="card">
-            <img src="{{ $news->image }}" alt="{{ $news->title }}" class="card-img-top mt-5">
+            <img src="{{ $news->image }}" alt="{{ $news->title }}" class="card-img-top">
             <div class="card-body">
                 <h5 class="card-title">{{ $news->title }} - <small
                         class="text-muted">{{ $news->created_at->format('d M Y') }}</small></h5>

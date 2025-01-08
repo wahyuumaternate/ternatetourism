@@ -24,18 +24,7 @@
                  </ul>
              </div>
              <div class="col-md-3">
-                 <h5 class="text-white">Contact</h5>
-                 <ul class="list-unstyled">
-                     <li>
-                         <a href="#" class="text-decoration-none text-white">Help/FAQ</a>
-                     </li>
-                     <li>
-                         <a href="#" class="text-decoration-none text-white">Press</a>
-                     </li>
-                     <li>
-                         <a href="#" class="text-decoration-none text-white">Affiliates</a>
-                     </li>
-                 </ul>
+                 <img class="img-fluid" src="{{ asset('assets/logo.png') }}" alt="" />
              </div>
              <div class="col-md-3">
                  <iframe

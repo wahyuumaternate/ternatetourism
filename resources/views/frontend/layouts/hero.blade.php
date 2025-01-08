@@ -2,15 +2,11 @@
     <!-- Overlay -->
     <div class="hero-overlay"></div>
     <!-- Video Background -->
-    <video autoplay muted loop playsinline class="video-background">
+    {{-- <video autoplay muted loop playsinline class="video-background">
         <source src="{{ asset('assets/1228.mp4') }}" type="video/mp4" />
         Your browser does not support the video tag.
-    </video>
-    <!-- <img
-            src="vidio/1228.gif"
-            alt="Background GIF"
-            class="video-background"
-        /> -->
+    </video> --}}
+    <img src="{{ asset('assets/DJI_20250104094318_0007_D.jpeg') }}" alt="Background GIF" class="video-background" />
     <!-- Content -->
     <div class="hero-content">
         <p>Temukan Pesonanya</p>
