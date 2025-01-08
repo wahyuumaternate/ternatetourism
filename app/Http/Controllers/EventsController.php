@@ -100,4 +100,24 @@ class EventsController extends Controller
         notify()->success('Event berhasil dihapus');
         return redirect()->route('events.index');
     }
+
+    public function all()
+    {
+        // Ambil data destinasi berdasarkan slug
+        $events = Events::latest()->paginate(9);
+
+        // Kirim data ke view
+        return view('frontend.events', compact('events'));
+    }
+
+    // Metode untuk menampilkan detail acara berdasarkan slug
+    public function detail($slug)
+    {
+        // Mengambil acara berdasarkan slug
+        $event = Events::where('slug', $slug)->firstOrFail();
+
+        // Mengembalikan view dengan data acara
+        return view('frontend.detail_event', compact('event'));
+    }
+
 }

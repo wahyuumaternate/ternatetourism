@@ -53,4 +53,11 @@ class StrukturDanVisiController extends Controller
         notify()->success('Visi & Misi berhasil diperbarui');
         return redirect()->back();
     }
+
+    public function profil($slug)
+    {
+        return view('frontend.visi_misi', [
+            'visi_misi' => StrukturDanVisi::where('slug', $slug)->first()
+        ]);
+    }
 }

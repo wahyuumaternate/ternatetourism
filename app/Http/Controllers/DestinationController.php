@@ -92,5 +92,14 @@ class DestinationController extends Controller
         // Kirim data ke view
         return view('frontend.detail_destinasi', compact('destination'));
     }
+    public function all()
+    {
+        // Ambil data destinasi berdasarkan slug
+        $destination = Destination::latest()->paginate(9);
 
+        // Kirim data ke view
+        return view('frontend.destinasi', compact('destination'));
+    }
+
+    
 }

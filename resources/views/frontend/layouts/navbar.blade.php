@@ -24,7 +24,7 @@
          <div class="collapse navbar-collapse" id="navbarNav">
              <ul class="navbar-nav ms-auto">
                  <li class="nav-item">
-                     <a class="nav-link" href="#home">Beranda</a>
+                     <a class="nav-link" href="/">Beranda</a>
                  </li>
                  <li class="nav-item dropdown">
                      <a class="nav-link dropdown-toggle" href="#" id="profilDropdown" role="button"
@@ -33,18 +33,18 @@
                      </a>
                      <ul class="dropdown-menu" aria-labelledby="profilDropdown">
                          <li>
-                             <a class="dropdown-item" href="#">Visi Misi</a>
+                             <a class="dropdown-item" href="{{ route('profil', 'visi-misi') }}">Visi Misi</a>
                          </li>
                          <li>
-                             <a class="dropdown-item" href="struktur.html">Struktur Organisasi</a>
+                             <a class="dropdown-item" href="{{ route('profil', 'struktur') }}">Struktur Organisasi</a>
                          </li>
                      </ul>
                  </li>
                  <li class="nav-item">
-                     <a class="nav-link" href="#packages">Destinasi</a>
+                     <a class="nav-link" href="{{ route('destinasi.all') }}">Destinasi</a>
                  </li>
                  <li class="nav-item">
-                     <a class="nav-link" href="#blog">Events</a>
+                     <a class="nav-link" href="{{ route('events.all') }}">Events</a>
                  </li>
                  <li class="nav-item">
                      <a class="nav-link" href="#contact">Berita</a>

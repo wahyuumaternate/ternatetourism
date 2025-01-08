@@ -2,10 +2,13 @@
 
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DestinationController;
+use App\Http\Controllers\EventsController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\StrukturDanVisiController;
 use App\Models\Berita;
 use App\Models\Destination;
 use App\Models\Media;
+use App\Models\StrukturDanVisi;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,9 +31,20 @@ Route::get('/', function () {
         'berita'=>Berita::orderBy('created_at', 'desc')->get(),
     ]);
 });
+
+// Route::get('/visi-misi', function () {
+//     return view('frontend.visi_misi',[
+//         'visi_misi'=>StrukturDanVisi::where('slug','visi-misi')->first(),
+//     ]);
+// });
+Route::get('/profil/{slug}', [StrukturDanVisiController::class, 'profil'])->name('profil');
+
 Route::get('/destinasi/{slug}', [DestinationController::class, 'front'])->name('destinasi.show');
 Route::get('/berita/{slug}', [BeritaController::class, 'front'])->name('berita.detail');
-
+Route::get('/destinasi', [DestinationController::class, 'all'])->name('destinasi.all');
+Route::get('/events', [EventsController::class, 'all'])->name('events.all');
+// Rute untuk halaman detail acara menggunakan slug
+Route::get('/event/{slug}', [EventsController::class, 'detail'])->name('event.detail');
 
 Route::group(['prefix' => 'filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();

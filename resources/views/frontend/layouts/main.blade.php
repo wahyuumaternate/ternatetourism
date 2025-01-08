@@ -12,7 +12,7 @@
     {{-- favicon --}}
     <link rel="icon" type="image/png" href="favicon-32x32.png" sizes="32x32" />
     <link rel="icon" type="image/png" href="favicon-16x16.png" sizes="16x16" />
-    
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Fancyapps CSS -->
@@ -30,7 +30,28 @@
     <link rel="stylesheet" href="{{ asset('leaflet/leaflet.css') }}" />
     @stack('css')
     <link href="{{ asset('admin/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <style>
+        .pagination .page-link {
+            color: #ff6500;
+            /* Text color */
+            border-color: #ff6500;
+            /* Border color */
+        }
 
+        .pagination .page-item.active .page-link {
+            background-color: #ff6500;
+            /* Background color for active page */
+            border-color: #ff6500;
+            color: white;
+            /* Text color for active page */
+        }
+
+        .pagination .page-link:hover {
+            color: white;
+            background-color: #ff660080;
+            /* border-color: #ff6500; */
+        }
+    </style>
 </head>
 
 <body>

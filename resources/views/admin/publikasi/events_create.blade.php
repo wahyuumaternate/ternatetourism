@@ -95,7 +95,9 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="poster" class="form-label">Poster</label>
+                        <label for="poster" class="form-label">Poster <small class="text-muted">(saran ukuran : tinggi
+                                2250px
+                                mlebar 1410)</small></label>
                         <div class="input-group">
                             <input type="text" class="form-control @error('poster') is-invalid @enderror" id="poster-url"
                                 name="poster" readonly>

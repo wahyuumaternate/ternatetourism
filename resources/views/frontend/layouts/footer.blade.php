@@ -23,8 +23,10 @@
                      </li>
                  </ul>
              </div>
-             <div class="col-md-3">
-                 <img class="img-fluid" src="{{ asset('assets/logo.png') }}" alt="" />
+             <div class="col-md-3 d-flex justify-content-center align-items-center flex-row" style="height: 100%;">
+                 <img class="img-fluid" src="{{ asset('assets/logo2.png') }}" alt="" width="200" />
+                 {{-- <img class="img-fluid" src="{{ asset('assets/Logo_WI_Final_20092017_WHITE_9a2b7d834c.png') }}"
+                     alt="" width="200" /> --}}
              </div>
              <div class="col-md-3">
                  <iframe
