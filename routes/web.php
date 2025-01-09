@@ -52,7 +52,7 @@ Route::get('/ekraf', [EkrafController::class, 'front'])->name('ekraf.index');
 Route::get('/ekraf/category/{slug}', [EkrafController::class, 'category'])->name('ekraf.category');
 Route::get('/ekraf/search', [EkrafController::class, 'search'])->name('ekraf.search');
 Route::get('/ekraf/category/{category}', [EkrafController::class, 'filterByCategory'])->name('ekraf.filterByCategory');
-
+Route::get('/ekraf/{slug}', [EkrafController::class, 'show'])->name('ekraf.show');
 
 
 Route::group(['prefix' => 'filemanager', 'middleware' => ['web', 'auth']], function () {

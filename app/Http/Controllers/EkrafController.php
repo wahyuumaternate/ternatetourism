@@ -46,9 +46,12 @@ class EkrafController extends Controller
        return redirect()->route('ekrafs.index');
     }
 
-    public function show(Ekraf $ekraf)
+    public function show($slug)
     {
-        return view('ekrafs.show', compact('ekraf'));
+        // Mencari ekraf berdasarkan slug
+        $ekraf = Ekraf::where('slug', $slug)->firstOrFail();
+
+        return view('frontend.detail_ekraf', compact('ekraf'));
     }
 
     public function edit(Ekraf $ekraf)

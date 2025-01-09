@@ -73,8 +73,7 @@
                             <a href="/ekraf/{{ $ekraf->slug }}" class="text-decoration-none text-dark border">
                                 <div class="d-flex align-items-center gap-3 p-3 border-0 rounded h-100">
                                     <!-- Gambar -->
-                                    <img src="{{ $ekraf->logo ? asset('storage/' . $ekraf->logo) : 'https://via.placeholder.com/60' }}"
-                                        class="rounded-circle" alt="{{ $ekraf->name }}"
+                                    <img src="{{ $ekraf->logo }}" class="rounded-circle" alt="{{ $ekraf->name }}"
                                         style="width: 60px; height: 60px; object-fit: cover;">
                                     <!-- Teks -->
                                     <div>
@@ -271,10 +270,12 @@
                                     data.data.forEach(ekraf => {
                                         ekrafList.innerHTML += `
                             <div class="col-md-4">
-                                <a href="/ekraf/${ekraf.slug}" class="text-decoration-none text-dark">
+                                <a href="/ekraf/${ekraf.slug}" class="text-decoration-none text-dark border">
                                     <div class="d-flex align-items-center gap-3">
+
                                         <img src="${ekraf.logo || 'https://via.placeholder.com/60'}" 
-                                             class="rounded" alt="${ekraf.name}">
+                                             class="rounded-circle" alt="${ekraf.name}" 
+                                        style="width: 60px; height: 60px; object-fit: cover;">
                                         <div>
                                             <h6 class="mb-1 fw-semibold">${ekraf.name}</h6>
                                             <small class="text-muted">${ekraf.category.name}</small>

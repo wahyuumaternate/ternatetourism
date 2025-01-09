@@ -106,7 +106,7 @@
             </a>
         </li>
 
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#ekraf-nav" data-bs-toggle="collapse" href="#">
                 <i class="bi bi-bag-check"></i><span>Ekraf</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
@@ -122,8 +122,14 @@
                     </a>
                 </li>
             </ul>
-        </li>
+        </li> --}}
 
+        <li class="nav-item">
+            <a class="nav-link collapsed" href="{{ route('ekrafs.index') }}">
+                <i class="bi bi-bag-check"></i>
+                <span>Ekraf</span>
+            </a>
+        </li>
         <li class="nav-item">
             <a class="nav-link collapsed" href="{{ route('manajemen.media.index') }}">
                 <i class="bi bi-camera-reels"></i>
