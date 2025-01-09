@@ -96,22 +96,21 @@
                      </ul>
                  </li>
                  <li class="nav-item dropdown">
-                     <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button"
-                         data-bs-toggle="dropdown" aria-expanded="false">
-                         <img src="{{ asset('assets/flags/' . (app()->getLocale() == 'id' ? 'id.png' : 'en.png')) }}"
+                     <a class="nav-link" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown"
+                         aria-expanded="false">
+                         <img src="{{ asset('assets/' . (app()->getLocale() == 'id' ? 'id.png' : 'en.png')) }}"
                              alt="Language" width="20" class="me-2">
-                         {{ app()->getLocale() == 'id' ? 'Indonesia' : 'English' }}
                      </a>
                      <ul class="dropdown-menu" aria-labelledby="languageDropdown">
                          <li>
-                             <a class="dropdown-item" href="{{ url('locale/id') }}">
-                                 <img src="{{ asset('assets/flags/id.png') }}" alt="Indonesian" class="me-2"
+                             <a class="dropdown-item" href="#">
+                                 <img src="{{ asset('assets/id.png') }}" alt="Indonesian" class="me-2"
                                      width="20">Indonesia
                              </a>
                          </li>
                          <li>
-                             <a class="dropdown-item" href="{{ url('locale/en') }}">
-                                 <img src="{{ asset('assets/flags/en.png') }}" alt="English" class="me-2"
+                             <a class="dropdown-item" href="#">
+                                 <img src="{{ asset('assets/en.png') }}" alt="English" class="me-2"
                                      width="20">English
                              </a>
                          </li>
