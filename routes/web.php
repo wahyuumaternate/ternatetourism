@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DestinationController;
+use App\Http\Controllers\EkrafController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StrukturDanVisiController;
@@ -47,9 +48,10 @@ Route::get('/berita', [BeritaController::class, 'all'])->name('berita.all');
 // Rute untuk halaman detail acara menggunakan slug
 Route::get('/event/{slug}', [EventsController::class, 'detail'])->name('event.detail');
 
-Route::get('/ekraf', function () {
-    return view('frontend.ekraf');
-});
+Route::get('/ekraf', [EkrafController::class, 'front'])->name('ekraf.index');
+Route::get('/ekraf/category/{slug}', [EkrafController::class, 'category'])->name('ekraf.category');
+Route::get('/ekraf/search', [EkrafController::class, 'search'])->name('ekraf.search');
+Route::get('/ekraf/category/{category}', [EkrafController::class, 'filterByCategory'])->name('ekraf.filterByCategory');
 
 
 

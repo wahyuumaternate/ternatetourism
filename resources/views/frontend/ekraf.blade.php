@@ -4,218 +4,125 @@
         <!-- Initial Categories -->
         <div class="row mb-4">
             <div class="col-12">
-                <div class="d-flex flex-wrap">
-                    <a href="#" class="category-item text-decoration-none text-dark">
+                <div class="d-flex flex-wrap" id="category-container">
+                    <a href="{{ route('ekraf.index') }}" class="category-item text-decoration-none text-dark">
                         <div class="category-box bg-body-tertiary rounded text-center">
                             <i class="bi bi-grid-fill text-primary"></i>
                             <div>Semua</div>
-                            <small class="text-muted">1860</small>
+                            <small class="text-muted">{{ $totalEkraf }}</small>
                         </div>
                     </a>
-                    <a href="#" class="category-item text-decoration-none text-dark">
-                        <div class="category-box bg-body-tertiary rounded text-center">
-                            <i class="bi bi-cup-hot-fill text-primary"></i>
-                            <div>Kuliner</div>
-                            <small class="text-muted">650</small>
-                        </div>
-                    </a>
-                    <a href="#" class="category-item text-decoration-none text-dark">
-                        <div class="category-box bg-body-tertiary rounded text-center">
-                            <i class="bi bi-bag-fill text-primary"></i>
-                            <div>Fashion</div>
-                            <small class="text-muted">398</small>
-                        </div>
-                    </a>
-                    <a href="#" class="category-item text-decoration-none text-dark">
-                        <div class="category-box bg-body-tertiary rounded text-center">
-                            <i class="bi bi-brush-fill text-primary"></i>
-                            <div>Kriya</div>
-                            <small class="text-muted">388</small>
-                        </div>
-                    </a>
-                    <a href="#" class="category-item text-decoration-none text-dark">
-                        <div class="category-box bg-body-tertiary rounded text-center">
-                            <i class="bi bi-tv-fill text-primary"></i>
-                            <div>Televisi & Radio</div>
-                            <small class="text-muted">6</small>
-                        </div>
-                    </a>
+
+                    <!-- Menampilkan 5 kategori pertama -->
+                    @foreach ($allCategories->take(5) as $category)
+                        <a href="{{ route('ekraf.filterByCategory', $category->slug) }}"
+                            class="category-item text-decoration-none text-dark">
+                            <div class="category-box bg-body-tertiary rounded text-center">
+                                <i class="bi {{ $category->icon ?? 'bi-collection' }} text-primary"></i>
+                                <div>{{ $category->name }}</div>
+                                <small class="text-muted">{{ $category->ekraf_count }}</small>
+                            </div>
+                        </a>
+                    @endforeach
+
+                    <!-- Menyembunyikan kategori sisanya -->
+                    @foreach ($allCategories->skip(5) as $category)
+                        <a href="{{ route('ekraf.filterByCategory', $category->slug) }}"
+                            class="category-item text-decoration-none text-dark hidden">
+                            <div class="category-box bg-body-tertiary rounded text-center">
+                                <i class="bi {{ $category->icon ?? 'bi-collection' }} text-primary"></i>
+                                <div>{{ $category->name }}</div>
+                                <small class="text-muted">{{ $category->ekraf_count }}</small>
+                            </div>
+                        </a>
+                    @endforeach
+
                 </div>
+
+                <!-- Tombol "Lihat Lebih Banyak" -->
+                @if ($allCategories->count() > 5)
+                    <div class="text-center">
+                        <button id="load-more" class="btn border-0 btn-primary">Lihat Lebih Banyak</button>
+                        <button id="collapse" class="btn border-0 btn-secondary" style="display:none;">Tutup</button>
+                    </div>
+                @endif
             </div>
+
+
+
         </div>
 
-        <div class="text-center mb-4">
-            <button class="text-decoration-none border-0 p-1" id="toggleCategories">
-                Tampilkan Semua <i class="bi bi-chevron-down ms-1"></i>
-            </button>
-        </div>
-
-        <!-- Hidden Categories -->
-        <div class="row mb-4 d-none" id="hiddenCategories">
-            <div class="col-12">
-                <div class="d-flex flex-wrap">
-                    <a href="#" class="category-item text-decoration-none text-dark">
-                        <div class="category-box bg-body-tertiary rounded text-center">
-                            <i class="bi bi-book-fill text-primary"></i>
-                            <div>Penerbitan</div>
-                            <small class="text-muted">20</small>
-                        </div>
-                    </a>
-                    <a href="#" class="category-item text-decoration-none text-dark">
-                        <div class="category-box bg-body-tertiary rounded text-center">
-                            <i class="bi bi-building text-primary"></i>
-                            <div>Arsitektur</div>
-                            <small class="text-muted">15</small>
-                        </div>
-                    </a>
-                    <a href="#" class="category-item text-decoration-none text-dark">
-                        <div class="category-box bg-body-tertiary rounded text-center">
-                            <i class="bi bi-megaphone-fill text-primary"></i>
-                            <div>Periklanan</div>
-                            <small class="text-muted">18</small>
-                        </div>
-                    </a>
-                    <a href="#" class="category-item text-decoration-none text-dark">
-                        <div class="category-box bg-body-tertiary rounded text-center">
-                            <i class="bi bi-music-note-beamed text-primary"></i>
-                            <div>Musik</div>
-                            <small class="text-muted">25</small>
-                        </div>
-                    </a>
-                    <a href="#" class="category-item text-decoration-none text-dark">
-                        <div class="category-box bg-body-tertiary rounded text-center">
-                            <i class="bi bi-camera-fill text-primary"></i>
-                            <div>Fotografi</div>
-                            <small class="text-muted">39</small>
-                        </div>
-                    </a>
-                    <a href="#" class="category-item text-decoration-none text-dark">
-                        <div class="category-box bg-body-tertiary rounded text-center">
-                            <i class="bi bi-music-player-fill text-primary"></i>
-                            <div>Seni Pertunjukan</div>
-                            <small class="text-muted">33</small>
-                        </div>
-                    </a>
-                    <a href="#" class="category-item text-decoration-none text-dark">
-                        <div class="category-box bg-body-tertiary rounded text-center">
-                            <i class="bi bi-box-fill text-primary"></i>
-                            <div>Desain Produk</div>
-                            <small class="text-muted">81</small>
-                        </div>
-                    </a>
-                    <a href="#" class="category-item text-decoration-none text-dark">
-                        <div class="category-box bg-body-tertiary rounded text-center">
-                            <i class="bi bi-palette-fill text-primary"></i>
-                            <div>Seni Rupa</div>
-                            <small class="text-muted">34</small>
-                        </div>
-                    </a>
-                    <a href="#" class="category-item text-decoration-none text-dark">
-                        <div class="category-box bg-body-tertiary rounded text-center">
-                            <i class="bi bi-house-door-fill text-primary"></i>
-                            <div>Desain Interior</div>
-                            <small class="text-muted">20</small>
-                        </div>
-                    </a>
-                    <a href="#" class="category-item text-decoration-none text-dark">
-                        <div class="category-box bg-body-tertiary rounded text-center">
-                            <i class="bi bi-film text-primary"></i>
-                            <div>Film, Animasi dan Video</div>
-                            <small class="text-muted">40</small>
-                        </div>
-                    </a>
-                    <a href="#" class="category-item text-decoration-none text-dark">
-                        <div class="category-box bg-body-tertiary rounded text-center">
-                            <i class="bi bi-vector-pen text-primary"></i>
-                            <div>DKV</div>
-                            <small class="text-muted">48</small>
-                        </div>
-                    </a>
-                    <a href="#" class="category-item text-decoration-none text-dark">
-                        <div class="category-box bg-body-tertiary rounded text-center">
-                            <i class="bi bi-phone-fill text-primary"></i>
-                            <div>Aplikasi</div>
-                            <small class="text-muted">40</small>
-                        </div>
-                    </a>
-                    <a href="#" class="category-item text-decoration-none text-dark">
-                        <div class="category-box bg-body-tertiary rounded text-center">
-                            <i class="bi bi-controller text-primary"></i>
-                            <div>Game</div>
-                            <small class="text-muted">5</small>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-
-        <!-- Left Sidebar and Content Area -->
+        <!-- Search and Content Area -->
         <div class="row">
             <div class="d-flex justify-content-center mb-4">
                 <div class="col-6">
                     <div class="search-box">
-                        <input type="text" class="form-control" placeholder="Cari Ekraf...">
+                        <input type="text" class="form-control" placeholder="Cari Ekraf..." id="searchEkraf">
                     </div>
                 </div>
             </div>
-            {{-- <!-- Left Sidebar -->
-            <div class="col-md-3">
-                <div class="search-box mb-4">
-                    <input type="text" class="form-control" placeholder="Cari Ekraf...">
-                </div>
-
-                <div class="kategori-section">
-                    <h6 class="text-uppercase mb-3">KATEGORI</h6>
-                    <div class="d-flex flex-column gap-2">
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="kategori" id="semuaKategori" checked>
-                            <label class="form-check-label" for="semuaKategori">Semua Kategori</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="kategori" id="pelakuBisnis">
-                            <label class="form-check-label" for="pelakuBisnis">Pelaku Bisnis</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="kategori" id="komunitasBisnis">
-                            <label class="form-check-label" for="komunitasBisnis">Komunitas Bisnis</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="kategori" id="usahaBisnis">
-                            <label class="form-check-label" for="usahaBisnis">Usaha/Bisnis</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="kategori" id="lembagaPendidikan">
-                            <label class="form-check-label" for="lembagaPendidikan">Lembaga Pendidikan</label>
-                        </div>
-                    </div>
-                </div>
-            </div> --}}
 
             <!-- Main Content -->
             <div class="col-md-12">
-                <h3 class="d-flex justify-content-center mb-4">Semua</h3>
-                <div class="row g-4">
-                    @for ($i = 1; $i <= 6; $i++)
-                        <div class="col-md-4">
-                            <a href="#" class="text-decoration-none text-dark">
-                                <div class="d-flex align-items-center gap-3">
-                                    <img src="https://via.placeholder.com/60" class="rounded"
-                                        alt="Item {{ $i }}">
+                <h3 class="text-center mb-4">
+                    Semua Ekraf
+                </h3>
+                <div class="row row-cols-1 row-cols-md-3 g-4" id="ekrafList">
+                    @forelse ($ekrafs as $ekraf)
+                        <div class="col">
+                            <a href="/ekraf/{{ $ekraf->slug }}" class="text-decoration-none text-dark border">
+                                <div class="d-flex align-items-center gap-3 p-3 border-0 rounded h-100">
+                                    <!-- Gambar -->
+                                    <img src="{{ $ekraf->logo ? asset('storage/' . $ekraf->logo) : 'https://via.placeholder.com/60' }}"
+                                        class="rounded-circle" alt="{{ $ekraf->name }}"
+                                        style="width: 60px; height: 60px; object-fit: cover;">
+                                    <!-- Teks -->
                                     <div>
-                                        <h6 class="mb-1 fw-semibold">Paket Website UKM Bisnis</h6>
-                                        <small class="text-muted">Pelaku Bisnis</small>
+                                        <h6 class="mb-1 fw-semibold">{{ $ekraf->name }}</h6>
+                                        <small class="text-muted">{{ $ekraf->category->name }}</small>
                                     </div>
                                 </div>
                             </a>
                         </div>
-                    @endfor
+                    @empty
+                        <div class="col-12">
+                            <div class="text-center text-muted">Tidak ada data untuk kategori ini</div>
+                        </div>
+                    @endforelse
+                </div>
+                <div class="d-flex justify-content-center mt-4">
+                    {{ $ekrafs->links() }}
                 </div>
             </div>
+
+
         </div>
     </div>
 
     @push('css')
         <style>
+            #ekrafList .col a {
+                display: flex;
+                align-items: center;
+                height: 100%;
+                /* Pastikan semua kolom memiliki tinggi yang sama */
+            }
+
+            #ekrafList .col img {
+                width: 60px;
+                height: 60px;
+                object-fit: cover;
+                flex-shrink: 0;
+                /* Pastikan gambar tidak mengecil */
+            }
+
+            #ekrafList .col .d-flex {
+                align-items: center;
+                /* Gambar dan teks sejajar vertikal */
+                min-height: 80px;
+                /* Tetapkan tinggi minimum untuk kontainer */
+            }
+
             .btn-tampil {
                 cursor: pointer;
                 font-size: 14px;
@@ -282,22 +189,108 @@
             .text-primary {
                 color: #ff6500 !important;
             }
+
+            .category-item.hidden {
+                display: none;
+            }
         </style>
     @endpush
 
     @push('scripts')
         <script>
-            document.getElementById('toggleCategories').addEventListener('click', function() {
-                const hiddenCategories = document.getElementById('hiddenCategories');
-                const icon = this.querySelector('i');
+            // Fungsi untuk menampilkan kategori tambahan
+            document.getElementById('load-more').addEventListener('click', function() {
+                // Mengambil elemen dengan ID 'category-container'
+                const container = document.getElementById('category-container');
 
-                if (hiddenCategories.classList.contains('d-none')) {
-                    hiddenCategories.classList.remove('d-none');
-                    this.innerHTML = 'Tampilkan Sedikit <i class="bi bi-chevron-up ms-1"></i>';
-                } else {
-                    hiddenCategories.classList.add('d-none');
-                    this.innerHTML = 'Tampilkan Semua <i class="bi bi-chevron-down ms-1"></i>';
-                }
+                // Mengambil kategori yang tersembunyi dan menampilkannya
+                const hiddenCategories = container.querySelectorAll('.category-item.hidden');
+                hiddenCategories.forEach(item => {
+                    item.classList.remove('hidden'); // Hapus kelas 'hidden' untuk menampilkan
+                });
+
+                // Menyembunyikan tombol "Lihat Lebih Banyak"
+                this.style.display = 'none';
+
+                // Menampilkan tombol "Tutup"
+                document.getElementById('collapse').style.display = 'inline-block';
+            });
+
+            // Fungsi untuk menutup kategori tambahan
+            document.getElementById('collapse').addEventListener('click', function() {
+                // Mengambil elemen dengan ID 'category-container'
+                const container = document.getElementById('category-container');
+
+                // Menyembunyikan kategori tambahan
+                const allCategories = container.querySelectorAll('.category-item');
+                allCategories.forEach((item, index) => {
+                    if (index >= 5) {
+                        item.classList.add(
+                            'hidden'
+                        ); // Menambahkan kelas 'hidden' untuk menyembunyikan kategori ke-6 dan seterusnya
+                    }
+                });
+
+                // Menyembunyikan tombol "Tutup"
+                this.style.display = 'none';
+
+                // Menampilkan kembali tombol "Lihat Lebih Banyak"
+                document.getElementById('load-more').style.display = 'inline-block';
+            });
+
+            // Menambahkan kelas 'hidden' pada kategori selain 5 pertama
+            document.addEventListener('DOMContentLoaded', function() {
+                const categories = document.querySelectorAll('.category-item');
+                categories.forEach((item, index) => {
+                    if (index >= 5) {
+                        item.classList.add('hidden');
+                    }
+                });
+            });
+        </script>
+
+        <script>
+            // Search functionality
+            let searchTimer;
+            document.getElementById('searchEkraf').addEventListener('input', function(e) {
+                clearTimeout(searchTimer);
+                const query = e.target.value; // Ambil nilai input dari pencarian
+
+                searchTimer = setTimeout(() => {
+                    if (query.trim() !== '') { // Cek jika query tidak kosong
+                        fetch(`/ekraf/search?query=${encodeURIComponent(query)}`) // Encode query untuk URL
+                            .then(response => response.json())
+                            .then(data => {
+                                const ekrafList = document.getElementById('ekrafList');
+                                ekrafList.innerHTML = '';
+
+                                if (data.data.length === 0) {
+                                    ekrafList.innerHTML =
+                                        '<div class="text-center text-muted">Tidak ada hasil ditemukan</div>';
+                                } else {
+                                    data.data.forEach(ekraf => {
+                                        ekrafList.innerHTML += `
+                            <div class="col-md-4">
+                                <a href="/ekraf/${ekraf.slug}" class="text-decoration-none text-dark">
+                                    <div class="d-flex align-items-center gap-3">
+                                        <img src="${ekraf.logo || 'https://via.placeholder.com/60'}" 
+                                             class="rounded" alt="${ekraf.name}">
+                                        <div>
+                                            <h6 class="mb-1 fw-semibold">${ekraf.name}</h6>
+                                            <small class="text-muted">${ekraf.category.name}</small>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        `;
+                                    });
+                                }
+                            })
+                            .catch(err => {
+                                console.error('Error fetching search results:', err);
+                            });
+                    }
+                }, 300);
             });
         </script>
     @endpush

@@ -15,7 +15,7 @@ class EkrafCategories extends Model
         'description',
     ];
 
-    public function ekrafs()
+    public function ekraf()
     {
         return $this->hasMany(Ekraf::class, 'category_id');
     }
