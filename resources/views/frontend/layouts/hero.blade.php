@@ -19,7 +19,7 @@
             <!-- Slide 1 -->
             <div class="carousel-item active">
                 <div class="slide-overlay"></div>
-                <img src="{{ asset('assets/DJI_20250104094318_0007_D.jpeg') }}" class="d-block w-100" alt="Slide 1">
+                <img src="{{ asset('assets/jiko.jpg') }}" class="d-block w-100" alt="Slide 1">
                 <div class="carousel-content">
                     <h1>Discover Paradise<br>in Ternate</h1>
                     <p>Experience the magic of our pristine beaches and rich cultural heritage.</p>
@@ -30,7 +30,7 @@
             <!-- Slide 2 -->
             <div class="carousel-item">
                 <div class="slide-overlay"></div>
-                <img src="{{ asset('assets/DJI_20250104094318_0007_D.jpeg') }}" class="d-block w-100" alt="Slide 2">
+                <img src="{{ asset('assets/batu_angus.jpg') }}" class="d-block w-100" alt="Slide 2">
                 <div class="carousel-content">
                     <h1>Historic Fortresses<br>& Ancient Tales</h1>
                     <p>Journey through time in our historic Portuguese and Dutch fortresses.</p>
@@ -52,7 +52,7 @@
             <!-- Slide 4 -->
             <div class="carousel-item">
                 <div class="slide-overlay"></div>
-                <img src="{{ asset('assets/DJI_20250104094318_0007_D.jpeg') }}" class="d-block w-100" alt="Slide 4">
+                <img src="{{ asset('assets/fora.jpg') }}" class="d-block w-100" alt="Slide 4">
                 <div class="carousel-content">
                     <h1>Rich Cultural<br>Heritage</h1>
                     <p>Immerse yourself in the vibrant culture of the Sultanate of Ternate.</p>
@@ -63,13 +63,14 @@
             <!-- Slide 5 -->
             <div class="carousel-item">
                 <div class="slide-overlay"></div>
-                <img src="{{ asset('assets/DJI_20250104094318_0007_D.jpeg') }}" class="d-block w-100" alt="Slide 5">
+                <img src="{{ asset('assets/kora_kora.jpg') }}" class="d-block w-100" alt="Slide 5">
                 <div class="carousel-content">
                     <h1>Culinary<br>Adventures</h1>
                     <p>Taste the unique flavors of traditional Ternate cuisine.</p>
                     {{-- <a href="#" class="btn-read">Read More</a> --}}
                 </div>
             </div>
+
         </div>
 
         {{-- <!-- Controls -->

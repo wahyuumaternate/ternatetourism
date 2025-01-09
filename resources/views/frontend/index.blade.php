@@ -87,7 +87,7 @@
                             <div class="card-body">
                                 <h5 class="card-title">{{ $news->title }}</h5>
                                 <p class="card-text">
-                                    {!! Str::limit($news->content, 100, '...') !!}
+                                    {!! Str::limit($news->excerpt, 120, '...') !!}
                                 </p>
                                 <a href="{{ route('berita.detail', $news->slug) }}" class="btn tombol-read text-white">
                                     Read More
