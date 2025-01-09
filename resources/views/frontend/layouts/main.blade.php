@@ -90,6 +90,15 @@
             opacity: 0.8;
             /* Mengurangi ketebalan saat hover */
         }
+
+        .hero {
+            overflow: hidden;
+        }
+
+        /* You might also want to add this to ensure the carousel container itself handles overflow properly */
+        #heroCarousel {
+            overflow: hidden;
+        }
     </style>
 </head>
 
