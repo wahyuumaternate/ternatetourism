@@ -1,18 +1,15 @@
-<!-- ======= Sidebar ======= -->
 <aside id="sidebar" class="sidebar">
-
     <ul class="sidebar-nav" id="sidebar-nav">
-
         <li class="nav-item">
-            <a class="nav-link collapsed" href="index.html">
-                <i class="bi bi-grid"></i>
+            <a class="nav-link collapsed" href="{{ route('dashboard') }}">
+                <i class="bi bi-speedometer2"></i>
                 <span>Dashboard</span>
             </a>
-        </li><!-- End Dashboard Nav -->
+        </li>
 
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-menu-button-wide"></i><span>Profil</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-building"></i><span>Profil</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
@@ -25,13 +22,12 @@
                         <i class="bi bi-circle"></i><span>Struktur Organisasi</span>
                     </a>
                 </li>
-
             </ul>
-        </li><!-- End Components Nav -->
+        </li>
 
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#publikasi" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-journal-text"></i><span>Publikasi</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-newspaper"></i><span>Publikasi</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="publikasi" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
@@ -44,12 +40,12 @@
                         <i class="bi bi-circle"></i><span>Events</span>
                     </a>
                 </li>
-
             </ul>
-        </li><!-- End Forms Nav -->
+        </li>
+
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#media" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-journal-text"></i><span>Media</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-collection-play"></i><span>Media</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="media" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
@@ -67,12 +63,12 @@
                         <i class="bi bi-circle"></i><span>E-Book</span>
                     </a>
                 </li>
-
             </ul>
-        </li><!-- End Forms Nav -->
+        </li>
+
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#fasilitas" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-journal-text"></i><span>Fasilitas</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-stars"></i><span>Fasilitas</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="fasilitas" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
@@ -101,30 +97,43 @@
                     </a>
                 </li>
             </ul>
-        </li><!-- End Forms Nav -->
+        </li>
 
         <li class="nav-item">
             <a class="nav-link collapsed" href="{{ route('destinations.index') }}">
-                <i class="bi bi-person"></i>
+                <i class="bi bi-geo-alt"></i>
                 <span>Destinasi</span>
             </a>
-        </li><!-- End Profile Page Nav -->
+        </li>
+
         <li class="nav-item">
-            <a class="nav-link collapsed" href="users-profile.html">
-                <i class="bi bi-person"></i>
-                <span>Ekraf</span>
+            <a class="nav-link collapsed" data-bs-target="#ekraf-nav" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-bag-check"></i><span>Ekraf</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
-        </li><!-- End Profile Page Nav -->
+            <ul id="ekraf-nav" class="nav-content collapse" data-bs-parent="#sidebar-nav">
+                <li>
+                    <a href="{{ route('ekrafs.index') }}">
+                        <i class="bi bi-circle"></i><span>List Ekraf</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ route('ekraf-categories.index') }}">
+                        <i class="bi bi-circle"></i><span>Sub Sektor Ekraf</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+
         <li class="nav-item">
             <a class="nav-link collapsed" href="{{ route('manajemen.media.index') }}">
-                <i class="bi bi-person"></i>
+                <i class="bi bi-camera-reels"></i>
                 <span>Manajemen Media</span>
             </a>
-        </li><!-- End Profile Page Nav -->
+        </li>
 
         <li class="nav-item">
             <a class="nav-link collapsed" data-bs-target="#pengaturan" data-bs-toggle="collapse" href="#">
-                <i class="bi bi-journal-text"></i><span>Pengaturan</span><i class="bi bi-chevron-down ms-auto"></i>
+                <i class="bi bi-gear"></i><span>Pengaturan</span><i class="bi bi-chevron-down ms-auto"></i>
             </a>
             <ul id="pengaturan" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
@@ -137,9 +146,7 @@
                         <i class="bi bi-circle"></i><span>User</span>
                     </a>
                 </li>
-
             </ul>
-        </li><!-- End Forms Nav -->
+        </li>
     </ul>
-
-</aside><!-- End Sidebar-->
+</aside>

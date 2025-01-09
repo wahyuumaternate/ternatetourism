@@ -47,6 +47,12 @@ Route::get('/berita', [BeritaController::class, 'all'])->name('berita.all');
 // Rute untuk halaman detail acara menggunakan slug
 Route::get('/event/{slug}', [EventsController::class, 'detail'])->name('event.detail');
 
+Route::get('/ekraf', function () {
+    return view('frontend.ekraf');
+});
+
+
+
 Route::group(['prefix' => 'filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });

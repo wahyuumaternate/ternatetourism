@@ -2,6 +2,8 @@
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\EbookController;
+use App\Http\Controllers\EkrafCategoriesController;
+use App\Http\Controllers\EkrafController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\StrukturDanVisiController;
@@ -36,5 +38,15 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::resource('destinations', DestinationController::class)->parameters([
         'destinations' => 'destination:slug',
     ]);;
+    //
+     // Ekraf Categories
+     Route::resource('ekraf-categories', EkrafCategoriesController::class);
+    
+     // Ekraf main routes
+     Route::resource('ekrafs', EkrafController::class);
+     
+     // Optional: If you need custom routes
+     Route::get('ekrafs/category/{category}', [EkrafController::class, 'byCategory'])
+         ->name('ekrafs.by-category');
 
 });

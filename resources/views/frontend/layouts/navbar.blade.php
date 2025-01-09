@@ -44,7 +44,7 @@
                      <a class="nav-link" href="{{ route('destinasi.all') }}">Destinasi</a>
                  </li>
                  <li class="nav-item">
-                     <a class="nav-link" href="{{ route('destinasi.all') }}">Ekraf</a>
+                     <a class="nav-link" href="/ekraf">Ekraf</a>
                  </li>
                  <li class="nav-item">
                      <a class="nav-link" href="{{ route('events.all') }}">Events</a>
