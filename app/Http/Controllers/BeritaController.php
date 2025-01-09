@@ -127,4 +127,10 @@ class BeritaController extends Controller
         // Kirim data ke view
         return view('frontend.detail_berita', compact('news'));
     }
+
+    public function all()
+    {
+        $berita = Berita::latest()->paginate(9);
+        return view('frontend.berita', compact('berita')); // Menampilkan daftar berita
+    }
 }

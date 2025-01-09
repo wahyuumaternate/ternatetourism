@@ -50,7 +50,7 @@
                      <a class="nav-link" href="{{ route('events.all') }}">Events</a>
                  </li>
                  <li class="nav-item">
-                     <a class="nav-link" href="#contact">Berita</a>
+                     <a class="nav-link" href="{{ route('berita.all') }}">Berita</a>
                  </li>
                  <li class="nav-item">
                      <a class="nav-link" href="#contact">E-Book</a>

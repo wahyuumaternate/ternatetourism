@@ -43,6 +43,7 @@ Route::get('/destinasi/{slug}', [DestinationController::class, 'front'])->name('
 Route::get('/berita/{slug}', [BeritaController::class, 'front'])->name('berita.detail');
 Route::get('/destinasi', [DestinationController::class, 'all'])->name('destinasi.all');
 Route::get('/events', [EventsController::class, 'all'])->name('events.all');
+Route::get('/berita', [BeritaController::class, 'all'])->name('berita.all');
 // Rute untuk halaman detail acara menggunakan slug
 Route::get('/event/{slug}', [EventsController::class, 'detail'])->name('event.detail');
 
