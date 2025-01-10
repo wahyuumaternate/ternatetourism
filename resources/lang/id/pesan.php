@@ -35,4 +35,6 @@ return [
     // 'tagline_desc' => 'Tagline ini menyoroti makna historis Ternate sebagai bagian dari Kepulauan Rempah-rempah sambil mengundang pengunjung untuk menjelajahi penawaran uniknya. Namun, Anda dapat memodifikasinya lebih lanjut berdasarkan aspek-aspek Ternate yang ingin Anda tekankan.'
     'facilities_title' => 'Fasilitas Kami',
     'facilities_subtitle' => 'Jelajahi fasilitas modern kami yang dirancang untuk meningkatkan pengalaman Anda',
+    'events_title' => 'Acara',
+    'events_subtitle' => 'Temukan acara dan pengalaman mendatang di Ternate',
 ];

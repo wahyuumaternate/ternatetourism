@@ -6,9 +6,9 @@
         <div class="container mt-5">
             <div class="row align-items-center mb-5">
                 <div class="col-md-8">
-                    <h1 class="fw-bold section-title" data-aos="fade-right">Berita</h1>
+                    <h1 class="fw-bold section-title" data-aos="fade-right"> {{ __('pesan.berita') }}</h1>
                     <p class="text-muted" data-aos="fade-left">
-                        Dapatkan informasi terbaru seputar kegiatan, budaya, dan keindahan Ternate hanya di sini.
+                        {{ __('pesan.berita_desc') }}
                     </p>
                 </div>
             </div>

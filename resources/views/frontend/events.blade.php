@@ -77,9 +77,9 @@
         <div class="container mt-5">
             <div class="row align-items-center mb-5">
                 <div class="col-md-8">
-                    <h1 class="fw-bold section-title" data-aos="fade-right">Events</h1>
+                    <h1 class="fw-bold section-title" data-aos="fade-right">{{ __('pesan.events_title') }}</h1>
                     <p class="text-muted" data-aos="fade-left">
-                        Discover upcoming events and experiences in Ternate
+                        {{ __('pesan.events_subtitle') }}
                     </p>
                 </div>
             </div>

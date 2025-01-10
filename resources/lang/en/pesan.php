@@ -35,4 +35,7 @@ return [
     // 'tagline_desc' => 'This tagline highlights Ternate\'s historical significance as part of the Spice Islands while inviting visitors to explore its unique offerings. However, you can modify it further based on which aspects of Ternate you want to emphasize.'
     'facilities_title' => 'Our Facilities',
     'facilities_subtitle' => 'Explore our modern facilities designed to enhance your experience',
+    // ... other translations
+    'events_title' => 'Events',
+    'events_subtitle' => 'Discover upcoming events and experiences in Ternate',
 ];

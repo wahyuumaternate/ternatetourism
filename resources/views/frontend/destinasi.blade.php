@@ -7,10 +7,9 @@
         <div class="container mt-5">
             <div class="row align-items-center mb-5">
                 <div class="col-md-8">
-                    <h1 class="fw-bold section-title" data-aos="fade-right">Destinasi</h1>
+                    <h1 class="fw-bold section-title" data-aos="fade-right">{{ __('pesan.populer_destinasi') }}</h1>
                     <p class="text-muted" data-aos="fade-left">
-                        Kami Membawakan Rekomendasi Terbaik Untuk Pengalaman
-                        Yang Tak Terlupakan.
+                        {{ __('pesan.destinasi_desc') }}
                     </p>
                 </div>
             </div>
