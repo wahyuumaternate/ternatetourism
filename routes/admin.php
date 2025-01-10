@@ -5,6 +5,7 @@ use App\Http\Controllers\EbookController;
 use App\Http\Controllers\EkrafCategoriesController;
 use App\Http\Controllers\EkrafController;
 use App\Http\Controllers\EventsController;
+use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\StrukturDanVisiController;
 use Illuminate\Support\Facades\Route;
@@ -49,4 +50,14 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
      Route::get('ekrafs/category/{category}', [EkrafController::class, 'byCategory'])
          ->name('ekrafs.by-category');
 
+    //  
+    Route::controller(FasilitasController::class)->group(function() {
+        Route::get('fasilitas', 'index')->name('fasilitas.index');
+        Route::get('fasilitas/create', 'create')->name('fasilitas.create');
+        Route::post('fasilitas', 'store')->name('fasilitas.store');
+        Route::get('fasilitas/{kategori}', 'kategori')->name('fasilitas.kategori');
+        Route::get('fasilitas/{fasilitas}/edit', 'edit')->name('fasilitas.edit');
+        Route::put('fasilitas/{fasilitas}', 'update')->name('fasilitas.update');
+        Route::delete('fasilitas/{fasilitas}', 'destroy')->name('fasilitas.destroy');
+     });
 });

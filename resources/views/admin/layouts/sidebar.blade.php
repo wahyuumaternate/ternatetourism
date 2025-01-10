@@ -72,27 +72,27 @@
             </a>
             <ul id="fasilitas" class="nav-content collapse " data-bs-parent="#sidebar-nav">
                 <li>
-                    <a href="forms-layouts.html">
+                    <a href="{{ route('fasilitas.kategori', 'hotel') }}">
                         <i class="bi bi-circle"></i><span>Hotel</span>
                     </a>
                 </li>
                 <li>
-                    <a href="forms-elements.html">
+                    <a href="{{ route('fasilitas.kategori', 'travel') }}">
                         <i class="bi bi-circle"></i><span>Travel</span>
                     </a>
                 </li>
                 <li>
-                    <a href="forms-elements.html">
+                    <a href="{{ route('fasilitas.kategori', 'cafe-restorant') }}">
                         <i class="bi bi-circle"></i><span>Cafe & Restorant</span>
                     </a>
                 </li>
                 <li>
-                    <a href="forms-elements.html">
+                    <a href="{{ route('fasilitas.kategori', 'guide') }}">
                         <i class="bi bi-circle"></i><span>Guide</span>
                     </a>
                 </li>
                 <li>
-                    <a href="forms-elements.html">
+                    <a href="{{ route('fasilitas.kategori', 'rent-car') }}">
                         <i class="bi bi-circle"></i><span>Rent Car</span>
                     </a>
                 </li>
