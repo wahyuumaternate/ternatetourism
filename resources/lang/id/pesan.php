@@ -15,5 +15,20 @@ return [
     'follow_us' => 'Ikuti Kami',
     'populer_destinasi' => 'Destinasi Populer',
     'copyright' => ' 2025 Pariwisata Ternate. Semua Hak Cipta Dilindungi Undang-Undang.',
-  
+    'home' => 'Beranda',
+    'profile' => 'Profil',
+    'vision_mission' => 'Visi Misi',
+    'organization' => 'Struktur Organisasi',
+    'creative' => 'Ekraf',
+    'events' => 'Events',
+    'news' => 'Berita',
+    'media' => 'Media',
+    'gallery' => 'Gallery',
+    'facilities' => 'Fasilitas',
+    'hotel' => 'Hotel',
+    'travel' => 'Travel',
+    'restaurant' => 'Cafe & Restorant',
+    'umkm' => 'UMKM',
+    'guide' => 'Guide',
+    'rent_car' => 'Rent Car'
 ];
