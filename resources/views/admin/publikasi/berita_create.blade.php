@@ -100,21 +100,13 @@
                 }
             },
             setup: function(editor) {
-                editor.on('NodeChange', function(e) {
-                    // Periksa apakah elemen yang diubah adalah gambar
-                    if (e.element && e.element.nodeName === 'IMG') {
-                        e.element.style.maxWidth =
-                            '100%'; // Batasi lebar maksimum gambar ke 100% kontainer
-                        e.element.style.height = 'auto'; // Pastikan aspek rasio terjaga
-                    }
-                });
+                
                 editor.on('change', function() {
                     editor.save();
                 });
             }
         });
-    </script>
-    <script>
+
         // Generate slug from title
         document.getElementById('title').addEventListener('keyup', function() {
             const title = this.value;
@@ -124,8 +116,7 @@
                 .replace(/^-|-$/g, '');
             document.getElementById('slug').value = slug;
         });
-    </script>
-    <script>
+
         document.getElementById('select-image').addEventListener('click', function() {
             let route_prefix = "{{ url('filemanager') }}"; // URL ke Laravel File Manager
             window.open(route_prefix + '?type=file', 'FileManager', 'width=800,height=600');

@@ -136,14 +136,7 @@
                 }
             },
             setup: function(editor) {
-                editor.on('NodeChange', function(e) {
-                    // Periksa apakah elemen yang diubah adalah gambar
-                    if (e.element && e.element.nodeName === 'IMG') {
-                        e.element.style.maxWidth =
-                            '100%'; // Batasi lebar maksimum gambar ke 100% kontainer
-                        e.element.style.height = 'auto'; // Pastikan aspek rasio terjaga
-                    }
-                });
+                
                 editor.on('change', function() {
                     editor.save();
                 });
