@@ -58,9 +58,9 @@
             <div class="row g-4">
                 @foreach ($galeri->take(6) as $item)
                     <div class="col-md-4" data-aos="zoom-in" data-aos-delay="{{ $loop->index * 100 }}">
-                        <a href="{{ $item->file }}" data-fancybox="gallery" data-caption="{{ $item->description }}"
+                        <a href="{{ $item->file }}" data-fancybox="gallery" data-caption="{{ $item->title }}"
                             class="gallery-item">
-                            <img src="{{ $item->file }}" class="gallery-img" alt="{{ $item->name }}" />
+                            <img src="{{ $item->file }}" class="gallery-img" alt="{{ $item->title }}" />
                         </a>
                     </div>
                 @endforeach

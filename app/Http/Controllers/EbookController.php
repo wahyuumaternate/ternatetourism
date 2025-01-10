@@ -88,4 +88,26 @@ class EbookController extends Controller
         return redirect()->route('ebooks.index');
     }
 
+    public function front()
+{
+    $ebooks = Ebook::latest()->paginate(12);
+    return view('frontend.ebook', compact('ebooks'));
+}
+
+public function detail($kode_buku)
+{
+    $ebook = Ebook::where('kode_buku', $kode_buku)->firstOrFail();
+    return view('frontend.detail_ebook', compact('ebook'));
+}
+public function read($kode_buku)
+{
+    $ebook = Ebook::where('kode_buku', $kode_buku)->firstOrFail();
+    return response()->file(storage_path('app/public/' . $ebook->file));
+}
+
+public function download($kode_buku)
+{
+    $ebook = Ebook::where('kode_buku', $kode_buku)->firstOrFail();
+    return response()->download(storage_path('app/public/' . $ebook->file));
+}
 }

@@ -42,7 +42,8 @@
              <h5>Follow Us</h5>
              <div class="d-flex justify-content-center gap-4 mt-3">
                  <!-- Facebook -->
-                 <a href="https://www.facebook.com" target="_blank" class="social-link">
+                 <a href="https://www.facebook.com/61550834804227/photos/122225598386027826/?_rdr" target="_blank"
+                     class="social-link">
                      <i class="bi bi-facebook social-icon facebook"></i>
                  </a>
                  <!-- Twitter -->
@@ -50,15 +51,16 @@
                      <i class="bi bi-twitter social-icon twitter"></i>
                  </a>
                  <!-- Instagram -->
-                 <a href="https://www.instagram.com" target="_blank" class="social-link">
+                 <a href="https://www.instagram.com/wonderfulternate" target="_blank" class="social-link">
                      <i class="bi bi-instagram social-icon instagram"></i>
                  </a>
                  <!-- YouTube -->
-                 <a href="https://www.youtube.com" target="_blank" class="social-link">
+                 <a href="https://www.youtube.com/@wonderfulternate" target="_blank" class="social-link">
                      <i class="bi bi-youtube social-icon youtube"></i>
                  </a>
                  <!-- TikTok -->
-                 <a href="https://www.tiktok.com" target="_blank" class="social-link">
+                 <a href="https://www.tiktok.com/@wonderfulternate?_t=ZS-8swYWDlXfGy&_r=1" target="_blank"
+                     class="social-link">
                      <i class="bi bi-tiktok social-icon tiktok"></i>
                  </a>
              </div>

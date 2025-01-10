@@ -58,11 +58,11 @@
                         <i class="bi bi-circle"></i><span>Vidio</span>
                     </a>
                 </li>
-                <li>
+                {{-- <li>
                     <a href="{{ route('ebooks.index') }}">
                         <i class="bi bi-circle"></i><span>E-Book</span>
                     </a>
-                </li>
+                </li> --}}
             </ul>
         </li>
 

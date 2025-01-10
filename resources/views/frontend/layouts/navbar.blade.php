@@ -52,9 +52,9 @@
                  <li class="nav-item">
                      <a class="nav-link" href="{{ route('berita.all') }}">Berita</a>
                  </li>
-                 <li class="nav-item">
-                     <a class="nav-link" href="#contact">E-Book</a>
-                 </li>
+                 {{-- <li class="nav-item">
+                     <a class="nav-link" href="{{ route('ebooks.front') }}">E-Book</a>
+                 </li> --}}
                  <li class="nav-item dropdown">
                      <a class="nav-link dropdown-toggle" href="#" id="mediaDropdown" role="button"
                          data-bs-toggle="dropdown" aria-expanded="false">
@@ -62,10 +62,10 @@
                      </a>
                      <ul class="dropdown-menu" aria-labelledby="mediaDropdown">
                          <li>
-                             <a class="dropdown-item" href="#">Gallery</a>
+                             <a class="dropdown-item" href="{{ route('frontFoto') }}">Gallery</a>
                          </li>
                          <li>
-                             <a class="dropdown-item" href="#">Vidio</a>
+                             <a class="dropdown-item" href="{{ route('frontVideo') }}">Vidio</a>
                          </li>
                      </ul>
                  </li>
@@ -76,22 +76,22 @@
                      </a>
                      <ul class="dropdown-menu" aria-labelledby="fasilitasDropdown">
                          <li>
-                             <a class="dropdown-item" href="#">Hotel</a>
+                             <a class="dropdown-item" href="{{ route('frontFoto') }}">Hotel</a>
                          </li>
                          <li>
-                             <a class="dropdown-item" href="#">Travel</a>
+                             <a class="dropdown-item" href="{{ route('frontFoto') }}">Travel</a>
                          </li>
                          <li>
-                             <a class="dropdown-item" href="#">Cafe & Restorant</a>
+                             <a class="dropdown-item" href="{{ route('frontFoto') }}">Cafe & Restorant</a>
                          </li>
                          <li>
-                             <a class="dropdown-item" href="#">UMKM</a>
+                             <a class="dropdown-item" href="{{ route('frontFoto') }}">UMKM</a>
                          </li>
                          <li>
-                             <a class="dropdown-item" href="#">Guide</a>
+                             <a class="dropdown-item" href="{{ route('frontFoto') }}">Guide</a>
                          </li>
                          <li>
-                             <a class="dropdown-item" href="#">Rent Car</a>
+                             <a class="dropdown-item" href="{{ route('frontFoto') }}">Rent Car</a>
                          </li>
                      </ul>
                  </li>

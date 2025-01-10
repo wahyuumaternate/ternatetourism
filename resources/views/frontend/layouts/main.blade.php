@@ -61,27 +61,27 @@
 
         /* Warna untuk masing-masing ikon sosial media */
         .facebook {
-            color: #3b5998;
+            color: #ffffff;
             /* Warna Facebook */
         }
 
         .twitter {
-            color: #1da1f2;
+            color: #ffffff;
             /* Warna Twitter */
         }
 
         .instagram {
-            color: #c32aa3;
+            color: #ffffff;
             /* Warna Instagram */
         }
 
         .youtube {
-            color: #ff0000;
+            color: #ffffff;
             /* Warna YouTube */
         }
 
         .tiktok {
-            color: #69c9d0;
+            color: #ffffff;
             /* Warna TikTok */
         }
 

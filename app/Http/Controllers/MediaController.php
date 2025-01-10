@@ -89,4 +89,15 @@ class MediaController extends Controller
         notify()->success('Media berhasil dihapus');
         return redirect()->back();
     }
+
+    public function frontFoto()
+    {
+        $media = Media::where('type','photo')->latest()->paginate(9); // Menampilkan 9 foto per halaman
+        return view('frontend.foto', compact('media'));
+    }
+    public function frontVideo()
+    {
+        $video = Media::where('type','video')->latest()->paginate(9); // Menampilkan 9 foto per halaman
+        return view('frontend.video', compact('video'));
+    }
 }

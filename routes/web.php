@@ -2,8 +2,10 @@
 
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DestinationController;
+use App\Http\Controllers\EbookController;
 use App\Http\Controllers\EkrafController;
 use App\Http\Controllers\EventsController;
+use App\Http\Controllers\MediaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StrukturDanVisiController;
 use App\Models\Berita;
@@ -55,6 +57,17 @@ Route::get('/ekraf/search', [EkrafController::class, 'search'])->name('ekraf.sea
 Route::get('/ekraf/category/{category}', [EkrafController::class, 'filterByCategory'])->name('ekraf.filterByCategory');
 Route::get('/ekraf/{slug}', [EkrafController::class, 'show'])->name('ekraf.show');
 
+// foto
+Route::get('/gallery', [MediaController::class, 'frontFoto'])->name('frontFoto');
+Route::get('/video', [MediaController::class, 'frontVideo'])->name('frontVideo');
+
+// // ebook
+// Route::get('/ebooks', [EbookController::class, 'front'])->name('ebooks.front');
+// Route::get('/ebooks/{kode_buku}', [EbookController::class, 'detail'])->name('ebooks.detail');
+// Route::get('/ebooks/{kode_buku}/read', [EbookController::class, 'read'])->name('ebooks.read');
+// Route::get('/ebooks/{kode_buku}/download', [EbookController::class, 'download'])->name('ebooks.download');
+
+
 
 Route::group(['prefix' => 'filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();
@@ -75,7 +88,13 @@ Route::get('/migrate-seed', function () {
     return "Migration and seeding completed successfully!";
     });
     
-    
+// Route::get('/ebook', function () {
+//     return view('frontend.ebook');
+// });
+// Route::get('/ebook-detail', function () {
+//     return view('frontend.detail_ebook');
+// });
+        
 
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';
