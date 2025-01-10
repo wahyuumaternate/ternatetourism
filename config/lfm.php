@@ -26,18 +26,35 @@ return [
     |
      */
 
-    'allow_private_folder'     => true,
+   'private_folder_name' => '',
+    'allow_private_folder' => false,
+    // 'allow_shared_folder' => true,
+    // 'shared_folder_name' => 'uploads',
 
-    // Flexible way to customize client folders accessibility
-    // If you want to customize client folders, publish tag="lfm_handler"
-    // Then you can rewrite userField function in App\Handler\ConfigHandler class
-    // And set 'user_field' to App\Handler\ConfigHandler::class
-    // Ex: The private folder of user will be named as the user id.
-    'private_folder_name'      => UniSharp\LaravelFilemanager\Handlers\ConfigHandler::class,
+    // Pastikan base directory ke public
+    'base_directory' => 'public',
 
-    'allow_shared_folder'      => false,
-
-    'shared_folder_name'       => 'shares',
+    // Konfigurasi folder
+    // 'folder_categories' => [
+    //     'file' => [
+    //         'folder_name' => 'uploads',
+    //         'startup_view' => 'grid',
+    //         'max_size' => 50000,
+    //         'valid_mime' => [
+    //             'image/jpeg',
+    //             'image/pjpeg',
+    //             'image/png',
+    //             'image/gif'
+    //         ],
+    //     ],
+    // ],
+    
+    // Nonaktifkan user_field
+    'user_field' => null,
+    
+    // Izinkan akses ke shared folder
+    'allow_shared_folder' => true,
+    'shared_folder_name' => 'uploads',
 
     /*
     |--------------------------------------------------------------------------
