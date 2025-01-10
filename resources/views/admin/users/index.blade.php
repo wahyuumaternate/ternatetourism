@@ -29,7 +29,7 @@
                                     <td>{{ $user->email }}</td>
                                     <td>{{ $user->created_at->format('d M Y') }}</td>
                                     <td>
-                                        @if ($user->name != 'Admin')
+                                        @if ($user->email != 'disparternatekota@gmail.com')
                                             <button type="button" class="btn btn-sm btn-warning"
                                                 onclick="editUser({{ $user->id }}, '{{ $user->name }}', '{{ $user->email }}')">
                                                 <i class="bi bi-pencil"></i>

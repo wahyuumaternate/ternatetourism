@@ -37,7 +37,7 @@ class UsersController extends Controller
 
 public function update(Request $request, User $user)
 {
-    if ($user->name != 'Admin') {
+    if ($user->email != 'disparternatekota@gmail.com') {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
@@ -60,7 +60,7 @@ public function update(Request $request, User $user)
 
 public function destroy(User $user)
 {
-    if ($user->name != 'Admin') {
+    if ($user->email != 'disparternatekota@gmail.com') {
         $user->delete();
         notify()->success('User deleted successfully');
         return redirect()->route('users.index');
