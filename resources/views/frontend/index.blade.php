@@ -8,10 +8,9 @@
         <div class="container">
             <div class="row align-items-center mb-5">
                 <div class="col-md-8">
-                    <h1 class="fw-bold section-title" data-aos="fade-right">Destinasi Populer</h1>
+                    <h1 class="fw-bold section-title" data-aos="fade-right">{{ __('pesan.populer_destinasi') }}</h1>
                     <p class="text-muted" data-aos="fade-left">
-                        Kami Membawakan Rekomendasi Terbaik Untuk Pengalaman
-                        Yang Tak Terlupakan.
+                        {{ __('pesan.destinasi_desc') }}
                     </p>
                 </div>
             </div>
@@ -34,7 +33,9 @@
                                 ">
                                 <h5 class="mb-3">{{ $item->name }}</h5>
                                 <a href="{{ route('destinasi.show', $item->slug) }}" class="btn text-white btn-sm">
-                                    View Details
+
+                                    {{-- {{ __('pesan.') }} --}}
+                                    {{ __('pesan.read_more') }}
                                 </a>
                             </div>
                         </div>
@@ -49,9 +50,9 @@
         <div class="container">
             <div class="row align-items-center mb-5">
                 <div class="col-md-8">
-                    <h1 class="fw-bold section-title" data-aos="fade-right">Galeri</h1>
+                    <h1 class="fw-bold section-title" data-aos="fade-right">{{ __('pesan.galeri') }}</h1>
                     <p class="text-muted" data-aos="fade-left">
-                        Jelajahi keindahan Ternate melalui galeri yang menghadirkan keajaiban alam dan budaya.
+                        {{ __('pesan.galeri_desc') }}
                     </p>
                 </div>
             </div>
@@ -73,9 +74,9 @@
         <div class="container">
             <div class="row align-items-center mb-5">
                 <div class="col-md-8">
-                    <h1 class="fw-bold section-title" data-aos="fade-right">Berita</h1>
+                    <h1 class="fw-bold section-title" data-aos="fade-right"> {{ __('pesan.berita') }}</h1>
                     <p class="text-muted" data-aos="fade-left">
-                        Dapatkan informasi terbaru seputar kegiatan, budaya, dan keindahan Ternate hanya di sini.
+                        {{ __('pesan.berita_desc') }}
                     </p>
                 </div>
             </div>
@@ -90,7 +91,7 @@
                                     {!! Str::limit($news->excerpt, 120, '...') !!}
                                 </p>
                                 <a href="{{ route('berita.detail', $news->slug) }}" class="btn tombol-read text-white">
-                                    Read More
+                                    {{ __('pesan.read_more') }}
                                 </a>
                             </div>
                         </div>
@@ -105,9 +106,10 @@
         <div class="container">
             <div class="row align-items-center mb-5">
                 <div class="col-md-8">
-                    <h1 class="fw-bold section-title" data-aos="fade-right">Video</h1>
+                    <h1 class="fw-bold section-title" data-aos="fade-right">{{ __('pesan.video') }}</h1>
                     <p class="text-muted" data-aos="fade-left">
-                        Temukan perjalanan menarik dan visual yang memukau untuk pengalaman yang tak terlupakan.
+
+                        {{ __('pesan.video_desc') }}
                     </p>
                 </div>
             </div>
@@ -152,10 +154,10 @@
             <div class="row mb-5 text-center">
                 <div class="col-md-12" data-aos="fade-right">
                     <h1 class="fw-bold section-title">
-                        In Partnership with
+                        {{ __('pesan.partner') }}
                     </h1>
                     <p class="text-muted">
-                        Kolaborasi yang menginspirasi untuk menghadirkan pengalaman luar biasa dari Ternate.
+                        {{ __('pesan.partner_desc') }}
                     </p>
                 </div>
             </div>
@@ -212,7 +214,7 @@
         </div>
     </section>
 
-    <!-- Subscribe Section -->
+    {{-- <!-- Subscribe Section -->
     <section class="py-5" data-aos="fade-up">
         <div class="container">
             <div class="row justify-content-center">
@@ -224,5 +226,5 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 @endsection

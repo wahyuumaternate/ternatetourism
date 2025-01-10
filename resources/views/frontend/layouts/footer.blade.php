@@ -39,7 +39,7 @@
 
          <!-- Social Media Section -->
          <div class="text-center mt-4 border-top border-secondary pt-3">
-             <h5>Follow Us</h5>
+             <h5> {{ __('pesan.follow_us') }}</h5>
              <div class="d-flex justify-content-center gap-4 mt-3">
                  <!-- Facebook -->
                  <a href="https://www.facebook.com/61550834804227/photos/122225598386027826/?_rdr" target="_blank"
@@ -69,7 +69,7 @@
          <!-- Copyright Section -->
          <div class="text-center border-top border-secondary mt-4 pt-4">
              <p class="mb-0 text-white">
-                 &copy; 2024 Ternate Tourism. All Rights Reserved.
+                 &copy; {{ __('pesan.copyright') }}
              </p>
          </div>
      </div>

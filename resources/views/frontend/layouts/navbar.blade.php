@@ -103,15 +103,19 @@
                      </a>
                      <ul class="dropdown-menu" aria-labelledby="languageDropdown">
                          <li>
-                             <a class="dropdown-item" href="#">
+                             <a class="dropdown-item {{ app()->getLocale() == 'id' ? 'active' : '' }}"
+                                 href="{{ route('lang.switch', 'id') }}">
                                  <img src="{{ asset('assets/id.png') }}" alt="Indonesian" class="me-2"
-                                     width="20">Indonesia
+                                     width="20">
+                                 Indonesia
                              </a>
                          </li>
                          <li>
-                             <a class="dropdown-item" href="#">
+                             <a class="dropdown-item {{ app()->getLocale() == 'en' ? 'active' : '' }}"
+                                 href="{{ route('lang.switch', 'en') }}">
                                  <img src="{{ asset('assets/en.png') }}" alt="English" class="me-2"
-                                     width="20">English
+                                     width="20">
+                                 English
                              </a>
                          </li>
                      </ul>

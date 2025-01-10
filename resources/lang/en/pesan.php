@@ -1,0 +1,18 @@
+<?php
+return [
+    'destination' => 'Destination',
+    'destination_populer' => 'Popular Destinations',
+    'galeri' => 'Gallery',
+    'berita' => 'News',
+    'video' => 'Video',
+    'read_more' => 'Read More',
+    'galeri_desc' => 'Explore the beauty of Ternate through our gallery showcasing natural and cultural wonders.',
+    'destinasi_desc' => 'We Bring You the Best Recommendations for an Unforgettable Experience.',
+    'video_desc' => 'Get the latest information about activities, culture, and the beauty of Ternate right here.',
+    'berita_desc' => 'Discover exciting journeys and stunning visuals for an unforgettable experience.',
+    'partner' => 'In Partnership with',
+    'partner_desc' => 'Inspiring collaborations to deliver extraordinary experiences from Ternate.',
+    'follow_us' => 'Follow Us',
+    'populer_destinasi' => 'Popular Destinations',
+    'copyright' => ' 2024 Ternate Tourism. All Rights Reserved.',
+];

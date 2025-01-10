@@ -5,6 +5,7 @@ use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\EbookController;
 use App\Http\Controllers\EkrafController;
 use App\Http\Controllers\EventsController;
+use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StrukturDanVisiController;
@@ -60,7 +61,7 @@ Route::get('/ekraf/{slug}', [EkrafController::class, 'show'])->name('ekraf.show'
 // foto
 Route::get('/gallery', [MediaController::class, 'frontFoto'])->name('frontFoto');
 Route::get('/video', [MediaController::class, 'frontVideo'])->name('frontVideo');
-
+Route::get('language/{lang}', [FrontendController::class, 'switchLang'])->name('lang.switch');
 // // ebook
 // Route::get('/ebooks', [EbookController::class, 'front'])->name('ebooks.front');
 // Route::get('/ebooks/{kode_buku}', [EbookController::class, 'detail'])->name('ebooks.detail');

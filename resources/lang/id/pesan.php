@@ -1,0 +1,19 @@
+<?php
+return [
+    'destination' => 'Destinasi',
+    'destination_populer' => 'Destinasi Populer',
+    'galeri' => 'Galeri',
+    'berita' => 'Berita',
+    'video' => 'Video',
+    'read_more' => 'Selengkapnya',
+    'galeri_desc' => 'Jelajahi keindahan Ternate melalui galeri yang menghadirkan keajaiban alam dan budaya.',
+    'destinasi_desc' => 'Kami Membawakan Rekomendasi Terbaik Untuk Pengalaman Yang Tak Terlupakan.',
+    'video_desc' => 'Dapatkan informasi terbaru seputar kegiatan, budaya, dan keindahan Ternate hanya di sini.',
+    'berita_desc' => 'Temukan perjalanan menarik dan visual yang memukau untuk pengalaman yang tak terlupakan.',
+    'partner' => 'Dalam Kemitraan dengan',
+    'partner_desc' => 'Kolaborasi yang menginspirasi untuk menghadirkan pengalaman luar biasa dari Ternate.',
+    'follow_us' => 'Ikuti Kami',
+    'populer_destinasi' => 'Destinasi Populer',
+    'copyright' => ' 2025 Pariwisata Ternate. Semua Hak Cipta Dilindungi Undang-Undang.',
+  
+];
