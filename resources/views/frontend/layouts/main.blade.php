@@ -31,6 +31,11 @@
     @stack('css')
     <link href="{{ asset('admin/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
     <style>
+        .active {
+            background-color: #ffffff !important;
+            color: #ff6500 !important;
+        }
+
         .pagination .page-link {
             color: #ff6500;
             /* Text color */
