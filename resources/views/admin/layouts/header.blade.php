@@ -15,10 +15,13 @@
          <ul class="d-flex align-items-center">
 
 
-
-
+             <li class="nav-item">
+                 <a class="nav-link nav-icon d-flex align-items-center" href="/" target="_blank">
+                     <i class="bi bi-globe me-1"></i>
+                     {{-- <span>Visit Website</span> --}}
+                 </a>
+             </li>
              <li class="nav-item dropdown pe-3">
-
                  <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#"
                      data-bs-toggle="dropdown">
                      <i class="bi bi-person-circle fs-4"></i>
