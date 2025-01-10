@@ -83,7 +83,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link" href="#" id="languageDropdown" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false">
-                        <img src="{{ asset('assets/' . (app()->getLocale() == 'id' ? 'id.png' : 'en.png')) }}"
+                        <img src="{{ asset('assets/' . (app()->getLocale() == 'id' ? 'id.png' : (app()->getLocale() == 'en' ? 'en.png' : 'ar.png'))) }}"
                             alt="Language" width="20" class="me-2">
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="languageDropdown">
@@ -99,6 +99,13 @@
                                 href="{{ route('lang.switch', 'en') }}">
                                 <img src="{{ asset('assets/en.png') }}" alt="English" class="me-2"
                                     width="20">English
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item {{ app()->getLocale() == 'ar' ? 'active' : '' }}"
+                                href="{{ route('lang.switch', 'ar') }}">
+                                <img src="{{ asset('assets/ar.png') }}" alt="Arabic" class="me-2"
+                                    width="20">العربية
                             </a>
                         </li>
                     </ul>
