@@ -143,24 +143,24 @@
             </a>
         </li>
 
-        @if (Auth::user()->name === 'Admin')
-            <li class="nav-item">
-                <a class="nav-link collapsed" data-bs-target="#pengaturan" data-bs-toggle="collapse" href="#">
-                    <i class="bi bi-gear"></i><span>Pengaturan</span><i class="bi bi-chevron-down ms-auto"></i>
-                </a>
-                <ul id="pengaturan" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+        <li class="nav-item">
+            <a class="nav-link collapsed" data-bs-target="#pengaturan" data-bs-toggle="collapse" href="#">
+                <i class="bi bi-gear"></i><span>Pengaturan</span><i class="bi bi-chevron-down ms-auto"></i>
+            </a>
+            <ul id="pengaturan" class="nav-content collapse " data-bs-parent="#sidebar-nav">
+                @if (Auth::user()->email === 'disparternatekota@gmail.com')
                     <li>
                         <a href="{{ route('users.index') }}">
                             <i class="bi bi-circle"></i><span>Users</span>
                         </a>
                     </li>
-                    <li>
-                        <a href="{{ route('heroes.index') }}">
-                            <i class="bi bi-circle"></i><span>Banner</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-        @endif
+                @endif
+                <li>
+                    <a href="{{ route('heroes.index') }}">
+                        <i class="bi bi-circle"></i><span>Banner</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
     </ul>
 </aside>

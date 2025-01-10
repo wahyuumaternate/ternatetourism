@@ -27,6 +27,11 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => Hash::make('admin123'),  // Ganti dengan password yang diinginkan
         ]);
+        User::create([
+            'name' => 'Super Admin',
+            'email' => 'disparternatekota@gmail.com',
+            'password' => Hash::make('admin123'),  // Ganti dengan password yang diinginkan
+        ]);
        
         StrukturDanVisi::create([
             'slug' => 'visi-misi',

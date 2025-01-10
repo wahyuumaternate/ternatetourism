@@ -80,21 +80,40 @@ onsubmit="return confirm('Are you sure you want to delete this user?')">
                     <div class="modal-body">
                         <div class="mb-3">
                             <label for="create_name" class="form-label">Name</label>
-                            <input type="text" class="form-control" id="create_name" name="name" required>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="create_name"
+                                name="name" required value="{{ old('name') }}">
+                            @error('name')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
+
                         <div class="mb-3">
                             <label for="create_email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="create_email" name="email" required>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror"
+                                id="create_email" name="email" required value="{{ old('email') }}">
+                            @error('email')
+                                <div class="invalid-feedback">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
+
                         <div class="mb-3">
                             <label for="create_password" class="form-label">Password</label>
                             <div class="input-group">
-                                <input type="password" class="form-control" id="create_password" name="password" required
-                                    minlength="8">
+                                <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                    id="create_password" name="password" required minlength="8">
                                 <button class="btn btn-outline-secondary" type="button"
                                     onclick="togglePassword('create_password')">
                                     <i class="bi bi-eye" id="create_password_icon"></i>
                                 </button>
+                                @error('password')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                             <div class="progress mt-2" style="height: 5px;">
                                 <div id="create-password-strength" class="progress-bar" role="progressbar"
@@ -105,23 +124,40 @@ onsubmit="return confirm('Are you sure you want to delete this user?')">
                                 <br>Password must be at least 8 characters
                             </small>
                         </div>
+
                         <div class="mb-3">
                             <label for="create_password_confirmation" class="form-label">Confirm Password</label>
                             <div class="input-group">
-                                <input type="password" class="form-control" id="create_password_confirmation"
-                                    name="password_confirmation" required minlength="8">
+                                <input type="password"
+                                    class="form-control @error('password_confirmation') is-invalid @enderror"
+                                    id="create_password_confirmation" name="password_confirmation" required minlength="8">
                                 <button class="btn btn-outline-secondary" type="button"
                                     onclick="togglePassword('create_password_confirmation')">
                                     <i class="bi bi-eye" id="create_password_confirmation_icon"></i>
                                 </button>
+                                @error('password_confirmation')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
+
+                        <!-- Display any general errors -->
+                        @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul class="mb-0">
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Close</button>
                         <button type="submit" class="btn btn-outline-primary submit-btn" id="createSubmitBtn"
-                            disabled>Create
-                            User</button>
+                            disabled>Create User</button>
                     </div>
                 </form>
             </div>

@@ -15,7 +15,7 @@ class CheckIsAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->user()->name !== 'Admin') {
+        if ($request->user()->email !== 'disparternatekota@gmail.com') {
             abort(403, 'Unauthorized access.');
         }
 
