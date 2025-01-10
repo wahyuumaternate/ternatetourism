@@ -30,5 +30,9 @@ return [
     'restaurant' => 'Cafe & Restorant',
     'umkm' => 'UMKM',
     'guide' => 'Guide',
-    'rent_car' => 'Rent Car'
+    'rent_car' => 'Rent Car',
+    'tagline' => 'Perjalanan melalui budaya, rempah-rempah, dan pemandangan yang menakjubkan selama berabad-abad.',
+    // 'tagline_desc' => 'Tagline ini menyoroti makna historis Ternate sebagai bagian dari Kepulauan Rempah-rempah sambil mengundang pengunjung untuk menjelajahi penawaran uniknya. Namun, Anda dapat memodifikasinya lebih lanjut berdasarkan aspek-aspek Ternate yang ingin Anda tekankan.'
+    'facilities_title' => 'Fasilitas Kami',
+    'facilities_subtitle' => 'Jelajahi fasilitas modern kami yang dirancang untuk meningkatkan pengalaman Anda',
 ];

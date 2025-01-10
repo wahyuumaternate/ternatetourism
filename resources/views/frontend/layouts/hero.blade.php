@@ -1,4 +1,4 @@
-<section class="hero">
+{{-- <section class="hero">
     <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
         <!-- Indicators -->
         <div class="carousel-indicators">
@@ -23,7 +23,6 @@
                 <div class="carousel-content">
                     <h1>Discover Paradise<br>in Ternate</h1>
                     <p>Experience the magic of our pristine beaches and rich cultural heritage.</p>
-                    {{-- <a href="#" class="btn-read">Explore More</a> --}}
                 </div>
             </div>
 
@@ -34,7 +33,6 @@
                 <div class="carousel-content">
                     <h1>Historic Fortresses<br>& Ancient Tales</h1>
                     <p>Journey through time in our historic Portuguese and Dutch fortresses.</p>
-                    {{-- <a href="#" class="btn-read">Learn More</a> --}}
                 </div>
             </div>
 
@@ -45,7 +43,6 @@
                 <div class="carousel-content">
                     <h1>Volcanic Majesty<br>Mount Gamalama</h1>
                     <p>Witness the stunning beauty of our active volcano and surrounding landscapes.</p>
-                    {{-- <a href="#" class="btn-read">Discover More</a> --}}
                 </div>
             </div>
 
@@ -56,7 +53,6 @@
                 <div class="carousel-content">
                     <h1>Rich Cultural<br>Heritage</h1>
                     <p>Immerse yourself in the vibrant culture of the Sultanate of Ternate.</p>
-                    {{-- <a href="#" class="btn-read">View More</a> --}}
                 </div>
             </div>
 
@@ -67,20 +63,40 @@
                 <div class="carousel-content">
                     <h1>Culinary<br>Adventures</h1>
                     <p>Taste the unique flavors of traditional Ternate cuisine.</p>
-                    {{-- <a href="#" class="btn-read">Read More</a> --}}
                 </div>
             </div>
 
         </div>
 
-        {{-- <!-- Controls -->
-        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button> --}}
+    </div>
+</section> --}}
+
+
+
+<section class="hero">
+    <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+        <!-- Indicators -->
+        <div class="carousel-indicators">
+            @foreach ($heroes as $key => $hero)
+                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="{{ $key }}"
+                    class="{{ $key == 0 ? 'active' : '' }}" aria-current="{{ $key == 0 ? 'true' : 'false' }}"
+                    aria-label="Slide {{ $key + 1 }}" class="carousel slide carousel-fade" data-bs-ride="carousel"
+                    data-bs-interval="15000">
+                </button>
+            @endforeach
+        </div>
+
+        <div class="carousel-inner">
+            @foreach ($heroes as $key => $hero)
+                <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
+                    <div class="slide-overlay"></div>
+                    <img src="{{ $hero->image }}" class="d-block w-100" alt="Slide {{ $key + 1 }}">
+                    <div class="carousel-content">
+                        <h1>{!! nl2br(e($hero->title)) !!}</h1>
+                        <p>{{ $hero->description }}</p>
+                    </div>
+                </div>
+            @endforeach
+        </div>
     </div>
 </section>

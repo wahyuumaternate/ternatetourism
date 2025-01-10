@@ -110,4 +110,22 @@ class FasilitasController extends Controller
        notify()->success('Fasilitas berhasil dihapus');
        return redirect()->back();
    }
+
+   public function front($kategori = null)
+   {
+       $query = Fasilitas::latest();
+       
+       if ($kategori && $kategori !== 'all') {
+           $query->where('kategori', $kategori);
+       }
+   
+       $facilities = $query->get();
+    
+       return view('frontend.fasilitas', compact('facilities'));
+   }
+   public function detail($slug)
+{
+    $facility = Fasilitas::where('slug', $slug)->firstOrFail();
+    return view('frontend.fasilitas_detail', compact('facility'));
+}
 }

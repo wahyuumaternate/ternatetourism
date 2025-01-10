@@ -162,6 +162,32 @@
                 </div>
             </div>
             <div class="owl-carousel owl-theme">
+                @foreach ($partners as $partner)
+                    @if ($partner->logo)
+                        <div class="item">
+                            <img src="{{ $partner->logo }}" class="member-logo mb-3" alt="{{ $partner->name }}"
+                                onerror="this.style.display='none'" /> <!-- Sembunyikan gambar jika gagal load -->
+                            <small class="mt-2">{{ $partner->name }}</small>
+                        </div>
+                    @endif
+                @endforeach
+            </div>
+        </div>
+    </section>
+    <!-- Members Section -->
+    {{-- <section class="py-5 bg-light" data-aos="fade-up">
+        <div class="container">
+            <div class="row mb-5 text-center">
+                <div class="col-md-12" data-aos="fade-right">
+                    <h1 class="fw-bold section-title">
+                        {{ __('pesan.partner') }}
+                    </h1>
+                    <p class="text-muted">
+                        {{ __('pesan.partner_desc') }}
+                    </p>
+                </div>
+            </div>
+            <div class="owl-carousel owl-theme">
                 <div class="item">
                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTD6NiLBrpE5XvpewWqMsu-BadPFEvnO0XbdA&s"
                         class="member-logo" alt="Jetstar" />
@@ -212,7 +238,7 @@
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
 
     {{-- <!-- Subscribe Section -->
     <section class="py-5" data-aos="fade-up">

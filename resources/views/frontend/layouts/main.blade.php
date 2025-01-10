@@ -31,7 +31,19 @@
     @stack('css')
     <link href="{{ asset('admin/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
     <style>
-        .active {
+        .owl-carousel .item {
+            background: transparent;
+        }
+
+        .member-logo {
+            max-height: 100px;
+            width: auto;
+            display: block;
+            margin: 0 auto;
+            background: transparent;
+        }
+
+        .active-nav {
             background-color: #ffffff !important;
             color: #ff6500 !important;
         }

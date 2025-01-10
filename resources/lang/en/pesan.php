@@ -30,5 +30,9 @@ return [
     'restaurant' => 'Cafe & Restaurant',
     'umkm' => 'SMEs',
     'guide' => 'Guide',
-    'rent_car' => 'Rent Car'
+    'rent_car' => 'Rent Car',
+     'tagline' => 'Journey through centuries of culture, spices, and breathtaking landscapes.',
+    // 'tagline_desc' => 'This tagline highlights Ternate\'s historical significance as part of the Spice Islands while inviting visitors to explore its unique offerings. However, you can modify it further based on which aspects of Ternate you want to emphasize.'
+    'facilities_title' => 'Our Facilities',
+    'facilities_subtitle' => 'Explore our modern facilities designed to enhance your experience',
 ];

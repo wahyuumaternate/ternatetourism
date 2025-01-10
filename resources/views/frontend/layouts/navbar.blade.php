@@ -60,22 +60,24 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="fasilitasDropdown">
                         <li>
-                            <a class="dropdown-item" href="{{ route('frontFoto') }}">{{ __('pesan.hotel') }}</a>
+                            <a class="dropdown-item"
+                                href="{{ route('fasilitas.front', 'hotel') }}">{{ __('pesan.hotel') }}</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="{{ route('frontFoto') }}">{{ __('pesan.travel') }}</a>
+                            <a class="dropdown-item"
+                                href="{{ route('fasilitas.front', 'travel') }}">{{ __('pesan.travel') }}</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="{{ route('frontFoto') }}">{{ __('pesan.restaurant') }}</a>
+                            <a class="dropdown-item"
+                                href="{{ route('fasilitas.front', 'cafe-restorant') }}">{{ __('pesan.restaurant') }}</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="{{ route('frontFoto') }}">{{ __('pesan.umkm') }}</a>
+                            <a class="dropdown-item"
+                                href="{{ route('fasilitas.front', 'guide') }}">{{ __('pesan.guide') }}</a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="{{ route('frontFoto') }}">{{ __('pesan.guide') }}</a>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{{ route('frontFoto') }}">{{ __('pesan.rent_car') }}</a>
+                            <a class="dropdown-item"
+                                href="{{ route('fasilitas.front', 'rent-car') }}">{{ __('pesan.rent_car') }}</a>
                         </li>
                     </ul>
                 </li>
@@ -86,23 +88,23 @@
                         <img src="{{ asset('assets/' . (app()->getLocale() == 'id' ? 'id.png' : (app()->getLocale() == 'en' ? 'en.png' : 'ar.png'))) }}"
                             alt="Language" width="20" class="me-2">
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="languageDropdown">
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="languageDropdown">
                         <li>
-                            <a class="dropdown-item {{ app()->getLocale() == 'id' ? 'active' : '' }}"
+                            <a class="dropdown-item {{ app()->getLocale() == 'id' ? 'active-nav' : '' }}"
                                 href="{{ route('lang.switch', 'id') }}">
                                 <img src="{{ asset('assets/id.png') }}" alt="Indonesian" class="me-2"
                                     width="20">Indonesia
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item {{ app()->getLocale() == 'en' ? 'active' : '' }}"
+                            <a class="dropdown-item {{ app()->getLocale() == 'en' ? 'active-nav' : '' }}"
                                 href="{{ route('lang.switch', 'en') }}">
                                 <img src="{{ asset('assets/en.png') }}" alt="English" class="me-2"
                                     width="20">English
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item {{ app()->getLocale() == 'ar' ? 'active' : '' }}"
+                            <a class="dropdown-item {{ app()->getLocale() == 'ar' ? 'active-nav' : '' }}"
                                 href="{{ route('lang.switch', 'ar') }}">
                                 <img src="{{ asset('assets/ar.png') }}" alt="Arabic" class="me-2"
                                     width="20">العربية

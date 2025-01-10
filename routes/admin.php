@@ -6,8 +6,11 @@ use App\Http\Controllers\EkrafCategoriesController;
 use App\Http\Controllers\EkrafController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\FasilitasController;
+use App\Http\Controllers\HeroController;
 use App\Http\Controllers\MediaController;
+use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\StrukturDanVisiController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -60,4 +63,10 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
         Route::put('fasilitas/{fasilitas}', 'update')->name('fasilitas.update');
         Route::delete('fasilitas/{fasilitas}', 'destroy')->name('fasilitas.destroy');
      });
+
+     Route::resource('users', UsersController::class)->except(['create', 'edit', 'show']);
+     Route::resource('heroes', HeroController::class);
+
+    //  
+    Route::resource('partners', PartnerController::class);
 });

@@ -5,14 +5,12 @@ use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\EbookController;
 use App\Http\Controllers\EkrafController;
 use App\Http\Controllers\EventsController;
+use App\Http\Controllers\FasilitasController;
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StrukturDanVisiController;
-use App\Models\Berita;
-use App\Models\Destination;
-use App\Models\Media;
-use App\Models\StrukturDanVisi;
+
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -27,16 +25,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-
-    return view('frontend.index',[
-        'destinasi'=>Destination::latest()->get(),
-        'galeri'=>Media::where('type','photo')->latest()->get(),
-        'video'=>Media::where('type','video')->latest()->get(),
-        'berita'=>Berita::orderBy('created_at', 'desc')->get(),
-    ]);
-});
-
+Route::get('/', [FrontendController::class, 'index']);
 // Route::get('/visi-misi', function () {
 //     return view('frontend.visi_misi',[
 //         'visi_misi'=>StrukturDanVisi::where('slug','visi-misi')->first(),
@@ -67,8 +56,9 @@ Route::get('language/{lang}', [FrontendController::class, 'switchLang'])->name('
 // Route::get('/ebooks/{kode_buku}', [EbookController::class, 'detail'])->name('ebooks.detail');
 // Route::get('/ebooks/{kode_buku}/read', [EbookController::class, 'read'])->name('ebooks.read');
 // Route::get('/ebooks/{kode_buku}/download', [EbookController::class, 'download'])->name('ebooks.download');
-
-
+// fasilitas
+Route::get('/fasilitas/{kategori}', [FasilitasController::class, 'front'])->name('fasilitas.front');
+Route::get('/fasilitas/detail/{slug}', [FasilitasController::class, 'detail'])->name('fasilitas.detail');
 
 Route::group(['prefix' => 'filemanager', 'middleware' => ['web', 'auth']], function () {
     \UniSharp\LaravelFilemanager\Lfm::routes();

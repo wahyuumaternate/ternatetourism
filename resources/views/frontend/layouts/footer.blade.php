@@ -4,24 +4,14 @@
          <div class="row g-4">
              <div class="col-md-3">
                  <h5 class="text-white">Ternate Tourism</h5>
-                 <p>
-                     Book your trip in minute, get full control for much
-                     longer.
-                 </p>
+                 <p>{{ __('pesan.tagline') }}</p>
+                 {{-- <p>{{ __('pesan.tagline_desc') }}</p> --}}
              </div>
-             <div class="col-md-3">
-                 <h5 class="text-white">Company</h5>
-                 <ul class="list-unstyled">
-                     <li>
-                         <a href="#" class="text-decoration-none text-white">About</a>
-                     </li>
-                     <li>
-                         <a href="#" class="text-decoration-none text-white">Careers</a>
-                     </li>
-                     <li>
-                         <a href="#" class="text-decoration-none text-white">Mobile</a>
-                     </li>
-                 </ul>
+             <div class="col-md-3 d-flex justify-content-center align-items-center flex-row" style="height: 100%;">
+                 <img class="img-fluid" src="{{ asset('assets/Logo_WI_Final_20092017_WHITE_9a2b7d834c.png') }}"
+                     alt="" width="200" />
+                 {{-- <img class="img-fluid" src="{{ asset('assets/Logo_WI_Final_20092017_WHITE_9a2b7d834c.png') }}"
+                    alt="" width="200" /> --}}
              </div>
              <div class="col-md-3 d-flex justify-content-center align-items-center flex-row" style="height: 100%;">
                  <img class="img-fluid" src="{{ asset('assets/TTE_TOURISM_LOGO.png') }}" alt=""
