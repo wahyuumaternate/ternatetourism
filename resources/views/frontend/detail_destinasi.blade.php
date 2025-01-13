@@ -2,6 +2,18 @@
 
 @push('meta')
     <!-- SEO Meta Tags -->
+    @php
+        $imageExtension = pathinfo($destination->image, PATHINFO_EXTENSION);
+        $imageType = match (strtolower($imageExtension)) {
+            'jpg', 'jpeg' => 'image/jpeg',
+            'png' => 'image/png',
+            default => 'image/jpeg',
+        };
+    @endphp
+
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="{{ $imageType }}">
     <title>{{ $destination->name }} - Wonderful Ternate</title>
     <meta name="description" content="{{ Str::limit(strip_tags($destination->description), 160) }}">
     <meta name="keywords" content="{{ implode(',', ['destination', $destination->name, 'travel', 'tourism']) }}">
