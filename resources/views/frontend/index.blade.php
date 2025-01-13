@@ -73,7 +73,7 @@
                     </div>
                 @endforeach
             </div>
-            @if ($destinasi)
+            @if ($destinasi->count() > 0)
                 <div class="row mt-4">
                     <div class="col-12 text-end">
                         <a href="{{ route('destinasi.all') }}" class="btn text-white btn-sm">
@@ -106,7 +106,7 @@
                     </div>
                 @endforeach
             </div>
-            @if ($galeri)
+            @if ($galeri->count() > 0)
                 <div class="row mt-4">
                     <div class="col-12 text-end">
                         <a href="{{ route('frontFoto') }}" class="btn text-white btn-sm">
@@ -147,7 +147,7 @@
                     </div>
                 @endforeach
             </div>
-            @if ($berita)
+            @if ($berita->count() > 0)
                 <div class="row mt-4">
                     <div class="col-12 text-end">
                         <a href="{{ route('berita.all') }}" class="btn text-white btn-sm">
@@ -203,7 +203,7 @@
                     </div>
                 @endforeach
             </div>
-            @if ($video)
+            @if ($video->count() > 0)
                 <div class="row mt-4">
                     <div class="col-12 text-end">
                         <a href="{{ route('frontVideo') }}" class="btn text-white btn-sm">
@@ -241,83 +241,4 @@
             </div>
         </div>
     </section>
-    <!-- Members Section -->
-    {{-- <section class="py-5 bg-light" data-aos="fade-up">
-        <div class="container">
-            <div class="row mb-5 text-center">
-                <div class="col-md-12" data-aos="fade-right">
-                    <h1 class="fw-bold section-title">
-                        {{ __('pesan.partner') }}
-                    </h1>
-                    <p class="text-muted">
-                        {{ __('pesan.partner_desc') }}
-                    </p>
-                </div>
-            </div>
-            <div class="owl-carousel owl-theme">
-                <div class="item">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTD6NiLBrpE5XvpewWqMsu-BadPFEvnO0XbdA&s"
-                        class="member-logo" alt="Jetstar" />
-                </div>
-                <div class="item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Lambang_Kota_Ternate.png"
-                        class="member-logo" alt="Expedia" />
-                </div>
-                <div class="item">
-                    <img src="https://www.kemenparekraf.go.id/_next/image?url=https%3A%2F%2Fapi2.kemenparekraf.go.id%2Fstorage%2Fapp%2Fuploads%2Fpublic%2F621%2F437%2F638%2F621437638c977337188787.png&w=3840&q=75"
-                        class="member-logo" alt="Qantas" />
-                </div>
-                <div class="item">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvgDYRC34vjMtD6mUEYMkTN1FPCUH0J_rkGw&s"
-                        class="member-logo" alt="Alitalia" />
-                </div>
-                <div class="item">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvgDYRC34vjMtD6mUEYMkTN1FPCUH0J_rkGw&s"
-                        class="member-logo" alt="Alitalia" />
-                </div>
-                <div class="item">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvgDYRC34vjMtD6mUEYMkTN1FPCUH0J_rkGw&s"
-                        class="member-logo" alt="Alitalia" />
-                </div>
-                <div class="item">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTD6NiLBrpE5XvpewWqMsu-BadPFEvnO0XbdA&s"
-                        class="member-logo" alt="Jetstar" />
-                </div>
-                <div class="item">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/7/75/Lambang_Kota_Ternate.png"
-                        class="member-logo" alt="Expedia" />
-                </div>
-                <div class="item">
-                    <img src="https://www.kemenparekraf.go.id/_next/image?url=https%3A%2F%2Fapi2.kemenparekraf.go.id%2Fstorage%2Fapp%2Fuploads%2Fpublic%2F621%2F437%2F638%2F621437638c977337188787.png&w=3840&q=75"
-                        class="member-logo" alt="Qantas" />
-                </div>
-                <div class="item">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvgDYRC34vjMtD6mUEYMkTN1FPCUH0J_rkGw&s"
-                        class="member-logo" alt="Alitalia" />
-                </div>
-                <div class="item">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvgDYRC34vjMtD6mUEYMkTN1FPCUH0J_rkGw&s"
-                        class="member-logo" alt="Alitalia" />
-                </div>
-                <div class="item">
-                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvgDYRC34vjMtD6mUEYMkTN1FPCUH0J_rkGw&s"
-                        class="member-logo" alt="Alitalia" />
-                </div>
-            </div>
-        </div>
-    </section> --}}
-
-    {{-- <!-- Subscribe Section -->
-    <section class="py-5" data-aos="fade-up">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-md-8 text-center">
-                    <h1 class="fw-bold section-title" data-aos="fade-right">Hubungi Kami</h1>
-                    <p class="text-muted" data-aos="fade-left">
-                        Ingin tahu lebih banyak tentang Ternate? Hubungi kami sekarang dan dapatkan informasi terbaik!
-                    </p>
-                </div>
-            </div>
-        </div>
-    </section> --}}
 @endsection
