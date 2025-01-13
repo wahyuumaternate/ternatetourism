@@ -95,7 +95,7 @@
 @endsection
 
 @section('scripts')
-    <script>
+    {{-- <script>
         tinymce.init({
             selector: '#description',
             height: 500,
@@ -128,17 +128,55 @@
                 });
             }
         });
-    </script>
+    </script> --}}
     <script>
-        // Generate slug from name
-        document.getElementById('name').addEventListener('keyup', function() {
-            const name = this.value;
-            const slug = name.toLowerCase()
-                .replace(/[^a-z0-9-]/g, '-')
-                .replace(/-+/g, '-')
-                .replace(/^-|-$/g, '');
-            document.getElementById('slug').value = slug;
-        });
+        tinymce.init({
+            selector: '#description',
+            height: 500,
+            menubar: 'file edit view insert format tools table help',
+            plugins: [
+                'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen',
+                'insertdatetime media table paste code help wordcount'
+            ],
+            toolbar: 'undo redo | formatselect | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist | removeformat | table link image media | code fullscreen preview',
+            toolbar_mode: 'sliding',
+            content_css: [
+                'https://www.tiny.cloud/css/codepen.min.css'
+            ],
+            file_picker_callback: function(callback, value, meta) {
+                if (meta.filetype === 'image') {
+                    let route_prefix = "{{ url('filemanager') }}";
+                    window.open(route_prefix + '?type=file', 'FileManager', 'width=800,height=600');
+                    window.SetUrl = function(items) {
+                        let file_url = items[0].url;
+                        callback(file_url, {
+                            alt: items[0].name
+                        });
+                    };
+                }
+            },
+            setup: function(editor) {
+                editor.on('NodeChange', function(e) {
+                    if (e.element && e.element.nodeName === 'IMG') {
+                        e.element.style.maxWidth = '100%';
+                        e.element.style.height = 'auto';
+                    }
+                });
+                editor.on('change', function() {
+                    editor.save();
+                });
+            }
+        }); <
+        script >
+            // Generate slug from name
+            document.getElementById('name').addEventListener('keyup', function() {
+                const name = this.value;
+                const slug = name.toLowerCase()
+                    .replace(/[^a-z0-9-]/g, '-')
+                    .replace(/-+/g, '-')
+                    .replace(/^-|-$/g, '');
+                document.getElementById('slug').value = slug;
+            });
 
         // Select image and preview
         document.getElementById('select-image').addEventListener('click', function() {
