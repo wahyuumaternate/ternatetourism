@@ -31,6 +31,11 @@
     {{-- <style>
        
     </style> --}}
+    <!-- Tambahkan di bagian head -->
+    <link rel="preload" as="image" href="{{ asset('assets/TTE_TOURISM_LOGO.png') }}">
+    <link rel="preload" href="{{ asset('assets/id.png') }}" as="image">
+    <link rel="preload" href="{{ asset('assets/en.png') }}" as="image">
+    <link rel="preload" href="{{ asset('assets/ar.png') }}" as="image">
 </head>
 
 <body>
@@ -108,6 +113,19 @@
                         items: 5, // Jumlah item untuk desktop
                     },
                 },
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const navbar = document.querySelector('.navbar');
+            navbar.classList.add('navbar-loaded');
+
+            // Preload gambar bendera
+            const flagImages = ['id.png', 'en.png', 'ar.png'];
+            flagImages.forEach(img => {
+                const image = new Image();
+                image.src = `/assets/${img}`;
             });
         });
     </script>

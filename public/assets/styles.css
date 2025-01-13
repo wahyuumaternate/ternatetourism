@@ -443,3 +443,12 @@
 #heroCarousel {
     overflow: hidden;
 }
+
+/* .navbar {
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  
+  .navbar-loaded {
+    opacity: 1;
+  } */
