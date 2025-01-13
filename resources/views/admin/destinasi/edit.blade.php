@@ -140,6 +140,7 @@
             ],
             toolbar: 'undo redo | formatselect | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist | removeformat | table link image media | code fullscreen preview',
             toolbar_mode: 'sliding',
+            document_base_url: '{{ url('/') }}',
             content_css: [
                 'https://www.tiny.cloud/css/codepen.min.css'
             ],
