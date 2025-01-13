@@ -2,7 +2,7 @@
  <header id="header" class="header fixed-top d-flex align-items-center">
 
      <div class="d-flex align-items-center justify-content-between">
-         <a href="{{ route('dashboard') }}" class="logo d-flex align-items-center">
+         <a href="{{ route('dashboard') }}" class="img-fluid d-flex align-items-center">
              <img src="{{ asset('assets/TTE_TOURISM_LOGO.png') }}" alt="">
              {{-- <span class="d-none d-lg-block">Wonderful Ternate</span> --}}
          </a>
