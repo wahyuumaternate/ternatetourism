@@ -5,20 +5,20 @@
     <title>{{ $destination->name }} - Wonderful Ternate</title>
     <meta name="description" content="{{ Str::limit(strip_tags($destination->description), 160) }}">
     <meta name="keywords" content="{{ implode(',', ['destination', $destination->name, 'travel', 'tourism']) }}">
-    <meta name="author" content="Your Website Name">
+    <meta name="author" content="Wonderful Ternate">
     <meta name="robots" content="index, follow">
 
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="{{ $destination->name }} - Your Website Name">
+    <meta property="og:title" content="{{ $destination->name }} - Wonderful Ternate">
     <meta property="og:description" content="{{ Str::limit(strip_tags($destination->description), 160) }}">
     <meta property="og:image" content="{{ $destination->image }}">
     <meta property="og:url" content="{{ route('destinasi.show', $destination->slug) }}">
-    <meta property="og:site_name" content="Your Website Name">
+    <meta property="og:site_name" content="Wonderful Ternate">
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ $destination->name }} - Your Website Name">
+    <meta name="twitter:title" content="{{ $destination->name }} - Wonderful Ternate">
     <meta name="twitter:description" content="{{ Str::limit(strip_tags($destination->description), 160) }}">
     <meta name="twitter:image" content="{{ $destination->image }}">
 @endpush
