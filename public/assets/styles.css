@@ -357,3 +357,89 @@
     gap: 20px;
     /* Jarak antar ikon */
 }
+
+.owl-carousel .item {
+    background: transparent;
+}
+
+.member-logo {
+    max-height: 100px;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+    background: transparent;
+}
+
+.active-nav {
+    background-color: #ffffff !important;
+    color: #ff6500 !important;
+}
+
+.pagination .page-link {
+    color: #ff6500;
+    /* Text color */
+    border-color: #ff6500;
+    /* Border color */
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #ff6500;
+    /* Background color for active page */
+    border-color: #ff6500;
+    color: white;
+    /* Text color for active page */
+}
+
+.pagination .page-link:hover {
+    color: white;
+    background-color: #ff660080;
+    /* border-color: #ff6500; */
+}
+
+.social-icon {
+    font-size: 2rem;
+    /* Mengubah ukuran ikon */
+    transition: color 0.3s;
+    /* Efek transisi saat hover */
+}
+
+/* Warna untuk masing-masing ikon sosial media */
+.facebook {
+    color: #ffffff;
+    /* Warna Facebook */
+}
+
+.twitter {
+    color: #ffffff;
+    /* Warna Twitter */
+}
+
+.instagram {
+    color: #ffffff;
+    /* Warna Instagram */
+}
+
+.youtube {
+    color: #ffffff;
+    /* Warna YouTube */
+}
+
+.tiktok {
+    color: #ffffff;
+    /* Warna TikTok */
+}
+
+/* Efek hover */
+.social-link:hover .social-icon {
+    opacity: 0.8;
+    /* Mengurangi ketebalan saat hover */
+}
+
+.hero {
+    overflow: hidden;
+}
+
+/* You might also want to add this to ensure the carousel container itself handles overflow properly */
+#heroCarousel {
+    overflow: hidden;
+}
