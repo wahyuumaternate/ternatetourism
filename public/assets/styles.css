@@ -444,3 +444,15 @@
     overflow: hidden;
 }
 
+body {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    position: relative;
+  }
+  
+  html {
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+  }
