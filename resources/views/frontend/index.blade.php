@@ -17,7 +17,7 @@
     <meta property="og:description"
         content="Jelajahi berbagai destinasi wisata menarik di Kota Ternate. Temukan keindahan alam, sejarah, dan budaya yang menakjubkan di setiap sudut kota.">
     <meta property="og:image" content="{{ asset('assets/kora_kora.jpg') }}">
-    <meta property="og:url" content="{{ route('destinasi.index') }}">
+    <meta property="og:url" content="{{ url() }}">
     <meta property="og:site_name" content="Wonderful Ternate">
 
     <!-- Twitter -->
