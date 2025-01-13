@@ -73,6 +73,13 @@
                     </div>
                 @endforeach
             </div>
+            <div class="row mt-4">
+                <div class="col-12 text-end">
+                    <a href="{{ route('destinasi.all') }}" class="btn text-white btn-sm">
+                        {{ __('pesan.read_more') }}
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -96,6 +103,13 @@
                         </a>
                     </div>
                 @endforeach
+            </div>
+            <div class="row mt-4">
+                <div class="col-12 text-end">
+                    <a href="{{ route('frontFoto') }}" class="btn text-white btn-sm">
+                        {{ __('pesan.read_more') }}
+                    </a>
+                </div>
             </div>
         </div>
     </section>
@@ -129,6 +143,13 @@
                     </div>
                 @endforeach
             </div>
+            <div class="row mt-4">
+                <div class="col-12 text-end">
+                    <a href="{{ route('berita.all') }}" class="btn text-white btn-sm">
+                        {{ __('pesan.read_more') }}
+                    </a>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -136,18 +157,12 @@
     <section class="py-5" id="destinations" data-aos="fade-up">
         <div class="container">
             <div class="row align-items-center mb-5">
-                <div class="row align-items-center mb-5">
-                    <div class="col-md-8">
-                        <h1 class="fw-bold section-title" data-aos="fade-right">{{ __('pesan.berita') }}</h1>
-                        <p class="text-muted" data-aos="fade-left">
-                            {{ __('pesan.berita_desc') }}
-                        </p>
-                    </div>
-                    <div class="col-md-4 text-end">
-                        <a href="{{ route('berita.index') }}" class="btn text-white btn-sm">
-                            {{ __('pesan.read_more') }}
-                        </a>
-                    </div>
+                <div class="col-md-8">
+                    <h1 class="fw-bold section-title" data-aos="fade-right">{{ __('pesan.video') }}</h1>
+                    <p class="text-muted" data-aos="fade-left">
+
+                        {{ __('pesan.video_desc') }}
+                    </p>
                 </div>
             </div>
             <div class="row g-4">
@@ -181,6 +196,13 @@
                         </div>
                     </div>
                 @endforeach
+            </div>
+            <div class="row mt-4">
+                <div class="col-12 text-end">
+                    <a href="{{ route('frontVideo') }}" class="btn text-white btn-sm">
+                        {{ __('pesan.read_more') }}
+                    </a>
+                </div>
             </div>
         </div>
     </section>
