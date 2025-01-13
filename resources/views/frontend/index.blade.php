@@ -73,13 +73,15 @@
                     </div>
                 @endforeach
             </div>
-            <div class="row mt-4">
-                <div class="col-12 text-end">
-                    <a href="{{ route('destinasi.all') }}" class="btn text-white btn-sm">
-                        {{ __('pesan.read_more') }}
-                    </a>
+            @if ($destinasi)
+                <div class="row mt-4">
+                    <div class="col-12 text-end">
+                        <a href="{{ route('destinasi.all') }}" class="btn text-white btn-sm">
+                            {{ __('pesan.read_more') }}
+                        </a>
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
     </section>
 
@@ -104,13 +106,15 @@
                     </div>
                 @endforeach
             </div>
-            <div class="row mt-4">
-                <div class="col-12 text-end">
-                    <a href="{{ route('frontFoto') }}" class="btn text-white btn-sm">
-                        {{ __('pesan.read_more') }}
-                    </a>
+            @if ($galeri)
+                <div class="row mt-4">
+                    <div class="col-12 text-end">
+                        <a href="{{ route('frontFoto') }}" class="btn text-white btn-sm">
+                            {{ __('pesan.read_more') }}
+                        </a>
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
     </section>
 
@@ -143,13 +147,15 @@
                     </div>
                 @endforeach
             </div>
-            <div class="row mt-4">
-                <div class="col-12 text-end">
-                    <a href="{{ route('berita.all') }}" class="btn text-white btn-sm">
-                        {{ __('pesan.read_more') }}
-                    </a>
+            @if ($berita)
+                <div class="row mt-4">
+                    <div class="col-12 text-end">
+                        <a href="{{ route('berita.all') }}" class="btn text-white btn-sm">
+                            {{ __('pesan.read_more') }}
+                        </a>
+                    </div>
                 </div>
-            </div>
+            @endif
         </div>
     </section>
 
@@ -197,13 +203,15 @@
                     </div>
                 @endforeach
             </div>
-            <div class="row mt-4">
-                <div class="col-12 text-end">
-                    <a href="{{ route('frontVideo') }}" class="btn text-white btn-sm">
-                        {{ __('pesan.read_more') }}
-                    </a>
-                </div>
-            </div>
+            @if ($video)
+                <div class="row mt-4">
+                    <div class="col-12 text-end">
+                        <a href="{{ route('frontVideo') }}" class="btn text-white btn-sm">
+                            {{ __('pesan.read_more') }}
+                        </a>
+                    </div>
+            @endif
+        </div>
         </div>
     </section>
 
