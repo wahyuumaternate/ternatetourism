@@ -3,7 +3,7 @@
      <div class="container">
          <div class="row g-4">
              <div class="col-md-3">
-                 <h5 class="text-white">Ternate Tourism</h5>
+                 <h5 class="text-white">Wonderful Ternate</h5>
                  <p>{{ __('pesan.tagline') }}</p>
                  {{-- <p>{{ __('pesan.tagline_desc') }}</p> --}}
              </div>

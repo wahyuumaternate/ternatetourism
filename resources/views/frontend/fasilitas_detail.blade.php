@@ -1,5 +1,35 @@
 @extends('frontend.layouts.main')
-
+@push('meta')
+    <!-- SEO Meta Tags -->
+    <title>{{ $facility->name }} - Fasilitas Wisata Wonderful Ternate</title>
+    <meta name="description" content="{{ Str::limit(strip_tags($facility->deskripsi), 160) }}">
+    <meta name="keywords"
+        content="{{ $facility->name }}, {{ $facility->kategori }}, fasilitas wisata ternate, {{ strtolower($facility->kategori) }} ternate">
+    <meta name="author" content="Wonderful Ternate">
+    <meta name="robots" content="index, follow">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="{{ $facility->name }} - Fasilitas Wisata Wonderful Ternate">
+    <meta property="og:description" content="{{ Str::limit(strip_tags($facility->deskripsi), 160) }}">
+    <meta property="og:image" content="{{ Storage::url($facility->gambar) }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:site_name" content="Wonderful Ternate">
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $facility->name }} - Fasilitas Wisata Wonderful Ternate">
+    <meta name="twitter:description" content="{{ Str::limit(strip_tags($facility->deskripsi), 160) }}">
+    <meta name="twitter:image" content="{{ Storage::url($facility->gambar) }}">
+    <!-- Additional Meta Tags for Location -->
+    <meta name="geo.region" content="ID-MU">
+    <meta name="geo.placename" content="Ternate">
+    <meta name="geo.position" content="0.7833;127.3667">
+    <meta name="ICBM" content="0.7833, 127.3667">
+    <!-- Article Specific Meta Tags -->
+    <meta property="article:published_time" content="{{ $facility->created_at->toIso8601String() }}">
+    <meta property="article:modified_time" content="{{ $facility->updated_at->toIso8601String() }}">
+    <meta property="article:section" content="Fasilitas Wisata">
+    <meta property="article:tag" content="{{ $facility->kategori }}">
+@endpush
 @push('css')
     <style>
         body {

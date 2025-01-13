@@ -1,4 +1,33 @@
 @extends('frontend.layouts.main')
+@push('meta')
+    <!-- SEO Meta Tags -->
+    <title>Destinasi Wisata - Wonderful Ternate</title>
+    <meta name="description"
+        content="Temukan keindahan destinasi wisata Kota Ternate, mulai dari wisata sejarah, wisata alam, wisata budaya, hingga wisata kuliner yang menakjubkan.">
+    <meta name="keywords"
+        content="destinasi wisata ternate, objek wisata ternate, tempat wisata ternate, wisata alam ternate, wisata sejarah ternate, wisata budaya ternate">
+    <meta name="author" content="Wonderful Ternate">
+    <meta name="robots" content="index, follow">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Destinasi Wisata - Wonderful Ternate">
+    <meta property="og:description"
+        content="Temukan keindahan destinasi wisata Kota Ternate, mulai dari wisata sejarah, wisata alam, wisata budaya, hingga wisata kuliner yang menakjubkan.">
+    <meta property="og:image" content="{{ asset('assets/kora_kora.jpg') }}">
+    <meta property="og:url" content="{{ route('destinasi.all') }}">
+    <meta property="og:site_name" content="Wonderful Ternate">
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Destinasi Wisata - Wonderful Ternate">
+    <meta name="twitter:description"
+        content="Temukan keindahan destinasi wisata Kota Ternate, mulai dari wisata sejarah, wisata alam, wisata budaya, hingga wisata kuliner yang menakjubkan.">
+    <meta name="twitter:image" content="{{ asset('assets/kora_kora.jpg') }}">
+    <!-- Additional Meta Tags for Location -->
+    <meta name="geo.region" content="ID-MU">
+    <meta name="geo.placename" content="Ternate">
+    <meta name="geo.position" content="0.7833;127.3667">
+    <meta name="ICBM" content="0.7833, 127.3667">
+@endpush
 @include('frontend.layouts.navbar')
 
 @section('body')

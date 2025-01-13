@@ -1,27 +1,72 @@
 @extends('frontend.layouts.main')
 
-{{-- @push('meta')
-    <!-- SEO Meta Tags -->
-    <title>{{ $destination->name }} - Wonderful Ternate</title>
-    <meta name="description" content="{{ Str::limit(strip_tags($destination->description), 160) }}">
-    <meta name="keywords" content="{{ implode(',', ['destination', $destination->name, 'travel', 'tourism']) }}">
-    <meta name="author" content="Your Website Name">
-    <meta name="robots" content="index, follow">
+@if ($visi_misi->slug == 'visi-misi')
+    @push('meta')
+        <!-- SEO Meta Tags -->
+        <title>Visi & Misi - Wonderful Ternate</title>
+        <meta name="description"
+            content="Visi dan misi pariwisata Kota Ternate dalam membangun dan mengembangkan sektor pariwisata yang berkelanjutan dan bermanfaat bagi masyarakat.">
+        <meta name="keywords"
+            content="visi misi wonderful ternate, visi misi pariwisata ternate, tujuan pariwisata ternate, pengembangan wisata ternate">
+        <meta name="author" content="Wonderful Ternate">
+        <meta name="robots" content="index, follow">
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="{{ $destination->name }} - Your Website Name">
-    <meta property="og:description" content="{{ Str::limit(strip_tags($destination->description), 160) }}">
-    <meta property="og:image" content="{{ $destination->image }}">
-    <meta property="og:url" content="{{ route('destinasi.show', $destination->slug) }}">
-    <meta property="og:site_name" content="Your Website Name">
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="Visi & Misi - Wonderful Ternate">
+        <meta property="og:description"
+            content="Visi dan misi pariwisata Kota Ternate dalam membangun dan mengembangkan sektor pariwisata yang berkelanjutan dan bermanfaat bagi masyarakat.">
+        <meta property="og:image" content="{{ asset('assets/kora_kora.jpg') }}">
+        <meta property="og:url" content="{{ route('profil', 'visi-misi') }}">
+        <meta property="og:site_name" content="Wonderful Ternate">
 
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ $destination->name }} - Your Website Name">
-    <meta name="twitter:description" content="{{ Str::limit(strip_tags($destination->description), 160) }}">
-    <meta name="twitter:image" content="{{ $destination->image }}">
-@endpush --}}
+        <!-- Twitter -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Visi & Misi - Wonderful Ternate">
+        <meta name="twitter:description"
+            content="Visi dan misi pariwisata Kota Ternate dalam membangun dan mengembangkan sektor pariwisata yang berkelanjutan dan bermanfaat bagi masyarakat.">
+        <meta name="twitter:image" content="{{ asset('assets/kora_kora.jpg') }}">
+
+        <!-- Additional Meta Tags for Location -->
+        <meta name="geo.region" content="ID-MU">
+        <meta name="geo.placename" content="Ternate">
+        <meta name="geo.position" content="0.7833;127.3667">
+        <meta name="ICBM" content="0.7833, 127.3667">
+    @endpush
+@else
+    @push('meta')
+        <!-- SEO Meta Tags -->
+        <title>Struktur Organisasi - Wonderful Ternate</title>
+        <meta name="description"
+            content="Struktur organisasi dan susunan kepengurusan Dinas Pariwisata Kota Ternate dalam mengelola dan mengembangkan sektor pariwisata daerah.">
+        <meta name="keywords"
+            content="struktur organisasi pariwisata ternate, kepengurusan dinas pariwisata ternate, manajemen pariwisata ternate, pejabat dinas pariwisata ternate">
+        <meta name="author" content="Wonderful Ternate">
+        <meta name="robots" content="index, follow">
+
+        <!-- Open Graph / Facebook -->
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="Struktur Organisasi - Wonderful Ternate">
+        <meta property="og:description"
+            content="Struktur organisasi dan susunan kepengurusan Dinas Pariwisata Kota Ternate dalam mengelola dan mengembangkan sektor pariwisata daerah.">
+        <meta property="og:image" content="{{ asset('assets/kora_kora.jpg') }}">
+        <meta property="og:url" content="{{ route('profil', 'struktur') }}">
+        <meta property="og:site_name" content="Wonderful Ternate">
+
+        <!-- Twitter -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="Struktur Organisasi - Wonderful Ternate">
+        <meta name="twitter:description"
+            content="Struktur organisasi dan susunan kepengurusan Dinas Pariwisata Kota Ternate dalam mengelola dan mengembangkan sektor pariwisata daerah.">
+        <meta name="twitter:image" content="{{ asset('assets/kora_kora.jpg') }}">
+
+        <!-- Additional Meta Tags for Location -->
+        <meta name="geo.region" content="ID-MU">
+        <meta name="geo.placename" content="Ternate">
+        <meta name="geo.position" content="0.7833;127.3667">
+        <meta name="ICBM" content="0.7833, 127.3667">
+    @endpush
+@endif
 
 
 @push('css')

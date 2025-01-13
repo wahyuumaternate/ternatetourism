@@ -1,4 +1,33 @@
 @extends('frontend.layouts.main')
+@push('meta')
+    <!-- SEO Meta Tags -->
+    <title>Ekonomi Kreatif - Wonderful Ternate</title>
+    <meta name="description"
+        content="Jelajahi potensi ekonomi kreatif Kota Ternate melalui produk-produk unggulan UMKM, kerajinan tangan, kuliner khas, dan industri kreatif lainnya yang mencerminkan kearifan lokal.">
+    <meta name="keywords"
+        content="ekonomi kreatif ternate, umkm ternate, produk lokal ternate, kerajinan tangan ternate, kuliner khas ternate, industri kreatif ternate">
+    <meta name="author" content="Wonderful Ternate">
+    <meta name="robots" content="index, follow">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Ekonomi Kreatif - Wonderful Ternate">
+    <meta property="og:description"
+        content="Jelajahi potensi ekonomi kreatif Kota Ternate melalui produk-produk unggulan UMKM, kerajinan tangan, kuliner khas, dan industri kreatif lainnya yang mencerminkan kearifan lokal.">
+    <meta property="og:image" content="{{ asset('assets/kora_kora.jpg') }}">
+    <meta property="og:url" content="{{ route('ekraf.index') }}">
+    <meta property="og:site_name" content="Wonderful Ternate">
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ekonomi Kreatif - Wonderful Ternate">
+    <meta name="twitter:description"
+        content="Jelajahi potensi ekonomi kreatif Kota Ternate melalui produk-produk unggulan UMKM, kerajinan tangan, kuliner khas, dan industri kreatif lainnya yang mencerminkan kearifan lokal.">
+    <meta name="twitter:image" content="{{ asset('assets/kora_kora.jpg') }}">
+    <!-- Additional Meta Tags for Location -->
+    <meta name="geo.region" content="ID-MU">
+    <meta name="geo.placename" content="Ternate">
+    <meta name="geo.position" content="0.7833;127.3667">
+    <meta name="ICBM" content="0.7833, 127.3667">
+@endpush
 @section('body')
     <div class="container ekraf">
         <!-- Initial Categories -->

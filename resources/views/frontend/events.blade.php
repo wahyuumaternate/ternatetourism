@@ -1,4 +1,33 @@
 @extends('frontend.layouts.main')
+@push('meta')
+    <!-- SEO Meta Tags -->
+    <title>Event & Festival - Wonderful Ternate</title>
+    <meta name="description"
+        content="Jadwal lengkap event, festival budaya, dan acara menarik di Kota Ternate. Temukan berbagai perayaan tradisional, festival seni, dan acara wisata yang dapat Anda nikmati.">
+    <meta name="keywords"
+        content="event ternate, festival ternate, acara budaya ternate, festival budaya ternate, agenda wisata ternate, kalender event ternate">
+    <meta name="author" content="Wonderful Ternate">
+    <meta name="robots" content="index, follow">
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Event & Festival - Wonderful Ternate">
+    <meta property="og:description"
+        content="Jadwal lengkap event, festival budaya, dan acara menarik di Kota Ternate. Temukan berbagai perayaan tradisional, festival seni, dan acara wisata yang dapat Anda nikmati.">
+    <meta property="og:image" content="{{ asset('assets/kora_kora.jpg') }}">
+    <meta property="og:url" content="{{ route('events.all') }}">
+    <meta property="og:site_name" content="Wonderful Ternate">
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Event & Festival - Wonderful Ternate">
+    <meta name="twitter:description"
+        content="Jadwal lengkap event, festival budaya, dan acara menarik di Kota Ternate. Temukan berbagai perayaan tradisional, festival seni, dan acara wisata yang dapat Anda nikmati.">
+    <meta name="twitter:image" content="{{ asset('assets/kora_kora.jpg') }}">
+    <!-- Additional Meta Tags for Location -->
+    <meta name="geo.region" content="ID-MU">
+    <meta name="geo.placename" content="Ternate">
+    <meta name="geo.position" content="0.7833;127.3667">
+    <meta name="ICBM" content="0.7833, 127.3667">
+@endpush
 @include('frontend.layouts.navbar')
 @push('css')
     <style>

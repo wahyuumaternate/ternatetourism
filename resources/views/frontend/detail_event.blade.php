@@ -1,4 +1,44 @@
 @extends('frontend.layouts.main')
+@push('meta')
+    <!-- SEO Meta Tags -->
+    <title>{{ $event->name }} - Event Wonderful Ternate</title>
+    <meta name="description"
+        content="{{ $event->name }} - {{ date('d M Y', strtotime($event->date)) }} di {{ $event->location }}. {{ Str::limit(strip_tags($event->detail), 120) }}">
+    <meta name="keywords"
+        content="{{ Str::slug($event->name) }}, event ternate, festival ternate, acara ternate, {{ date('F Y', strtotime($event->date)) }}, {{ $event->location }}">
+    <meta name="author" content="Wonderful Ternate">
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="event">
+    <meta property="og:title" content="{{ $event->name }} - Event Wonderful Ternate">
+    <meta property="og:description"
+        content="{{ $event->name }} - {{ date('d M Y', strtotime($event->date)) }} di {{ $event->location }}. {{ Str::limit(strip_tags($event->detail), 120) }}">
+    <meta property="og:image" content="{{ $event->poster }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:site_name" content="Wonderful Ternate">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $event->name }} - Event Wonderful Ternate">
+    <meta name="twitter:description"
+        content="{{ $event->name }} - {{ date('d M Y', strtotime($event->date)) }} di {{ $event->location }}. {{ Str::limit(strip_tags($event->detail), 120) }}">
+    <meta name="twitter:image" content="{{ $event->poster }}">
+
+    <!-- Additional Meta Tags for Location -->
+    <meta name="geo.region" content="ID-MU">
+    <meta name="geo.placename" content="Ternate">
+    <meta name="geo.position" content="0.7833;127.3667">
+    <meta name="ICBM" content="0.7833, 127.3667">
+
+    <!-- Event Specific Meta Tags -->
+    <meta property="event:start_time" content="{{ date('c', strtotime($event->date . ' ' . $event->time)) }}">
+    <meta property="event:location:latitude" content="0.7833">
+    <meta property="event:location:longitude" content="127.3667">
+    <meta property="event:location:name" content="{{ $event->location }}">
+
+    </script>
+@endpush
 @include('frontend.layouts.navbar')
 @push('css')
     <style>
