@@ -136,12 +136,18 @@
     <section class="py-5" id="destinations" data-aos="fade-up">
         <div class="container">
             <div class="row align-items-center mb-5">
-                <div class="col-md-8">
-                    <h1 class="fw-bold section-title" data-aos="fade-right">{{ __('pesan.video') }}</h1>
-                    <p class="text-muted" data-aos="fade-left">
-
-                        {{ __('pesan.video_desc') }}
-                    </p>
+                <div class="row align-items-center mb-5">
+                    <div class="col-md-8">
+                        <h1 class="fw-bold section-title" data-aos="fade-right">{{ __('pesan.berita') }}</h1>
+                        <p class="text-muted" data-aos="fade-left">
+                            {{ __('pesan.berita_desc') }}
+                        </p>
+                    </div>
+                    <div class="col-md-4 text-end">
+                        <a href="{{ route('berita.index') }}" class="btn text-white btn-sm">
+                            {{ __('pesan.read_more') }}
+                        </a>
+                    </div>
                 </div>
             </div>
             <div class="row g-4">
