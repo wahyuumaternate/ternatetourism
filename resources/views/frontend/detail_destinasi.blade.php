@@ -11,6 +11,11 @@
         };
     @endphp
 
+    <link rel="preload" as="image" href="{{ $destination->image }}" type="image/jpeg">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ url()->current() }}">
+
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:type" content="{{ $imageType }}">
