@@ -12,16 +12,18 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="{{ $news->title }} - Berita Pariwisata Wonderful Ternate">
     <meta property="og:description" content="{{ Str::limit(strip_tags($news->content), 160) }}">
-    <meta property="og:image" content="{{ Storage::url($news->image) }}">
+    <meta property="og:image" content="{{ $news->image }}>
     <meta property="og:url" content="{{ url()->current() }}">
     <meta property="og:site_name" content="Wonderful Ternate">
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="{{ $news->title }} - Berita Pariwisata Wonderful Ternate">
     <meta name="twitter:description" content="{{ Str::limit(strip_tags($news->content), 160) }}">
-    <meta name="twitter:image" content="{{ Storage::url($news->image) }}">
+    <meta name="twitter:image"
+        content="{{ $news->image }}>
     <!-- Additional Meta Tags for Location -->
-    <meta name="geo.region" content="ID-MU">
+    <meta name="geo.region"
+        content="ID-MU">
     <meta name="geo.placename" content="Ternate">
     <meta name="geo.position" content="0.7833;127.3667">
     <meta name="ICBM" content="0.7833, 127.3667">
@@ -47,18 +49,7 @@
     </style>
 @endpush
 
-{{-- @section('body')
-    <div class="container">
-        <div class="card">
-            <img src="{{ $news->image }}" alt="{{ $news->title }}" class="card-img-top">
-            <div class="card-body">
-                <h5 class="card-title">{{ $news->title }} - <small
-                        class="text-muted">{{ $news->created_at->format('d M Y') }}</small></h5>
-                <p class="card-text">{!! $news->content !!}</p>
-            </div>
-        </div>
-    </div>
-@endsection --}}
+
 @section('body')
     <div class="container mt-5 hhh">
         <div class="row">
@@ -103,8 +94,8 @@
                                 class="btn " target="_blank">
                                 <i class="bi bi-twitter"></i>
                             </a>
-                            <a href="https://api.whatsapp.com/send?text={{ $news->title }} {{ url()->current() }}"
-                                class="btn " target="_blank">
+                            <a href="https://api.whatsapp.com/send?text={{ url()->current() }}" class="btn "
+                                target="_blank">
                                 <i class="bi bi-whatsapp"></i>
                             </a>
                         </div>
