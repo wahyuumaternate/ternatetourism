@@ -145,7 +145,7 @@
                 </div>
             </div>
             <div class="row g-4">
-                @foreach ($video as $vid)
+                @foreach ($video->take(6) as $vid)
                     <div class="col-md-4" data-aos="zoom-in" data-aos-delay="{{ $loop->index * 100 }}">
                         <div class="position-relative destination-card" style="height: 100%; overflow: hidden;">
                             <!-- Video Title -->

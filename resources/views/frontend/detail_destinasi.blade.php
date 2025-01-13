@@ -150,7 +150,7 @@
 
             <!-- Konten -->
             <div class="col-12 col-md-6 destination-content">
-                <h2 class="destination-title">Things to Do in {{ $destination->name }}</h2>
+                <h2 class="destination-title">{{ $destination->name }}</h2>
 
                 <!-- Tombol Bagikan -->
                 <div class="share-buttons mt-4 d-flex align-items-center gap-3">
