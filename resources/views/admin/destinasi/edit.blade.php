@@ -166,17 +166,19 @@
                     editor.save();
                 });
             }
-        }); <
-        script >
-            // Generate slug from name
-            document.getElementById('name').addEventListener('keyup', function() {
-                const name = this.value;
-                const slug = name.toLowerCase()
-                    .replace(/[^a-z0-9-]/g, '-')
-                    .replace(/-+/g, '-')
-                    .replace(/^-|-$/g, '');
-                document.getElementById('slug').value = slug;
-            });
+        });
+    </script>
+
+    <script>
+        // Generate slug from name
+        document.getElementById('name').addEventListener('keyup', function() {
+            const name = this.value;
+            const slug = name.toLowerCase()
+                .replace(/[^a-z0-9-]/g, '-')
+                .replace(/-+/g, '-')
+                .replace(/^-|-$/g, '');
+            document.getElementById('slug').value = slug;
+        });
 
         // Select image and preview
         document.getElementById('select-image').addEventListener('click', function() {
