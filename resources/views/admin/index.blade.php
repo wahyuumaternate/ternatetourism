@@ -4,7 +4,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Welcome Back Admin</h5>
+                <h5 class="card-title">Welcome Back {{ Auth::user()->name }}</h5>
             </div>
         </div>
     </div><!-- End Reports -->
