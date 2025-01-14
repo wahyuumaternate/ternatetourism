@@ -119,7 +119,12 @@
                 }
             },
             setup: function(editor) {
-                
+                editor.on('NodeChange', function(e) {
+                    if (e.element && e.element.nodeName === 'IMG') {
+                        e.element.style.maxWidth = '100%';
+                        e.element.style.height = 'auto';
+                    }
+                });
                 editor.on('change', function() {
                     editor.save();
                 });
