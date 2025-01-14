@@ -27,10 +27,10 @@ class MediaController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required',
+            'title' => 'required|max:255',
             'type' => 'required',
             'file' => 'required',
-            'description' => 'nullable'
+            'description' => 'nullable|max:255'
         ]);
 
         
@@ -48,10 +48,10 @@ class MediaController extends Controller
     public function update(Request $request, Media $media)
     {
         $request->validate([
-            'title' => 'required',
+            'title' => 'required|max:255',
             'type' => 'required|in:photo,video',
             'file' => 'required',
-            'description' => 'nullable'
+            'description' => 'nullable|max:255'
         ]);
 
         $data = [
