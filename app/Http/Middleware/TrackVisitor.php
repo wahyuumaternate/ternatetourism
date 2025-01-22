@@ -10,37 +10,47 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Models\Visitor;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class TrackVisitor
 {
     public function handle($request, Closure $next)
     {
         $ip = $request->ip();
-    $currentTime = now();
+        $currentTime = now();
+        
+        // Tambahkan logging untuk debugging
+        Log::info('IP Address: ' . $ip);
+        
+        $existingVisit = Visitor::where('ip', $ip)
+            ->where('created_at', '>=', $currentTime->copy()->subMinutes(30))
+            ->first();
     
-    // Cek apakah IP ini sudah mengakses dalam 30 menit terakhir
-    $existingVisit = Visitor::where('ip', $ip)
-        ->where('created_at', '>=', $currentTime->copy()->subMinutes(30))
-        ->first();
-
-    // Jika belum ada kunjungan dalam 30 menit terakhir, baru catat
-    if (!$existingVisit) {
-        $response = Http::get("http://ip-api.com/json/{$ip}");
-        $locationData = $response->json();
-
-        if($response->successful()) {
-            Visitor::create([
-                'ip' => $ip,
-                'user_agent' => $request->userAgent(),
-                'latitude' => $locationData['lat'] ?? null,
-                'longitude' => $locationData['lon'] ?? null,
-                'country' => $locationData['country'] ?? null,
-                'city' => $locationData['city'] ?? null,
-                'page_visited' => $request->path()
-            ]);
+        if (!$existingVisit) {
+            try {
+                $response = Http::get("http://ip-api.com/json/{$ip}");
+                $locationData = $response->json();
+                
+                Log::info('API Response: ' . json_encode($locationData));
+    
+                if($response->successful()) {
+                    $visitor = Visitor::create([
+                        'ip' => $ip,
+                        'user_agent' => $request->userAgent(),
+                        'latitude' => $locationData['lat'] ?? null,
+                        'longitude' => $locationData['lon'] ?? null,
+                        'country' => $locationData['country'] ?? null,
+                        'city' => $locationData['city'] ?? null,
+                        'page_visited' => $request->path()
+                    ]);
+                    
+                    Log::info('Visitor created: ' . $visitor->id);
+                }
+            } catch (\Exception $e) {
+                Log::error('Error creating visitor: ' . $e->getMessage());
+            }
         }
-    }
-
+    
         return $next($request);
     }
 }
