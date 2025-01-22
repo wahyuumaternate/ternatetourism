@@ -17,7 +17,6 @@ class TrackVisitor
     {
         $ip = $request->ip();
         $currentTime = now();
-        dd($request->ip());
         // Cek apakah IP ini sudah mengakses dalam 30 menit terakhir
         $existingVisit = Visitor::where('ip', $ip)
             ->where('created_at', '>=', $currentTime->copy()->subMinutes(30))
