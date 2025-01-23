@@ -60,8 +60,7 @@
                                 <tr>
                                     <th>Alamat IP</th>
                                     <th>Lokasi</th>
-                                    <th>Nehara</th>
-                                    <th>Halaman Dikunjungi</th>
+                                    {{-- <th>Halaman Dikunjungi</th> --}}
                                     <th>Waktu</th>
                                 </tr>
                             </thead>
@@ -71,7 +70,7 @@
                                         <td>{{ $visitor->ip }}</td>
                                         <td>{{ $visitor->city ?? 'Tidak Diketahui' }},
                                             {{ $visitor->country ?? 'Tidak Diketahui' }}</td>
-                                        <td>{{ $visitor->page_visited }}</td>
+                                        {{-- <td>{{ $visitor->page_visited }}</td> --}}
                                         <td>{{ $visitor->created_at->locale('id')->diffForHumans() }}</td>
                                     </tr>
                                 @endforeach
