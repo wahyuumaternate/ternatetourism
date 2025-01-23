@@ -50,5 +50,34 @@
                     </div>
 
                 </div>
+            </div>
+            <div class="col-12">
+                <div class="card recent-sales overflow-auto">
+                    <div class="card-body">
+                        <h5 class="card-title">Data Pengunjung <span>| Hari Ini</span></h5>
+                        <table class="table table-borderless datatable">
+                            <thead>
+                                <tr>
+                                    <th>Alamat IP</th>
+                                    <th>Lokasi</th>
+                                    <th>Halaman Dikunjungi</th>
+                                    <th>Waktu</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($visitors as $visitor)
+                                    <tr>
+                                        <td>{{ $visitor->ip_address }}</td>
+                                        <td>{{ $visitor->city ?? 'Tidak Diketahui' }},
+                                            {{ $visitor->country ?? 'Tidak Diketahui' }}</td>
+                                        <td>{{ $visitor->page_visited }}</td>
+                                        <td>{{ $visitor->created_at->locale('id')->diffForHumans() }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
     </section>
 @endsection
