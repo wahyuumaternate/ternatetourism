@@ -60,6 +60,7 @@
                                 <tr>
                                     <th>Alamat IP</th>
                                     <th>Lokasi</th>
+                                    <th>Nehara</th>
                                     <th>Halaman Dikunjungi</th>
                                     <th>Waktu</th>
                                 </tr>
