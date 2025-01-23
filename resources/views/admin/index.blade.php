@@ -1,22 +1,22 @@
 @extends('admin.layouts.main', ['title' => 'Dashboard'])
 @section('main')
-    <!-- Reports -->
-    <div class="col-12">
-        <div class="card">
-            <div class="card-body">
-                <h5 class="card-title">Welcome Back {{ Auth::user()->name }}</h5>
-            </div>
-        </div>
-    </div><!-- End Reports -->
     <section class="section dashboard">
         <div class="row">
 
-            <!-- Left side columns -->
-            <div class="col-lg-8">
+
+            <div class="col-lg-12">
                 <div class="row">
 
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body py-4">
+                                <h5 class="card-title">Selamat Datang {{ Auth::user()->name }}</h5>
+                                <p>Selamat datang kembali di panel admin. Semoga harimu menyenangkan!</p>
+                            </div>
+                        </div>
+                    </div>
                     <!-- Visitors Card -->
-                    <div class="col-xxl-4 col-md-6">
+                    <div class="col-md-6">
                         <div class="card info-card visitors-card">
                             <div class="filter">
                                 <a class="icon" href="#" data-bs-toggle="dropdown"><i
