@@ -10,7 +10,7 @@ use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StrukturDanVisiController;
-
+use App\Models\Visitor;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -64,9 +64,21 @@ Route::group(['prefix' => 'filemanager', 'middleware' => ['web', 'auth']], funct
     \UniSharp\LaravelFilemanager\Lfm::routes();
 });
 
+// Route::get('/dashboard', function () {
+//     return view('admin.index');
+// })->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/dashboard', function () {
-    return view('admin.index');
-})->middleware(['auth', 'verified'])->name('dashboard');
+    $visitorCount = Visitor::when(request('period'), function($query, $period) {
+        return match($period) {
+            'today' => $query->whereDate('created_at', today()),
+            'month' => $query->whereMonth('created_at', now()->month),
+            'year' => $query->whereYear('created_at', now()->year),
+            default => $query->whereDate('created_at', today())
+        };
+    })->count();
+ 
+    return view('admin.index', compact('visitorCount'));
+ })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

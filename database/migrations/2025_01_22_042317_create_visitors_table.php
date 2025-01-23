@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('ip')->nullable();
             $table->string('user_agent')->nullable();
-            $table->decimal('latitude', 10, 8)->nullable();
-            $table->decimal('longitude', 11, 8)->nullable();
+            $table->string('latitude')->nullable();
+            $table->string('longitude')->nullable();
             $table->string('country')->nullable();
             $table->string('city')->nullable();
             $table->string('page_visited');
