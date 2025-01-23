@@ -67,18 +67,25 @@ Route::group(['prefix' => 'filemanager', 'middleware' => ['web', 'auth']], funct
 // Route::get('/dashboard', function () {
 //     return view('admin.index');
 // })->middleware(['auth', 'verified'])->name('dashboard');
+
 Route::get('/dashboard', function () {
-    $visitorCount = Visitor::when(request('period'), function($query, $period) {
+    $period = request('period', 'today');
+    
+    $query = Visitor::query();
+    $query->when($period, function($q) use ($period) {
         return match($period) {
-            'today' => $query->whereDate('created_at', today()),
-            'month' => $query->whereMonth('created_at', now()->month),
-            'year' => $query->whereYear('created_at', now()->year),
-            default => $query->whereDate('created_at', today())
+            'today' => $q->whereDate('created_at', today()),
+            'month' => $q->whereMonth('created_at', now()->month), 
+            'year' => $q->whereYear('created_at', now()->year),
+            default => $q->whereDate('created_at', today())
         };
-    })->count();
-    $visitors = Visitor::latest()->get();
-    return view('admin.index', compact('visitorCount','visitors'));
- })->middleware(['auth', 'verified'])->name('dashboard');
+    });
+
+    $visitorCount = $query->count();
+    $visitors = $query->latest()->get();
+
+    return view('admin.index', compact('visitorCount', 'visitors')); 
+})->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
