@@ -67,7 +67,7 @@
                             <tbody>
                                 @foreach ($visitors as $visitor)
                                     <tr>
-                                        <td>{{ $visitor->ip_address }}</td>
+                                        <td>{{ $visitor->ip }}</td>
                                         <td>{{ $visitor->city ?? 'Tidak Diketahui' }},
                                             {{ $visitor->country ?? 'Tidak Diketahui' }}</td>
                                         <td>{{ $visitor->page_visited }}</td>
