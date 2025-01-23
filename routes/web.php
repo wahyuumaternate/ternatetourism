@@ -76,7 +76,7 @@ Route::get('/dashboard', function () {
             default => $query->whereDate('created_at', today())
         };
     })->count();
-    $visitors = Visitor::latest()->take(10)->get();
+    $visitors = Visitor::latest()->get();
     return view('admin.index', compact('visitorCount','visitors'));
  })->middleware(['auth', 'verified'])->name('dashboard');
 
