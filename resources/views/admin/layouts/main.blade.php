@@ -121,6 +121,22 @@
             max-width: 200px;
             /* Adjust as needed */
         }
+
+        * {
+            max-width: 100%;
+        }
+
+        .container-fluid {
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto;
+            width: 100%;
+        }
+
+        .card {
+            width: 100%;
+        }
     </style>
 </head>
 
