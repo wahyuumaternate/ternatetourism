@@ -105,6 +105,19 @@
             color: white;
             /* Change text color on hover */
         }
+
+        body,
+        html {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
+
+        .container {
+            max-width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
     </style>
 </head>
 
