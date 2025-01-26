@@ -105,6 +105,15 @@
             color: white;
             /* Change text color on hover */
         }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
     </style>
 </head>
 

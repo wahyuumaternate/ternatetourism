@@ -2,10 +2,12 @@
  <header id="header" class="header fixed-top d-flex align-items-center">
 
      <div class="d-flex align-items-center justify-content-between">
-         <a href="{{ route('dashboard') }}" class="logo d-flex align-items-center">
-             <img src="{{ asset('assets/TTE_TOURISM_LOGO.png') }}" alt="">
-             {{-- <span class="d-none d-lg-block">Wonderful Ternate</span> --}}
-         </a>
+         <div class="d-flex justify-content-center logo">
+             <a href="{{ route('dashboard') }}">
+                 <img src="{{ asset('assets/BANNER WEB (BLACK).png') }}" alt=""
+                     style="width: 150px; height: 150px;">
+             </a>
+         </div>
          <i class="bi bi-list toggle-sidebar-btn"></i>
      </div><!-- End Logo -->
 
