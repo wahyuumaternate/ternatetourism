@@ -118,6 +118,20 @@
             padding-right: 15px;
             padding-left: 15px;
         }
+
+        @media (max-width: 767px) {
+
+            body,
+            html {
+                overflow-x: hidden;
+                width: 100%;
+            }
+
+            .container {
+                max-width: 100%;
+                padding: 0 15px;
+            }
+        }
     </style>
 </head>
 
