@@ -106,13 +106,20 @@
             /* Change text color on hover */
         }
 
-        body {
-            overflow-x: hidden;
+        table {
+            width: 100%;
         }
 
-        img {
-            max-width: 100%;
-            height: auto;
+        .table-responsive {
+            max-width: 100vw;
+            overflow-x: auto;
+        }
+
+        td {
+            white-space: normal;
+            word-wrap: break-word;
+            max-width: 200px;
+            /* Adjust as needed */
         }
     </style>
 </head>
