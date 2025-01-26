@@ -32,6 +32,20 @@
     <meta name="geo.placename" content="Ternate">
     <meta name="geo.position" content="0.7833;127.3667">
     <meta name="ICBM" content="0.7833, 127.3667">
+    <style>
+        body,
+        html {
+            overflow-x: hidden;
+            width: 100%;
+            position: relative;
+        }
+
+        .container {
+            max-width: 100%;
+            padding-right: 15px;
+            padding-left: 15px;
+        }
+    </style>
 @endpush
 @section('body')
     <!-- Popular Destinations -->
