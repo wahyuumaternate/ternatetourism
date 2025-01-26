@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top py-3">
     <div class="container">
-        <a href="/"><img class="navbar-brand" src="{{ asset('assets/TTE_TOURISM_LOGO.png') }}" alt="Tourism Logo"
+        <a href="/"><img class="navbar-brand" src="{{ asset('assets/WT NEW BLACK.png') }}" alt="Tourism Logo"
                 width="80" height="auto" loading="eager" fetchpriority="high"></a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">

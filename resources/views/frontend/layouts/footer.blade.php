@@ -14,8 +14,7 @@
                     alt="" width="200" /> --}}
              </div>
              <div class="col-md-3 d-flex justify-content-center align-items-center flex-row" style="height: 100%;">
-                 <img class="img-fluid" src="{{ asset('assets/TTE_TOURISM_LOGO.png') }}" alt=""
-                     width="200" />
+                 <img class="img-fluid" src="{{ asset('assets/WT NEW WHITE.png') }}" alt="" width="200" />
                  {{-- <img class="img-fluid" src="{{ asset('assets/Logo_WI_Final_20092017_WHITE_9a2b7d834c.png') }}"
                      alt="" width="200" /> --}}
              </div>
