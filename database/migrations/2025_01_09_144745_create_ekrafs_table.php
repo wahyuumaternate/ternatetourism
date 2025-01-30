@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('icon');
             $table->string('slug')->unique();
-            $table->text('description')->nullable();
+            $table->longText('description')->nullable();
             $table->timestamps();
         });
         // Tabel utama ekraf
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('logo')->nullable();
-            $table->text('description')->nullable();
+            $table->longText('description')->nullable();
             $table->foreignId('category_id')->constrained('ekraf_categories')->onDelete('cascade');
             $table->string('address')->nullable();
             $table->string('phone')->nullable();

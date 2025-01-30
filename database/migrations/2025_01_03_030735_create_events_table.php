@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('location');
             $table->date('date');
             $table->time('time');
-            $table->text('detail');
+            $table->longText('detail');
             $table->string('lat');
             $table->string('long');
             $table->string('poster');

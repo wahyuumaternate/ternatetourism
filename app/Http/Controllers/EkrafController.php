@@ -31,7 +31,7 @@ class EkrafController extends Controller
             'address' => 'nullable|string',
             'phone' => 'nullable|string',
             'email' => 'nullable|email',
-            'website' => 'nullable|url',
+            'website' => 'nullable|string',
             'social_media' => 'nullable|string',
             'jumlah_produk' => 'required|string'
         ]);
@@ -70,7 +70,7 @@ class EkrafController extends Controller
             'address' => 'nullable|string',
             'phone' => 'nullable|string',
             'email' => 'nullable|email',
-            'website' => 'nullable|url',
+            'website' => 'nullable|string',
             'social_media' => 'nullable|string',
             'jumlah_produk' => 'required|string'
         ]);

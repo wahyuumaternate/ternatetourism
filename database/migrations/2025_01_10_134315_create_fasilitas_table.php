@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('gambar');
             $table->string('slug')->unique();
-            $table->text('deskripsi');
+            $table->longText('deskripsi');
             $table->enum('kategori', [
                 'hotel',
                 'travel',
