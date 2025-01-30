@@ -7,17 +7,24 @@
                  <p>{{ __('pesan.tagline') }}</p>
                  {{-- <p>{{ __('pesan.tagline_desc') }}</p> --}}
              </div>
-             <div class="col-md-3 d-flex justify-content-center align-items-center flex-row" style="height: 100%;">
+             <div class="col-md-2 d-flex justify-content-center align-items-center flex-row" style="height: 100%;">
+                 <img class="img-fluid" src="{{ asset('assets/logo_pemkot.png') }}" alt="" width="100" />
+                 {{-- <img class="img-fluid" src="{{ asset('assets/Logo_WI_Final_20092017_WHITE_9a2b7d834c.png') }}"
+                   alt="" width="200" /> --}}
+             </div>
+             <div class="col-md-2 d-flex justify-content-center align-items-center flex-row" style="height: 100%;">
                  <img class="img-fluid" src="{{ asset('assets/Logo_WI_Final_20092017_WHITE_9a2b7d834c.png') }}"
                      alt="" width="200" />
                  {{-- <img class="img-fluid" src="{{ asset('assets/Logo_WI_Final_20092017_WHITE_9a2b7d834c.png') }}"
                     alt="" width="200" /> --}}
              </div>
-             <div class="col-md-3 d-flex justify-content-center align-items-center flex-row" style="height: 100%;">
+
+             <div class="col-md-2 d-flex justify-content-center align-items-center flex-row" style="height: 100%;">
                  <img class="img-fluid" src="{{ asset('assets/WT NEW WHITE.png') }}" alt="" width="200" />
                  {{-- <img class="img-fluid" src="{{ asset('assets/Logo_WI_Final_20092017_WHITE_9a2b7d834c.png') }}"
                      alt="" width="200" /> --}}
              </div>
+
              <div class="col-md-3">
                  <iframe
                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3989.4408740907597!2d127.37726787447343!3d0.7881194631249376!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x329cb3fd2a9df195%3A0x33a307b0c35a4dc6!2sDinas%20Pariwisata%20Kota%20Ternate!5e0!3m2!1sid!2sid!4v1735394373519!5m2!1sid!2sid"

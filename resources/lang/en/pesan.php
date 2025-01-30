@@ -14,7 +14,7 @@ return [
     'partner_desc' => 'Inspiring collaborations to deliver extraordinary experiences from Ternate.',
     'follow_us' => 'Follow Us',
     'populer_destinasi' => 'Popular Destinations',
-    'copyright' => ' 2024 Ternate Tourism. All Rights Reserved.',
+    'copyright' => ' 2024 Wonderful Ternate. All Rights Reserved.',
     'home' => 'Home',
     'profile' => 'Profile',
     'vision_mission' => 'Vision & Mission',

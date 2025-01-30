@@ -14,7 +14,7 @@ return [
     'partner_desc' => 'Kolaborasi yang menginspirasi untuk menghadirkan pengalaman luar biasa dari Ternate.',
     'follow_us' => 'Ikuti Kami',
     'populer_destinasi' => 'Destinasi Populer',
-    'copyright' => ' 2025 Pariwisata Ternate. Semua Hak Cipta Dilindungi Undang-Undang.',
+    'copyright' => ' 2025 Wonderful Ternate. Semua Hak Cipta Dilindungi Undang-Undang.',
     'home' => 'Beranda',
     'profile' => 'Profil',
     'vision_mission' => 'Visi Misi',
