@@ -456,3 +456,11 @@ body {
     overflow-x: hidden;
     scroll-behavior: smooth;
   }
+
+  blockquote {
+    font-style: italic;
+    color: #555;
+    border-left: 4px solid #ff6600;
+    padding-left: 10px;
+    margin-left: 0;
+}

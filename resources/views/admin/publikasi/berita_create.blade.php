@@ -82,7 +82,7 @@
                 'advlist autolink lists link image charmap preview anchor searchreplace visualblocks code fullscreen',
                 'insertdatetime media table paste code help wordcount'
             ],
-            toolbar: 'undo redo | formatselect | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist | removeformat | table link image media | code fullscreen preview',
+            toolbar: 'undo redo | formatselect | bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist | removeformat | table link image media | blockquote code fullscreen preview',
             toolbar_mode: 'sliding',
             content_css: [
                 'https://www.tiny.cloud/css/codepen.min.css'

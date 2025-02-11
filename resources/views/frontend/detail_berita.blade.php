@@ -55,6 +55,8 @@
                 object-fit: cover;
             }
         }
+
+       
     </style>
 @endpush
 
