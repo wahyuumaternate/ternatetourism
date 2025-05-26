@@ -105,6 +105,15 @@ Route::get('/migrate-seed', function () {
 //     return view('frontend.detail_ebook');
 // });
         
+// Route untuk halaman pendaftaran lomba
+Route::get('/daftar', function () {
+    return view('frontend.kora_kora.daftar'); // pastikan file view-nya ada di resources/views/daftar.blade.php
+})->name('daftar');
+
+// Route untuk halaman festival kora-kora
+Route::get('/festival-kora-kora', function () {
+    return view('frontend.kora_kora.index'); // pastikan file view-nya ada di resources/views/festival-kora-kora.blade.php
+})->name('festival.kora.kora');
 
 require __DIR__.'/auth.php';
 require __DIR__.'/admin.php';

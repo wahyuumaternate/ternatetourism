@@ -1,0 +1,177 @@
+body {
+  margin: 0;
+  font-family: 'Baloo 2', cursive;
+  background: #d2e0db;
+  color: #3a1e0e;
+}
+
+.background {
+  background: url('tex.png'); /* texture background mirip poster */
+  background-size: cover;
+  background-repeat: no-repeat;
+  padding: 20px;
+}
+
+/* Logo bar */
+.top-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.top-logos img {
+  height: 45px;
+}
+
+/* Judul utama */
+.judul-container {
+  text-align: center;
+  margin: 20px auto;
+}
+
+.label-festival {
+  background-color: #f8c63d;
+  color: #3a1e0e;
+  padding: 5px 15px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 1.3em;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.judul-kora {
+  font-size: 5em;
+  line-height: 1em;
+  color: #3a1e0e;
+  margin: 0;
+  text-shadow: 2px 2px #fff;
+}
+
+/* Gambar utama kolase */
+.kolase {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0;
+}
+
+.kolase img {
+  width: 90%;
+  max-width: 700px;
+  /* border-radius: 12px; */
+  /* box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2); */
+}
+
+/* Info box */
+.info-section {
+  text-align: center;
+  color: #3a1e0e;
+}
+
+.info-box {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-bottom: 10px;
+}
+
+.info-box div {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 1.2em;
+}
+
+.info-box img {
+  height: 24px;
+  width: 24px;
+}
+
+.tagline {
+  font-style: italic;
+  color: #2c2c2c;
+  margin-top: 5px;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 1em;
+  color: #5a4230;
+}
+
+.footer img {
+  height: 18px;
+  vertical-align: middle;
+  margin-right: 5px;
+}
+
+  .btn-daftar {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: #008977;
+    color: white;
+    padding: 15px 25px;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 16px;
+    text-decoration: none;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    z-index: 1000;
+  }
+
+  .btn-daftar:hover {
+    background-color: #02a48f;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.3);
+  }
+
+
+
+.top-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+
+.top-logos img {
+  max-height: 50px;
+  object-fit: contain;
+  width: auto;
+  height: auto;
+}
+.top-logos img[src*="logo-kementrian"] {
+  height: 85px;
+  width:  85px;
+}
+
+.about-section {
+  max-width: 700px;
+  margin: 40px auto;
+  padding: 20px;
+  /* background: rgba(255, 255, 255, 0.9); */
+  border-radius: 10px;
+  /* box-shadow: 0 0 10px rgba(0,0,0,0.1); */
+  font-family: 'Baloo 2', cursive;
+  color: #333;
+}
+
+.about-section h2 {
+  text-align: center;
+  margin-bottom: 15px;
+  color: #5a4230;
+}
+
+.about-section p {
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: justify;
+}
