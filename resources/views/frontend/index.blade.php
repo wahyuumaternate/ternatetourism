@@ -177,9 +177,9 @@
                     <div class="col-md-4" data-aos="zoom-in" data-aos-delay="{{ $loop->index * 100 }}">
                         <div class="position-relative destination-card" style="height: 100%; overflow: hidden;">
                             <!-- Video Title -->
-                            <div class="position-absolute top-0 start-0 p-4 text-white" style="width: 100%; z-index: 1;">
+                            {{-- <div class="position-absolute top-0 start-0 p-4 text-white" style="width: 100%; z-index: 1;">
                                 <h5 class="mb-3">{{ $vid->title }}</h5>
-                            </div>
+                            </div> --}}
                             <!-- Video -->
                             <div class="ratio ratio-16x9 w-100 h-100" style="height: 100%;">
                                 @php
