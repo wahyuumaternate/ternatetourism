@@ -38,9 +38,9 @@
         <div class="container">
             <div class="row align-items-center mb-5">
                 <div class="col-md-8">
-                    <h1 class="fw-bold section-title" data-aos="fade-right">Video</h1>
+                    <h1 class="fw-bold section-title" data-aos="fade-right">{{ __('pesan.video') }}</h1>
                     <p class="text-muted" data-aos="fade-left">
-                        Temukan perjalanan menarik dan visual yang memukau untuk pengalaman yang tak terlupakan.
+                        {{ __('pesan.video_desc') }}
                     </p>
                 </div>
             </div>
@@ -49,9 +49,9 @@
                     <div class="col-md-4" data-aos="zoom-in" data-aos-delay="{{ $loop->index * 100 }}">
                         <div class="position-relative destination-card" style="height: 100%; overflow: hidden;">
                             <!-- Video Title -->
-                            <div class="position-absolute top-0 start-0 p-4 text-white" style="width: 100%; z-index: 1;">
+                            {{-- <div class="position-absolute top-0 start-0 p-4 text-white" style="width: 100%; z-index: 1;">
                                 <h5 class="mb-3">{{ $vid->title }}</h5>
-                            </div>
+                            </div> --}}
                             <!-- Video -->
                             <div class="ratio ratio-16x9 w-100 h-100" style="height: 100%;">
                                 @php
