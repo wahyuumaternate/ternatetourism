@@ -1,13 +1,10 @@
 <section class="hero">
-    <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
+    <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="60000">
         <!-- Indicators -->
         <div class="carousel-indicators">
             <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true"
-                aria-label="Slide 1" class="carousel slide carousel-fade" data-bs-ride="carousel"
-                data-bs-interval="15000"></button>
-            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"
-                class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="15000"></button>
-
+                aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
         </div>
 
         <div class="carousel-inner">
@@ -15,22 +12,20 @@
             <div class="carousel-item active">
                 <div class="slide-overlay"></div>
                 <img src="{{ asset('assets/banner_kora.jpg') }}" class="d-block w-100" alt="Slide 1">
-
             </div>
-            <!-- Slide 3 -->
+
+            <!-- Slide 2 -->
             <div class="carousel-item">
                 <div class="slide-overlay"></div>
                 <video class="d-block w-100" autoplay muted loop playsinline>
                     <source src="{{ asset('assets/opening.mp4') }}" type="video/mp4">
                     Browser Anda tidak mendukung video.
                 </video>
-
             </div>
-
         </div>
-
     </div>
 </section>
+
 
 
 {{-- 
