@@ -151,26 +151,11 @@
     </div>
 
     <!-- Modal Syarat dan Ketentuan -->
+    <!-- Modal -->
     <div id="syaratModal" class="modal">
         <div class="modal-content">
             <h3>Syarat dan Ketentuan</h3>
-            <p>
-                Dengan mendaftar lomba ini, peserta setuju untuk mematuhi semua aturan
-                yang berlaku selama festival berlangsung. Peserta wajib mengikuti
-                semua instruksi panitia dan bertanggung jawab atas keselamatan diri
-                sendiri. Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                Recusandae atque itaque vel necessitatibus consectetur perspiciatis
-                iste corporis suscipit reiciendis dicta maiores rerum, vero officiis
-                veritatis? Ex corrupti atque qui. Eum, rerum nemo maiores similique
-                eos quibusdam voluptatum blanditiis maxime quos reiciendis accusamus
-                dicta corrupti. Autem ducimus facere officiis, natus cum earum quia
-                voluptatibus quos hic aliquid vero itaque consequatur commodi dolore
-                quas recusandae voluptatem laborum ipsa? Obcaecati voluptatibus
-                quibusdam sit, reiciendis sint officia cum consequatur velit, veniam
-                fugiat natus nam aperiam recusandae architecto et amet nesciunt.
-                Voluptates vel, aliquid vitae hic quos perferendis praesentium nisi
-                nemo repellat illum corporis ipsum!
-            </p>
+            <p id="persyaratanText">Memuat syarat...</p>
             <label class="checkbox-label">
                 <input type="checkbox" id="agreeCheckbox" />
                 Saya setuju dengan syarat dan ketentuan di atas
@@ -220,13 +205,16 @@
             }
         });
     </script>
+
     <script>
+        let kategoris = [];
+
         // Fungsi untuk ambil kategori dari API dan isi ke dalam <select>
         async function loadKategoris() {
             const select = document.getElementById('id_kategori');
             try {
                 const response = await fetch('https://dashboard-lomba.ternatetourism.com/api/kategoris');
-                const kategoris = await response.json();
+                kategoris = await response.json();
 
                 // Kosongkan select
                 select.innerHTML = '<option value="">-- Pilih Kategori --</option>';
@@ -243,12 +231,44 @@
             }
         }
 
+        // Fungsi update persyaratan sesuai kategori yang dipilih
+        function updatePersyaratan(kategoriId) {
+            const syaratP = document.querySelector('#syaratModal p');
+            if (!kategoriId) {
+                syaratP.textContent = 'Pilih kategori terlebih dahulu untuk melihat syarat dan ketentuan.';
+                return;
+            }
+            const kategori = kategoris.find(k => k.id === parseInt(kategoriId));
+            if (kategori) {
+                syaratP.textContent = kategori.persyaratan || 'Tidak ada persyaratan khusus untuk kategori ini.';
+            } else {
+                syaratP.textContent = 'Data persyaratan tidak ditemukan.';
+            }
+        }
+
         // Jalankan fungsi saat halaman dimuat
-        document.addEventListener('DOMContentLoaded', loadKategoris);
+        document.addEventListener('DOMContentLoaded', () => {
+            loadKategoris();
+
+            const select = document.getElementById('id_kategori');
+            select.addEventListener('change', (e) => {
+                updatePersyaratan(e.target.value);
+            });
+
+            // Initialize persyaratan kosong dulu
+            updatePersyaratan('');
+        });
 
         // Tangani submit form
         document.getElementById('registrationForm').addEventListener('submit', async function(e) {
             e.preventDefault();
+
+            // Validasi checkbox setuju sebelum submit
+            const checkboxAgree = document.getElementById('agreeCheckbox');
+            if (!checkboxAgree.checked) {
+                alert('Anda harus menyetujui syarat dan ketentuan terlebih dahulu.');
+                return;
+            }
 
             const data = {
                 nama_tim_orang: e.target.nama_tim_orang.value,
@@ -273,6 +293,10 @@
                 if (response.ok) {
                     alert('Pendaftaran berhasil!');
                     e.target.reset();
+                    // Reset persyaratan & checkbox
+                    updatePersyaratan('');
+                    checkboxAgree.checked = false;
+                    document.getElementById('confirmBtn').disabled = true;
                 } else {
                     alert('Gagal: ' + (result.message || 'Terjadi kesalahan'));
                 }
@@ -280,7 +304,13 @@
                 alert('Kesalahan jaringan: ' + error.message);
             }
         });
+
+        // Enable/disable tombol submit modal berdasarkan checkbox
+        document.getElementById('agreeCheckbox').addEventListener('change', function() {
+            document.getElementById('confirmBtn').disabled = !this.checked;
+        });
     </script>
+
 
 
 </body>
