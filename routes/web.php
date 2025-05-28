@@ -108,7 +108,7 @@ Route::get('/migrate-seed', function () {
 // Route untuk halaman pendaftaran lomba
 Route::get('/festival-kora-kora/daftar', function () {
     return view('frontend.kora_kora.daftar'); // pastikan file view-nya ada di resources/views/daftar.blade.php
-})->name('daftar');
+})->name('kora-kora-daftar');
 
 // Route untuk halaman festival kora-kora
 Route::get('/festival-kora-kora', function () {

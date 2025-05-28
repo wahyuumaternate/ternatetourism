@@ -40,7 +40,7 @@
             <p class="tagline">Maritime Footprints, Archipelago Heritage</p>
 
             <!-- Tombol Daftar Sekarang -->
-            <a target="_blank" href="{{ url('/daftar') }}" class="btn-daftar">🎟️ Daftar Sekarang</a>
+            <a target="_blank" href="{{ route('kora-kora-daftar') }}" class="btn-daftar">🎟️ Daftar Sekarang</a>
         </div>
 
         <!-- About Section -->
