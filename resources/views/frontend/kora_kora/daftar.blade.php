@@ -132,27 +132,18 @@
     <div class="container">
         <h2>Pendaftaran Lomba</h2>
         <form id="registrationForm">
-            <label for="name">Nama Lengkap</label>
-            <input type="text" id="name" name="name" required />
+            <label for="nama_tim_orang">Nama Tim/Pendaftar</label>
+            <input type="text" id="nama_tim_orang" name="nama_tim_orang" required />
 
             <label for="email">Email</label>
             <input type="email" id="email" name="email" required />
 
-            <label for="phone">Nomor Telepon</label>
-            <input type="tel" id="phone" name="phone" required pattern="[0-9]{10,15}"
-                placeholder="contoh: 081234567890" />
+            <label for="instansi_utusan">Instansi Utusan</label>
+            <input type="text" id="instansi_utusan" name="instansi_utusan" required />
 
-            <label for="age">Umur</label>
-            <input type="number" id="age" name="age" min="5" max="100" required />
-
-            <label for="category">Kategori Lomba</label>
-            <select id="category" name="category" required>
-                <option value="">-- Pilih Lomba --</option>
-                <option value="cari-batu">Cari Batu</option>
-                <option value="cari-kayu">Cari Kayu</option>
-                <option value="lomba-tari">Lomba Tari Cakalele</option>
-                <option value="lomba-perahu">Lomba Perahu Kora-Kora</option>
-                <option value="balap-karung">Balap Karung</option>
+            <label for="id_kategori">Kategori</label>
+            <select id="id_kategori" name="id_kategori" required>
+                <option value="">Memuat kategori...</option>
             </select>
 
             <button type="submit">Daftar</button>
@@ -229,6 +220,69 @@
             }
         });
     </script>
+    <script>
+        // Fungsi untuk ambil kategori dari API dan isi ke dalam <select>
+        async function loadKategoris() {
+            const select = document.getElementById('id_kategori');
+            try {
+                const response = await fetch('https://dashboard-lomba.ternatetourism.com/api/kategoris');
+                const kategoris = await response.json();
+
+                // Kosongkan select
+                select.innerHTML = '<option value="">-- Pilih Kategori --</option>';
+
+                kategoris.forEach(kat => {
+                    const option = document.createElement('option');
+                    option.value = kat.id;
+                    option.textContent = kat.nama_kategori;
+                    select.appendChild(option);
+                });
+            } catch (error) {
+                select.innerHTML = '<option value="">Gagal memuat kategori</option>';
+                console.error('Gagal ambil kategori:', error);
+            }
+        }
+
+        // Jalankan fungsi saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', loadKategoris);
+
+        // Tangani submit form
+        document.getElementById('registrationForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const data = {
+                nama_tim_orang: e.target.nama_tim_orang.value,
+                email: e.target.email.value,
+                instansi_utusan: e.target.instansi_utusan.value,
+                id_kategori: parseInt(e.target.id_kategori.value),
+            };
+
+            try {
+                const response = await fetch('https://dashboard-lomba.ternatetourism.com/api/pendaftars', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                        // Tambahkan Authorization jika dibutuhkan
+                        // 'Authorization': 'Bearer YOUR_TOKEN'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    alert('Pendaftaran berhasil!');
+                    e.target.reset();
+                } else {
+                    alert('Gagal: ' + (result.message || 'Terjadi kesalahan'));
+                }
+            } catch (error) {
+                alert('Kesalahan jaringan: ' + error.message);
+            }
+        });
+    </script>
+
+
 </body>
 
 </html>
