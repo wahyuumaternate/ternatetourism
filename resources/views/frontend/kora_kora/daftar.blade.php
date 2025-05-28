@@ -139,7 +139,7 @@
             <label for="email">Email</label>
             <input type="email" id="email" name="email" required />
 
-            <label for="instansi_utusan">Instansi Utusan</label>
+            <label for="instansi_utusan">unit kerja/instansi/utusan</label>
             <input type="text" id="instansi_utusan" name="instansi_utusan" required />
 
             <label for="id_kategori">Kategori</label>
