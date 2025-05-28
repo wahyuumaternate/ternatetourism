@@ -129,6 +129,7 @@
         <img src="{{ asset('kora_kora/wi.png') }}" alt="Wonderful Indonesia" />
         <img src="{{ asset('kora_kora/kora-kora.png') }}" alt="Festival Kora-Kora" />
     </div>
+
     <div class="container">
         <h2>Pendaftaran Lomba</h2>
         <form id="registrationForm">
@@ -151,8 +152,7 @@
     </div>
 
     <!-- Modal Syarat dan Ketentuan -->
-    <!-- Modal -->
-    <div id="syaratModal" class="modal">
+    <div id="syaratModal" class="modal" style="display:none;">
         <div class="modal-content">
             <h3>Syarat dan Ketentuan</h3>
             <p id="persyaratanText">Memuat syarat...</p>
@@ -173,52 +173,16 @@
         const agreeCheckbox = document.getElementById("agreeCheckbox");
         const confirmBtn = document.getElementById("confirmBtn");
         const cancelBtn = document.getElementById("cancelBtn");
-
-        form.addEventListener("submit", function(e) {
-            e.preventDefault(); // stop submit dulu
-            // Tampilkan modal syarat dan ketentuan
-            modal.style.display = "block";
-        });
-
-        agreeCheckbox.addEventListener("change", function() {
-            confirmBtn.disabled = !this.checked;
-        });
-
-        cancelBtn.addEventListener("click", function() {
-            modal.style.display = "none";
-            agreeCheckbox.checked = false;
-            confirmBtn.disabled = true;
-        });
-
-        confirmBtn.addEventListener("click", function() {
-            modal.style.display = "none";
-            alert("Terima kasih sudah mendaftar!");
-            form.reset();
-        });
-
-        // Klik di luar modal untuk tutup
-        window.addEventListener("click", function(event) {
-            if (event.target === modal) {
-                modal.style.display = "none";
-                agreeCheckbox.checked = false;
-                confirmBtn.disabled = true;
-            }
-        });
-    </script>
-
-    <script>
         let kategoris = [];
 
-        // Fungsi untuk ambil kategori dari API dan isi ke dalam <select>
+        // Load kategori dari API
         async function loadKategoris() {
             const select = document.getElementById('id_kategori');
             try {
                 const response = await fetch('https://dashboard-lomba.ternatetourism.com/api/kategoris');
                 kategoris = await response.json();
 
-                // Kosongkan select
                 select.innerHTML = '<option value="">-- Pilih Kategori --</option>';
-
                 kategoris.forEach(kat => {
                     const option = document.createElement('option');
                     option.value = kat.id;
@@ -231,9 +195,9 @@
             }
         }
 
-        // Fungsi update persyaratan sesuai kategori yang dipilih
+        // Update persyaratan modal sesuai kategori dipilih
         function updatePersyaratan(kategoriId) {
-            const syaratP = document.querySelector('#syaratModal p');
+            const syaratP = document.getElementById('persyaratanText');
             if (!kategoriId) {
                 syaratP.textContent = 'Pilih kategori terlebih dahulu untuk melihat syarat dan ketentuan.';
                 return;
@@ -246,7 +210,7 @@
             }
         }
 
-        // Jalankan fungsi saat halaman dimuat
+        // Ketika halaman siap
         document.addEventListener('DOMContentLoaded', () => {
             loadKategoris();
 
@@ -255,26 +219,52 @@
                 updatePersyaratan(e.target.value);
             });
 
-            // Initialize persyaratan kosong dulu
             updatePersyaratan('');
+
+            // Form submit - hanya buka modal
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const kategoriId = form.id_kategori.value;
+                if (!kategoriId) {
+                    alert('Silakan pilih kategori terlebih dahulu.');
+                    return;
+                }
+                updatePersyaratan(kategoriId);
+                agreeCheckbox.checked = false;
+                confirmBtn.disabled = true;
+                modal.style.display = "block";
+            });
         });
 
-        // Tangani submit form
-        document.getElementById('registrationForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
+        // Enable/disable tombol setuju di modal
+        agreeCheckbox.addEventListener("change", () => {
+            confirmBtn.disabled = !agreeCheckbox.checked;
+        });
 
-            // Validasi checkbox setuju sebelum submit
-            const checkboxAgree = document.getElementById('agreeCheckbox');
-            if (!checkboxAgree.checked) {
-                alert('Anda harus menyetujui syarat dan ketentuan terlebih dahulu.');
-                return;
+        // Batal modal
+        cancelBtn.addEventListener("click", () => {
+            modal.style.display = "none";
+            agreeCheckbox.checked = false;
+            confirmBtn.disabled = true;
+        });
+
+        // Klik luar modal untuk tutup
+        window.addEventListener("click", (event) => {
+            if (event.target === modal) {
+                modal.style.display = "none";
+                agreeCheckbox.checked = false;
+                confirmBtn.disabled = true;
             }
+        });
 
+        // Tombol Setuju & Kirim -> submit data ke API
+        confirmBtn.addEventListener("click", async () => {
+            confirmBtn.disabled = true; // prevent multiple clicks
             const data = {
-                nama_tim_orang: e.target.nama_tim_orang.value,
-                email: e.target.email.value,
-                instansi_utusan: e.target.instansi_utusan.value,
-                id_kategori: parseInt(e.target.id_kategori.value),
+                nama_tim_orang: form.nama_tim_orang.value,
+                email: form.email.value,
+                instansi_utusan: form.instansi_utusan.value,
+                id_kategori: parseInt(form.id_kategori.value),
             };
 
             try {
@@ -282,8 +272,6 @@
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
-                        // Tambahkan Authorization jika dibutuhkan
-                        // 'Authorization': 'Bearer YOUR_TOKEN'
                     },
                     body: JSON.stringify(data)
                 });
@@ -292,27 +280,21 @@
 
                 if (response.ok) {
                     alert('Pendaftaran berhasil!');
-                    e.target.reset();
-                    // Reset persyaratan & checkbox
+                    form.reset();
+                    modal.style.display = "none";
+                    agreeCheckbox.checked = false;
+                    confirmBtn.disabled = true;
                     updatePersyaratan('');
-                    checkboxAgree.checked = false;
-                    document.getElementById('confirmBtn').disabled = true;
                 } else {
                     alert('Gagal: ' + (result.message || 'Terjadi kesalahan'));
+                    confirmBtn.disabled = false;
                 }
             } catch (error) {
                 alert('Kesalahan jaringan: ' + error.message);
+                confirmBtn.disabled = false;
             }
         });
-
-        // Enable/disable tombol submit modal berdasarkan checkbox
-        document.getElementById('agreeCheckbox').addEventListener('change', function() {
-            document.getElementById('confirmBtn').disabled = !this.checked;
-        });
     </script>
-
-
-
 </body>
 
 </html>
