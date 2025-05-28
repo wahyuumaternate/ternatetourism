@@ -157,7 +157,8 @@
             <h3>Syarat dan Ketentuan</h3>
             {{-- <p id="persyaratanText">Memuat syarat...</p>
              --}}
-            <textarea id="persyaratanText" rows="20" cols="80" readonly>Memuat syarat...</textarea>
+            <textarea id="persyaratanText" readonly style="width: 100%; height: 300px; resize: none; box-sizing: border-box;">Memuat syarat...</textarea>
+
             <label class="checkbox-label">
                 <input type="checkbox" id="agreeCheckbox" />
                 Saya setuju dengan syarat dan ketentuan di atas
