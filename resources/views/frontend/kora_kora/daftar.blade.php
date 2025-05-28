@@ -117,6 +117,27 @@
         .top-logos img {
             height: 75px;
         }
+
+        #confirmBtn:disabled {
+            background-color: #ccc;
+            color: #666;
+            cursor: not-allowed;
+        }
+
+        #confirmBtn {
+            background-color: #007BFF;
+            /* Warna normal */
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .checkbox-label input[type="checkbox"] {
+            accent-color: #007BFF;
+            /* Browser modern */
+        }
     </style>
 </head>
 
@@ -166,6 +187,7 @@
             <div class="modal-footer">
                 <button id="cancelBtn" type="button">Batal</button>
                 <button id="confirmBtn" type="button" disabled>Setuju & Kirim</button>
+
             </div>
         </div>
     </div>
@@ -296,6 +318,10 @@
                 alert('Kesalahan jaringan: ' + error.message);
                 confirmBtn.disabled = false;
             }
+        });
+
+        document.getElementById('agreeCheckbox').addEventListener('change', function() {
+            document.getElementById('confirmBtn').disabled = !this.checked;
         });
     </script>
 </body>
