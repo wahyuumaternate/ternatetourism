@@ -37,9 +37,6 @@
                     <a class="nav-link" href="{{ route('events.all') }}">{{ __('pesan.events') }}</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" target="_blank" href="{{ route('festival.kora.kora') }}">Festival Kora-Kora</a>
-                </li>
-                <li class="nav-item">
                     <a class="nav-link" href="{{ route('berita.all') }}">{{ __('pesan.news') }}</a>
                 </li>
                 <li class="nav-item dropdown">

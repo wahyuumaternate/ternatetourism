@@ -1,4 +1,4 @@
-<section class="hero">
+{{-- <section class="hero">
     <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="60000">
         <!-- Indicators -->
         <div class="carousel-indicators">
@@ -25,10 +25,9 @@
         </div>
     </div>
 </section>
+ --}}
 
 
-
-{{-- 
 <section class="hero">
     <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
         <!-- Indicators -->
@@ -55,4 +54,4 @@
             @endforeach
         </div>
     </div>
-</section> --}}
+</section>
