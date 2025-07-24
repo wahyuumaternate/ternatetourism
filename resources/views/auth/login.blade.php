@@ -107,7 +107,7 @@
                 <div class="col-md-5">
                     <div class="login-box">
                         <div class="text-center">
-                            <img src="{{ asset('assets/TTE_TOURISM_LOGO.png') }}" alt="Logo" class="brand-logo">
+                            <img src="{{ asset('assets/logo.png') }}" alt="Logo" class="brand-logo">
                             <h4 class="mb-4">Selamat Datang Kembali</h4>
                         </div>
 
