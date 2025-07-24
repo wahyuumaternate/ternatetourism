@@ -32,7 +32,7 @@
        
     </style> --}}
     <!-- Tambahkan di bagian head -->
-    <link rel="preload" as="image" href="{{ asset('assets/TTE_TOURISM_LOGO.png') }}">
+    <link rel="preload" as="image" href="{{ asset('assets/LOGOWHITE.png') }}">
     <link rel="preload" href="{{ asset('assets/id.png') }}" as="image">
     <link rel="preload" href="{{ asset('assets/en.png') }}" as="image">
     <link rel="preload" href="{{ asset('assets/ar.png') }}" as="image">
