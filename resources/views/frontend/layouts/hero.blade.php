@@ -18,7 +18,7 @@
     <div class="side-images">
         <!-- Main destination card -->
         <div class="main-destination-card">
-            <img src="{{ asset('assets/jikomalamo.PNG') }}" alt="Jikomalamo" class="main-card-image" />
+            <img src="{{ asset('assets/jikomalamo.webp') }}" alt="Jikomalamo" class="main-card-image" />
             <div class="main-card-content">
                 <h3 class="main-card-title">Jikomalamo</h3>
                 <p class="main-card-location">Pulau Ternate</p>

@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
             title: "Jikomalamo",
             location: "Pulau Ternate",
             description: "Pantai dengan spot diving terbaik di sekitar Ternate yang memukau",
-            image: "/assets/jikomalamo.PNG",
+            image: "/assets/jikomalamo.webp",
             sideImages: [{
                     image: "/assets/tolire.jpg",
                     title: "Danau Tolire",
@@ -46,7 +46,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     location: "Ternate"
                 },
                 {
-                    image: "/assets/jikomalamo.PNG",
+                    image: "/assets/jikomalamo.webp",
                     title: "Diving Jikomalamo",
                     location: "Ternate"
                 }
@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
             description: "Pantai dengan terumbu karang spektakuler dan kehidupan bawah laut yang menakjubkan",
             image: "/assets/sulamadaha.jpg",
             sideImages: [{
-                    image: "/assets/jikomalamo.PNG",
+                    image: "/assets/jikomalamo.webp",
                     title: "Diving Jikomalamo",
                     location: "Ternate"
                 },
