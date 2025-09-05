@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Wonderful Indonesia Banner</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+
+            body {
+                font-family: "Arial", sans-serif;
+                background: #000;
+                margin: 0;
+                overflow: hidden;
+            }
+
+            .banner-container {
+                position: relative;
+                width: 100vw;
+                height: 100vh;
+                background: linear-gradient(
+                    rgba(0, 0, 0, 0.1),
+                    rgba(0, 0, 0, 0.3)
+                );
+                overflow: hidden;
+            }
+
+            .background-image {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: url("https://images.unsplash.com/photo-1537953773345-d172ccf13cf1?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80")
+                    center/cover;
+                z-index: 1;
+            }
+
+            .overlay {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: linear-gradient(
+                    rgba(0, 0, 0, 0.1),
+                    rgba(0, 0, 0, 0.2)
+                );
+                z-index: 2;
+            }
+
+            .content {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                z-index: 10;
+                display: flex;
+                align-items: center;
+                padding: 0 80px;
+            }
+
+            .left-content {
+                flex: 1;
+                max-width: 600px;
+            }
+
+            .main-title {
+                font-size: 7rem;
+                font-weight: 900;
+                color: white;
+                line-height: 0.9;
+                margin-bottom: 30px;
+                text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
+                letter-spacing: -2px;
+            }
+
+            .subtitle {
+                font-size: 1.8rem;
+                color: white;
+                margin-bottom: 50px;
+                font-weight: 300;
+                letter-spacing: 1px;
+                text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+            }
+
+            .cta-button {
+                display: inline-flex;
+                align-items: center;
+                gap: 15px;
+                background: #1976d2;
+                color: white;
+                padding: 18px 35px;
+                border-radius: 50px;
+                text-decoration: none;
+                font-weight: 600;
+                font-size: 1.1rem;
+                letter-spacing: 3px;
+                text-transform: uppercase;
+                transition: all 0.3s ease;
+                box-shadow: 0 8px 25px rgba(25, 118, 210, 0.4);
+            }
+
+            .cta-button:hover {
+                background: #1565c0;
+                transform: translateY(-3px);
+                box-shadow: 0 12px 30px rgba(25, 118, 210, 0.5);
+            }
+
+            .cta-button::after {
+                content: "→";
+                font-size: 1.4rem;
+                transition: transform 0.3s ease;
+            }
+
+            .cta-button:hover::after {
+                transform: translateX(8px);
+            }
+
+            /* Side Images Container */
+            .side-images {
+                position: absolute;
+                right: 60px;
+                top: 50%;
+                transform: translateY(-50%);
+                display: flex;
+                align-items: center;
+                gap: 20px;
+                z-index: 15;
+            }
+
+            /* Main destination card (Nusa Penida) */
+            .main-destination-card {
+                background: rgba(255, 255, 255, 0.15);
+                border: 2px solid rgba(255, 255, 255, 0.3);
+                border-radius: 25px;
+                padding: 0;
+                width: 360px;
+                backdrop-filter: blur(20px);
+                box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+                transition: all 0.3s ease;
+                cursor: pointer;
+                overflow: hidden;
+                position: relative;
+            }
+
+            .main-destination-card:hover {
+                transform: translateX(-10px) scale(1.02);
+                box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            }
+
+            .main-card-image {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+                border-radius: 25px 25px 0 0;
+            }
+
+            .main-card-content {
+                padding: 25px;
+                position: relative;
+            }
+
+            .main-card-title {
+                font-size: 1.8rem;
+                font-weight: 700;
+                color: white;
+                margin-bottom: 8px;
+                text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+            }
+
+            .main-card-location {
+                font-size: 1.1rem;
+                color: rgba(255, 255, 255, 0.8);
+                margin-bottom: 15px;
+                font-weight: 400;
+            }
+
+            .main-card-description {
+                font-size: 1rem;
+                color: rgba(255, 255, 255, 0.7);
+                line-height: 1.5;
+                font-style: italic;
+            }
+
+            .main-card-plus {
+                position: absolute;
+                top: 20px;
+                right: 20px;
+                width: 40px;
+                height: 40px;
+                background: rgba(255, 255, 255, 0.2);
+                border: 2px solid rgba(255, 255, 255, 0.4);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-size: 1.5rem;
+                font-weight: 300;
+                backdrop-filter: blur(15px);
+                transition: all 0.3s ease;
+            }
+
+            .main-card-plus:hover {
+                background: rgba(255, 255, 255, 0.3);
+                transform: scale(1.1);
+            }
+
+            /* Side slider images (partially visible) */
+            .side-slider {
+                display: flex;
+                flex-direction: column;
+                gap: 15px;
+                position: relative;
+            }
+
+            .side-card {
+                width: 200px;
+                height: 140px;
+                border-radius: 20px;
+                overflow: hidden;
+                background: rgba(255, 255, 255, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                backdrop-filter: blur(15px);
+                position: relative;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            }
+
+            .side-card:hover {
+                transform: translateX(-8px) scale(1.05);
+                box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            }
+
+            .side-card-image {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+
+            .side-card-overlay {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+                padding: 15px;
+                color: white;
+            }
+
+            .side-card-title {
+                font-size: 1.2rem;
+                font-weight: 700;
+                margin-bottom: 3px;
+            }
+
+            .side-card-location {
+                font-size: 0.9rem;
+                opacity: 0.8;
+            }
+
+            /* Navigation arrow */
+            .navigation-arrow {
+                position: absolute;
+                right: 300px;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 50px;
+                height: 50px;
+                background: rgba(255, 255, 255, 0.15);
+                border: 2px solid rgba(255, 255, 255, 0.3);
+                border-radius: 50%;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                color: white;
+                font-size: 1.8rem;
+                cursor: pointer;
+                backdrop-filter: blur(15px);
+                transition: all 0.3s ease;
+                z-index: 20;
+            }
+
+            .navigation-arrow:hover {
+                background: rgba(255, 255, 255, 0.25);
+                transform: translateY(-50%) scale(1.1);
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            }
+
+            /* Pagination dots */
+            .pagination-dots {
+                position: absolute;
+                bottom: 80px;
+                left: 80px;
+                display: flex;
+                gap: 15px;
+                z-index: 15;
+            }
+
+            .dot {
+                width: 40px;
+                height: 8px;
+                border-radius: 4px;
+                background: rgba(255, 255, 255, 0.3);
+                transition: all 0.3s ease;
+                cursor: pointer;
+            }
+
+            .dot.active {
+                background: white;
+                width: 50px;
+            }
+
+            .dot:hover {
+                background: rgba(255, 255, 255, 0.6);
+            }
+
+            /* Responsive Design */
+            @media (max-width: 1200px) {
+                .main-title {
+                    font-size: 5.5rem;
+                }
+
+                .content {
+                    padding: 0 60px;
+                }
+
+                .side-images {
+                    right: 40px;
+                }
+
+                .main-destination-card {
+                    width: 320px;
+                }
+
+                .side-card {
+                    width: 180px;
+                    height: 120px;
+                }
+
+                .navigation-arrow {
+                    right: 260px;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .content {
+                    flex-direction: column;
+                    justify-content: center;
+                    padding: 40px;
+                    text-align: center;
+                }
+
+                .main-title {
+                    font-size: 3.5rem;
+                }
+
+                .subtitle {
+                    font-size: 1.3rem;
+                }
+
+                .side-images {
+                    position: static;
+                    transform: none;
+                    margin-top: 40px;
+                    justify-content: center;
+                    flex-wrap: wrap;
+                }
+
+                .navigation-arrow {
+                    display: none;
+                }
+
+                .main-destination-card {
+                    width: 100%;
+                    max-width: 360px;
+                }
+
+                .side-slider {
+                    flex-direction: row;
+                    overflow-x: auto;
+                    padding-bottom: 10px;
+                }
+
+                .side-card {
+                    min-width: 160px;
+                    height: 100px;
+                }
+
+                .pagination-dots {
+                    left: 50%;
+                    transform: translateX(-50%);
+                    bottom: 40px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="banner-container">
+            <div class="background-image"></div>
+            <div class="overlay"></div>
+
+            <div class="content">
+                <div class="left-content">
+                    <h1 class="main-title">
+                        Wonderful<br />
+                        Indonesia
+                    </h1>
+                    <p class="subtitle">Unlock The Secrets Of Nature Now!</p>
+                    <a href="#" class="cta-button">E X P L O R E</a>
+                </div>
+            </div>
+
+            <div class="navigation-arrow" id="nextBtn">›</div>
+
+            <div class="side-images">
+                <!-- Main destination card -->
+                <div class="main-destination-card">
+                    <div class="main-card-plus">+</div>
+                    <img
+                        src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80"
+                        alt="Nusa Penida"
+                        class="main-card-image"
+                    />
+                    <div class="main-card-content">
+                        <h3 class="main-card-title">Nusa Penida</h3>
+                        <p class="main-card-location">Bali Island</p>
+                        <p class="main-card-description">
+                            Nusa Penida is a famous tourism area in Klungkung
+                            Regency
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Side slider (partially visible) -->
+                <div class="side-slider">
+                    <div class="side-card">
+                        <img
+                            src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                            alt="Bromo"
+                            class="side-card-image"
+                        />
+                        <div class="side-card-overlay">
+                            <h4 class="side-card-title">Bromo</h4>
+                            <p class="side-card-location">East Java</p>
+                        </div>
+                    </div>
+
+                    <div class="side-card">
+                        <img
+                            src="https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&q=80"
+                            alt="Borobudur"
+                            class="side-card-image"
+                        />
+                        <div class="side-card-overlay">
+                            <h4 class="side-card-title">Borobudur</h4>
+                            <p class="side-card-location">Central Java</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pagination-dots">
+                <div class="dot active"></div>
+                <div class="dot"></div>
+                <div class="dot"></div>
+            </div>
+        </div>
+
+        <script>
+            // Interactive functionality
+            const dots = document.querySelectorAll(".dot");
+            const mainCard = document.querySelector(".main-destination-card");
+            const sideCards = document.querySelectorAll(".side-card");
+            const navArrow = document.getElementById("nextBtn");
+
+            let currentSlide = 0;
+            const destinations = [
+                {
+                    title: "Nusa Penida",
+                    location: "Bali Island",
+                    description:
+                        "Nusa Penida is a famous tourism area in Klungkung Regency",
+                    image: "https://images.unsplash.com/photo-1544735716-392fe2489ffa?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                },
+                {
+                    title: "Bromo",
+                    location: "East Java",
+                    description:
+                        "Mount Bromo is an active volcano and part of the Tengger massif",
+                    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                },
+                {
+                    title: "Borobudur",
+                    location: "Central Java",
+                    description:
+                        "Borobudur is a 9th-century Buddhist temple and UNESCO World Heritage Site",
+                    image: "https://images.unsplash.com/photo-1518548419970-58e3b4079ab2?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80",
+                },
+            ];
+
+            function updateMainCard(index) {
+                const destination = destinations[index];
+                mainCard.querySelector(".main-card-image").src =
+                    destination.image;
+                mainCard.querySelector(".main-card-title").textContent =
+                    destination.title;
+                mainCard.querySelector(".main-card-location").textContent =
+                    destination.location;
+                mainCard.querySelector(".main-card-description").textContent =
+                    destination.description;
+            }
+
+            // Dot navigation
+            dots.forEach((dot, index) => {
+                dot.addEventListener("click", () => {
+                    dots.forEach((d) => d.classList.remove("active"));
+                    dot.classList.add("active");
+                    currentSlide = index;
+                    updateMainCard(currentSlide);
+                });
+            });
+
+            // Navigation arrow click
+            navArrow.addEventListener("click", () => {
+                const activeIndex = [...dots].findIndex((dot) =>
+                    dot.classList.contains("active")
+                );
+                const nextIndex = (activeIndex + 1) % dots.length;
+
+                dots.forEach((d) => d.classList.remove("active"));
+                dots[nextIndex].classList.add("active");
+
+                currentSlide = nextIndex;
+                updateMainCard(currentSlide);
+            });
+
+            // Card hover effects
+            mainCard.addEventListener("mouseenter", () => {
+                mainCard.style.transform = "translateX(-10px) scale(1.02)";
+            });
+
+            mainCard.addEventListener("mouseleave", () => {
+                mainCard.style.transform = "translateX(0) scale(1)";
+            });
+
+            sideCards.forEach((card) => {
+                card.addEventListener("mouseenter", () => {
+                    card.style.transform = "translateX(-8px) scale(1.05)";
+                });
+
+                card.addEventListener("mouseleave", () => {
+                    card.style.transform = "translateX(0) scale(1)";
+                });
+            });
+
+            // CTA Button animation
+            const ctaButton = document.querySelector(".cta-button");
+            ctaButton.addEventListener("click", (e) => {
+                e.preventDefault();
+                ctaButton.style.transform = "translateY(-3px) scale(0.95)";
+                setTimeout(() => {
+                    ctaButton.style.transform = "translateY(-3px) scale(1)";
+                }, 150);
+            });
+
+            // Auto-play functionality
+            let autoPlayInterval = setInterval(() => {
+                navArrow.click();
+            }, 5000);
+
+            // Pause auto-play on hover
+            document
+                .querySelector(".banner-container")
+                .addEventListener("mouseenter", () => {
+                    clearInterval(autoPlayInterval);
+                });
+
+            document
+                .querySelector(".banner-container")
+                .addEventListener("mouseleave", () => {
+                    autoPlayInterval = setInterval(() => {
+                        navArrow.click();
+                    }, 5000);
+                });
+        </script>
+    </body>
+</html>

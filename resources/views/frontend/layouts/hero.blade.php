@@ -1,57 +1,56 @@
-{{-- <section class="hero">
-    <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="60000">
-        <!-- Indicators -->
-        <div class="carousel-indicators">
-            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="0" class="active" aria-current="true"
-                aria-label="Slide 1"></button>
-            <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-        </div>
+<div class="banner-container">
+    <div class="background-image"></div>
+    <div class="overlay"></div>
 
-        <div class="carousel-inner">
-            <!-- Slide 1 -->
-            <div class="carousel-item active">
-                <div class="slide-overlay"></div>
-                <img src="{{ asset('assets/banner_kora.jpg') }}" class="d-block w-100" alt="Slide 1">
-            </div>
-
-            <!-- Slide 2 -->
-            <div class="carousel-item">
-                <div class="slide-overlay"></div>
-                <video class="d-block w-100" autoplay muted loop playsinline>
-                    <source src="{{ asset('assets/opening.mp4') }}" type="video/mp4">
-                    Browser Anda tidak mendukung video.
-                </video>
-            </div>
+    <div class="content">
+        <div class="left-content">
+            <h1 class="main-title">
+                Wonderful<br />
+                Ternate
+            </h1>
+            <p class="subtitle">Jelajahi Keajaiban Alam Ternate!</p>
+            {{-- <a href="#" class="cta-button">E X P L O R E</a> --}}
         </div>
     </div>
-</section>
- --}}
 
+    {{-- <div class="navigation-arrow" id="nextBtn">›</div> --}}
 
-<section class="hero">
-    <div id="heroCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="5000">
-        <!-- Indicators -->
-        <div class="carousel-indicators">
-            @foreach ($heroes as $key => $hero)
-                <button type="button" data-bs-target="#heroCarousel" data-bs-slide-to="{{ $key }}"
-                    class="{{ $key == 0 ? 'active' : '' }}" aria-current="{{ $key == 0 ? 'true' : 'false' }}"
-                    aria-label="Slide {{ $key + 1 }}" class="carousel slide carousel-fade" data-bs-ride="carousel"
-                    data-bs-interval="15000">
-                </button>
-            @endforeach
+    <div class="side-images">
+        <!-- Main destination card -->
+        <div class="main-destination-card">
+            <img src="{{ asset('assets/jikomalamo.PNG') }}" alt="Jikomalamo" class="main-card-image" />
+            <div class="main-card-content">
+                <h3 class="main-card-title">Jikomalamo</h3>
+                <p class="main-card-location">Pulau Ternate</p>
+                <p class="main-card-description">
+                    Gunung berapi aktif dengan spot diving terbaik di sekitar Ternate yang memukau
+                </p>
+            </div>
         </div>
 
-        <div class="carousel-inner">
-            @foreach ($heroes as $key => $hero)
-                <div class="carousel-item {{ $key == 0 ? 'active' : '' }}">
-                    <div class="slide-overlay"></div>
-                    <img src="{{ $hero->image }}" class="d-block w-100" alt="Slide {{ $key + 1 }}">
-                    <div class="carousel-content">
-                        <h1>{!! nl2br(e($hero->title)) !!}</h1>
-                        <p>{{ $hero->description }}</p>
-                    </div>
+        <!-- Side slider (partially visible) -->
+        <div class="side-slider">
+            <div class="side-card">
+                <img src="{{ asset('assets/tolire.jpg') }}" alt="Danau Tolire" class="side-card-image" />
+                <div class="side-card-overlay">
+                    <h4 class="side-card-title">Danau Tolire</h4>
+                    <p class="side-card-location">Ternate</p>
                 </div>
-            @endforeach
+            </div>
+
+            <div class="side-card">
+                <img src="{{ asset('assets/sulamadaha.jpg') }}" alt="Pantai Sulamadaha" class="side-card-image" />
+                <div class="side-card-overlay">
+                    <h4 class="side-card-title">Pantai Sulamadaha</h4>
+                    <p class="side-card-location">Ternate</p>
+                </div>
+            </div>
         </div>
     </div>
-</section>
+
+    <div class="pagination-dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+</div>
