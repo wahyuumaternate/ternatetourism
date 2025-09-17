@@ -31,4 +31,10 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'hcaptcha' => [
+        'sitekey' => env('H_CAPTCHA_SITEKEY'),
+        'sitekey_test' => env('H_CAPTCHA_SITEKEY_TEST'),
+        'secret' => env('H_CAPTCHA_SECRET'),
+    ],
+
 ];

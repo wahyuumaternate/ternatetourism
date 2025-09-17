@@ -4,13 +4,47 @@
 
     <div class="content">
         <div class="left-content">
-            <h1 class="main-title">
-                Wonderful<br />
-                Ternate
-            </h1>
-            <p class="subtitle">Jelajahi Keajaiban Alam Ternate!</p>
-            {{-- <a href="#" class="cta-button">E X P L O R E</a> --}}
+            <p id="key" style="display:none;"></p>
+
+            <p class="subtitle" id="quote"></p>
+            <p class="author" id="author"></p>
         </div>
+
+        <script>
+            // Ambil data translasi sesuai locale aktif
+            const quotes = @json(__('quotes'));
+            const keys = Object.keys(quotes); // ["q1", "q2", "q3", ...]
+            let index = 0;
+
+            const keyEl = document.getElementById("key");
+            const quoteEl = document.getElementById("quote");
+            const authorEl = document.getElementById("author");
+
+            function showQuote() {
+                const key = keys[index];
+                const q = quotes[key];
+
+                keyEl.style.opacity = 0;
+                quoteEl.style.opacity = 0;
+                authorEl.style.opacity = 0;
+
+                setTimeout(() => {
+                    keyEl.textContent = key;
+                    quoteEl.textContent = `"${q.text}"`;
+                    authorEl.textContent = `– ${q.author}`;
+
+                    keyEl.style.opacity = 1;
+                    quoteEl.style.opacity = 1;
+                    authorEl.style.opacity = 1;
+
+                    index = (index + 1) % keys.length;
+                }, 500);
+            }
+
+            showQuote();
+            setInterval(showQuote, 8000);
+        </script>
+
     </div>
 
     {{-- <div class="navigation-arrow" id="nextBtn">›</div> --}}

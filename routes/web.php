@@ -6,7 +6,9 @@ use App\Http\Controllers\EbookController;
 use App\Http\Controllers\EkrafController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\FasilitasController;
+use App\Http\Controllers\FlightController;
 use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\KontakController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StrukturDanVisiController;
@@ -70,12 +72,12 @@ Route::group(['prefix' => 'filemanager', 'middleware' => ['web', 'auth']], funct
 
 Route::get('/dashboard', function () {
     $period = request('period', 'today');
-    
+
     $query = Visitor::query();
-    $query->when($period, function($q) use ($period) {
-        return match($period) {
+    $query->when($period, function ($q) use ($period) {
+        return match ($period) {
             'today' => $q->whereDate('created_at', today()),
-            'month' => $q->whereMonth('created_at', now()->month), 
+            'month' => $q->whereMonth('created_at', now()->month),
             'year' => $q->whereYear('created_at', now()->year),
             default => $q->whereDate('created_at', today())
         };
@@ -84,7 +86,7 @@ Route::get('/dashboard', function () {
     $visitorCount = $query->count();
     $visitors = $query->latest()->get();
 
-    return view('admin.index', compact('visitorCount', 'visitors')); 
+    return view('admin.index', compact('visitorCount', 'visitors'));
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
@@ -93,18 +95,38 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/migrate-seed', function () {
-    Artisan::call('migrate:fresh --seed');
-    return "Migration and seeding completed successfully!";
-    });
-    
+
+// Routes untuk admin
+Route::prefix('dashboard')->group(function () {
+    // Main contact listing page
+    Route::get('/kontak-dashboard', [KontakController::class, 'index'])->name('admin.kontak.index');
+
+    // Export functionality
+    Route::get('/kontak-export', [KontakController::class, 'export'])->name('admin.kontak.export');
+
+    // View single contact detail (AJAX endpoint)
+    Route::get('/kontak-dashboard/{id}', [KontakController::class, 'show']);
+
+    // Status management
+    Route::patch('/kontak/{kontak}/diproses', [KontakController::class, 'markAsDisproses'])->name('admin.kontak.diproses');
+    Route::patch('/kontak/{kontak}/selesai', [KontakController::class, 'markAsSelesai'])->name('admin.kontak.selesai');
+
+    // Delete contact
+    Route::delete('/kontak/{kontak:id}', [KontakController::class, 'destroy'])->name('admin.kontak.destroy');
+});
 // Route::get('/ebook', function () {
 //     return view('frontend.ebook');
 // });
 // Route::get('/ebook-detail', function () {
 //     return view('frontend.detail_ebook');
 // });
-        
 
-require __DIR__.'/auth.php';
-require __DIR__.'/admin.php';
+// Routes untuk masyarakat
+Route::get('/kontak', [KontakController::class, 'create'])->name('kontak.create');
+Route::post('/kontak', [KontakController::class, 'store'])->name('kontak.store');
+
+Route::get('/tiket-pesawat', [FlightController::class, 'index'])->name('flights.index');
+
+
+require __DIR__ . '/auth.php';
+require __DIR__ . '/admin.php';

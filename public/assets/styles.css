@@ -488,9 +488,12 @@ blockquote {
     left: 0;
     width: 100%;
     height: 100%;
-    background: url("/assets/fora.jpg") center/cover;
+    background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+        url("/assets/banner_WT_2.jpg") center/cover;
     z-index: 1;
 }
+
+
 
 .overlay {
     position: absolute;
@@ -538,6 +541,23 @@ blockquote {
     letter-spacing: 1px;
     text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
 }
+
+.subtitle,
+.author {
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+    color: #ffffff;
+}
+
+.subtitle {
+    font-style: italic;
+}
+
+.author {
+    margin-top: 5px;
+    font-weight: bold;
+}
+
 
 .cta-button {
     display: inline-flex;

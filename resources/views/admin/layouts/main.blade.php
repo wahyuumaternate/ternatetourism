@@ -133,6 +133,16 @@
                 padding: 0 15px;
             }
         }
+
+        .swal2-confirm {
+            background-color: #3085d6 !important;
+            color: #fff !important;
+        }
+
+        .swal2-cancel {
+            background-color: #d33 !important;
+            color: #fff !important;
+        }
     </style>
 </head>
 

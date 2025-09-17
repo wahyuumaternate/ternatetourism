@@ -137,9 +137,9 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link collapsed" href="{{ route('partners.index') }}">
-                <i class="bi bi-people"></i>
-                <span>Partner</span>
+            <a class="nav-link collapsed" href="{{ route('admin.kontak.index') }}">
+                <i class="bi bi-envelope"></i>
+                <span>Kontak Masuk</span>
             </a>
         </li>
 

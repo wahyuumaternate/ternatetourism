@@ -190,7 +190,12 @@
                             </li>
                         </ul>
                     </li>
-
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('flights.index') }}">Tiket Pesawat</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('kontak.create') }}">Kontak</a>
+                    </li>
                     <!-- Language Switcher -->
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="languageDropdown" role="button"
