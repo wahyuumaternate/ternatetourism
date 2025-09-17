@@ -190,9 +190,9 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a class="nav-link" href="{{ route('flights.index') }}">Tiket Pesawat</a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('kontak.create') }}">Kontak</a>
                     </li>
