@@ -172,7 +172,7 @@ class KontakController extends Controller
 
         try {
             $verifyResponse = Http::asForm()->post('https://hcaptcha.com/siteverify', [
-                'secret' => env('HCAPTCHA_SECRET'),
+                'secret' => env('H_CAPTCHA_SECRET'),
                 'response' => $response,
                 'remoteip' => request()->ip(),
             ]);
