@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\DestinationController;
 use App\Http\Controllers\EbookController;
@@ -43,18 +44,23 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
         'destinations' => 'destination:slug',
     ]);;
     //
-     // Ekraf Categories
-     Route::resource('ekraf-categories', EkrafCategoriesController::class);
-    
-     // Ekraf main routes
-     Route::resource('ekrafs', EkrafController::class);
-     
-     // Optional: If you need custom routes
-     Route::get('ekrafs/category/{category}', [EkrafController::class, 'byCategory'])
-         ->name('ekrafs.by-category');
+
+
+    // Tambahkan route ini ke web.php atau routes file Anda
+    Route::delete('/ekrafs/bulk-delete', [EkrafController::class, 'bulkDestroy'])->name('ekrafs.bulk-destroy');
+
+    // Ekraf Categories
+    Route::resource('ekraf-categories', EkrafCategoriesController::class);
+
+    // Ekraf main routes
+    Route::resource('ekrafs', EkrafController::class);
+
+    // Optional: If you need custom routes
+    Route::get('ekrafs/category/{category}', [EkrafController::class, 'byCategory'])
+        ->name('ekrafs.by-category');
 
     //  
-    Route::controller(FasilitasController::class)->group(function() {
+    Route::controller(FasilitasController::class)->group(function () {
         Route::get('fasilitas', 'index')->name('fasilitas.index');
         Route::get('fasilitas/create', 'create')->name('fasilitas.create');
         Route::post('fasilitas', 'store')->name('fasilitas.store');
@@ -62,10 +68,10 @@ Route::prefix('dashboard')->middleware('auth')->group(function () {
         Route::get('fasilitas/{fasilitas}/edit', 'edit')->name('fasilitas.edit');
         Route::put('fasilitas/{fasilitas}', 'update')->name('fasilitas.update');
         Route::delete('fasilitas/{fasilitas}', 'destroy')->name('fasilitas.destroy');
-     });
+    });
 
-     Route::resource('users', UsersController::class)->except(['create', 'edit', 'show']);
-     Route::resource('heroes', HeroController::class);
+    Route::resource('users', UsersController::class)->except(['create', 'edit', 'show']);
+    Route::resource('heroes', HeroController::class);
 
     //  
     Route::resource('partners', PartnerController::class);

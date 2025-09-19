@@ -41,9 +41,9 @@ class EkrafController extends Controller
         }
 
         Ekraf::create($validated);
-        
+
         notify()->success('EKRAF berhasil ditambahkan');
-       return redirect()->route('ekrafs.index');
+        return redirect()->route('ekrafs.index');
     }
 
     public function show($slug)
@@ -76,12 +76,12 @@ class EkrafController extends Controller
         ]);
 
         if ($request->has('logo')) {
-           
+
             $validated['logo'] = $request->logo;
         }
 
         $ekraf->update($validated);
-        
+
         notify()->success('EKRAF berhasil diperbarui');
         return redirect()->route('ekrafs.index');
     }
@@ -91,10 +91,37 @@ class EkrafController extends Controller
         if ($ekraf->logo) {
             Storage::disk('public')->delete($ekraf->logo);
         }
-        
+
         $ekraf->delete();
-        
+
         notify()->success('EKRAF berhasil dihapus');
+        return redirect()->route('ekrafs.index');
+    }
+
+    public function bulkDestroy(Request $request)
+    {
+
+        $request->validate([
+            'ids' => 'required|array|min:1',
+            'ids.*' => 'exists:ekraf,id'
+        ]);
+
+        $deletedCount = 0;
+
+        foreach ($request->ids as $id) {
+            $ekraf = Ekraf::find($id);
+            if ($ekraf) {
+                // Hapus logo jika ada
+                if ($ekraf->logo) {
+                    Storage::disk('public')->delete($ekraf->logo);
+                }
+
+                $ekraf->delete();
+                $deletedCount++;
+            }
+        }
+
+        notify()->success("{$deletedCount} EKRAF berhasil dihapus");
         return redirect()->route('ekrafs.index');
     }
 
@@ -103,34 +130,34 @@ class EkrafController extends Controller
         $totalEkraf = Ekraf::count();
         $allCategories = EkrafCategories::withCount('ekraf')->get();
         $ekrafs = Ekraf::with('category')->paginate(12);
-    
+
         return view('frontend.ekraf', compact(
             'totalEkraf',
             'allCategories',
             'ekrafs'
         ));
     }
-    
+
     public function filterByCategory($categorySlug)
-{
-    // Cari kategori berdasarkan slug
-    $category = EkrafCategories::where('slug', $categorySlug)->first();
+    {
+        // Cari kategori berdasarkan slug
+        $category = EkrafCategories::where('slug', $categorySlug)->first();
 
-    // Jika kategori tidak ditemukan, kembalikan ke halaman utama dengan pesan error
-    if (!$category) {
-        return redirect()->route('ekraf.index')->with('error', 'Kategori tidak ditemukan.');
+        // Jika kategori tidak ditemukan, kembalikan ke halaman utama dengan pesan error
+        if (!$category) {
+            return redirect()->route('ekraf.index')->with('error', 'Kategori tidak ditemukan.');
+        }
+
+        // Ambil data ekraf berdasarkan kategori
+        $ekrafs = Ekraf::where('category_id', $category->id)->paginate(10);
+
+        // Kembalikan ke view dengan data yang difilter
+        return view('frontend.ekraf', [
+            'ekrafs' => $ekrafs,
+            'category' => $category,
+            'allCategories' => EkrafCategories::withCount('ekrafs')->get(), // Semua kategori untuk sidebar/filter
+        ]);
     }
-
-    // Ambil data ekraf berdasarkan kategori
-    $ekrafs = Ekraf::where('category_id', $category->id)->paginate(10);
-
-    // Kembalikan ke view dengan data yang difilter
-    return view('frontend.ekraf', [
-        'ekrafs' => $ekrafs,
-        'category' => $category,
-        'allCategories' => EkrafCategories::withCount('ekrafs')->get(), // Semua kategori untuk sidebar/filter
-    ]);
-}
 
 
     public function category($slug)
@@ -141,7 +168,7 @@ class EkrafController extends Controller
         $ekrafs = Ekraf::with('category')
             ->where('category_id', $category->id)
             ->paginate(12);
-    
+
         return view('frontend.ekraf', compact(
             'category',
             'totalEkraf',
@@ -151,20 +178,19 @@ class EkrafController extends Controller
     }
 
     public function search(Request $request)
-{
-    $query = $request->input('query');
+    {
+        $query = $request->input('query');
 
-    // Lakukan pencarian berdasarkan nama ekraf atau kategori
-    $ekrafs = Ekraf::where('name', 'like', "%$query%")
-                ->orWhereHas('category', function ($q) use ($query) {
-                    $q->where('name', 'like', "%$query%");
-                })
-                ->with('category')
-                ->get();
+        // Lakukan pencarian berdasarkan nama ekraf atau kategori
+        $ekrafs = Ekraf::where('name', 'like', "%$query%")
+            ->orWhereHas('category', function ($q) use ($query) {
+                $q->where('name', 'like', "%$query%");
+            })
+            ->with('category')
+            ->get();
 
-    return response()->json([
-        'data' => $ekrafs
-    ]);
-}
-
+        return response()->json([
+            'data' => $ekrafs
+        ]);
+    }
 }
