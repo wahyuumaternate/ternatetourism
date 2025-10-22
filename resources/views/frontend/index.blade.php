@@ -1,6 +1,6 @@
 @extends('frontend.layouts.main')
-@include('frontend.layouts.navbar')
-@include('frontend.layouts.hero')
+{{-- @include('frontend.layouts.navbar') --}}
+{{-- @include('frontend.layouts.hero') --}}
 @push('meta')
     <!-- SEO Meta Tags -->
     <title>Wonderful Ternate</title>
@@ -34,6 +34,316 @@
     <meta name="ICBM" content="0.7833, 127.3667">
 @endpush
 @section('body')
+    <div class="banner-container">
+        <div class="background-image"></div>
+        <div class="overlay"></div>
+
+        <div class="content">
+            <div class="left-content">
+                <p id="key" style="display:none;"></p>
+
+                <p class="subtitle" id="quote"></p>
+                <p class="author" id="author"></p>
+            </div>
+
+            <script>
+                // Ambil data translasi sesuai locale aktif
+                const quotes = @json(__('quotes'));
+                const keys = Object.keys(quotes); // ["q1", "q2", "q3", ...]
+                let index = 0;
+
+                const keyEl = document.getElementById("key");
+                const quoteEl = document.getElementById("quote");
+                const authorEl = document.getElementById("author");
+
+                function showQuote() {
+                    const key = keys[index];
+                    const q = quotes[key];
+
+                    keyEl.style.opacity = 0;
+                    quoteEl.style.opacity = 0;
+                    authorEl.style.opacity = 0;
+
+                    setTimeout(() => {
+                        keyEl.textContent = key;
+                        quoteEl.textContent = `"${q.text}"`;
+                        authorEl.textContent = `– ${q.author}`;
+
+                        keyEl.style.opacity = 1;
+                        quoteEl.style.opacity = 1;
+                        authorEl.style.opacity = 1;
+
+                        index = (index + 1) % keys.length;
+                    }, 500);
+                }
+
+                showQuote();
+                setInterval(showQuote, 8000);
+            </script>
+
+        </div>
+
+        {{-- <div class="navigation-arrow" id="nextBtn">›</div> --}}
+
+        <div class="side-images">
+            <!-- Main destination card -->
+            <div class="main-destination-card">
+                <img src="{{ asset('assets/jikomalamo.webp') }}" alt="Jikomalamo" class="main-card-image" />
+                <div class="main-card-content">
+                    <h3 class="main-card-title">Jikomalamo</h3>
+                    <p class="main-card-location">Pulau Ternate</p>
+                    <p class="main-card-description">
+                        Gunung berapi aktif dengan spot diving terbaik di sekitar Ternate yang memukau
+                    </p>
+                </div>
+            </div>
+
+            <!-- Side slider (partially visible) -->
+            <div class="side-slider">
+                <div class="side-card">
+                    <img src="{{ asset('assets/tolire.jpg') }}" alt="Danau Tolire" class="side-card-image" />
+                    <div class="side-card-overlay">
+                        <h4 class="side-card-title">Danau Tolire</h4>
+                        <p class="side-card-location">Ternate</p>
+                    </div>
+                </div>
+
+                <div class="side-card">
+                    <img src="{{ asset('assets/sulamadaha.jpg') }}" alt="Pantai Sulamadaha" class="side-card-image" />
+                    <div class="side-card-overlay">
+                        <h4 class="side-card-title">Pantai Sulamadaha</h4>
+                        <p class="side-card-location">Ternate</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="pagination-dots">
+            <div class="dot active"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+        </div>
+    </div>
+
+    <!-- Video Teaser Festival Kora-Kora Section -->
+    <section id="teaser-video" class="py-5 bg-white position-relative" data-aos="fade-up">
+        <div class="container position-relative" style="z-index: 1;">
+            <div class="row justify-content-center mb-4 text-center">
+                <div class="col-lg-8">
+                    <span class="badge bg-orange px-3 py-2 mb-2" data-aos="fade-down">OFFICIAL TEASER</span>
+                    <h2 class="display-5 fw-bold mb-3" data-aos="fade-right">Festival <span
+                            class="text-orange">Kora-Kora</span> 2026</h2>
+                    <div class="d-flex justify-content-center">
+                        <div class="divider-custom">
+                            <div class="divider-custom-line bg-light-gray"></div>
+                            <div class="divider-custom-icon">
+                                <!-- Changed from Font Awesome to Bootstrap icon -->
+                                <i class="bi bi-ship text-orange"></i>
+                            </div>
+                            <div class="divider-custom-line bg-light-gray"></div>
+                        </div>
+                    </div>
+                    <p class="lead text-dark mb-0" data-aos="fade-left">
+                        Saksikan keindahan dan kemegahan Festival Kora-Kora, warisan budaya Kota Ternate yang menakjubkan
+                    </p>
+                </div>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-10">
+                    <!-- Video wrapper with custom play button overlay -->
+                    <div class="video-wrapper position-relative rounded-4 overflow-hidden shadow-lg" data-aos="zoom-in">
+                        <!-- Play button overlay -->
+                        <div class="video-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"
+                            id="video-overlay">
+                            <button
+                                class="btn btn-play text-white rounded-circle p-0 d-flex align-items-center justify-content-center shadow-lg position-relative"
+                                style="width: 100px; height: 100px; background: linear-gradient(135deg, #ff7b00, #ff3d00); border: none;"
+                                onclick="playVideo()">
+                                <!-- Changed from Font Awesome to Bootstrap icon -->
+                                <i class="bi bi-play-fill" style="font-size: 2.5rem; margin-left: 6px;"></i>
+
+                                <!-- Lingkaran cahaya animasi -->
+                                <span class="play-pulse"></span>
+                            </button>
+                        </div>
+
+                        <!-- Video thumbnail with lazy loading -->
+                        <img src="assets/images/kora-kora-thumbnail.jpg" class="img-fluid w-100 video-thumbnail"
+                            alt="Festival Kora-Kora Teaser Thumbnail"
+                            onerror="this.src='https://img.youtube.com/vi/9GUrxUK_GC8/maxresdefault.jpg'">
+
+                        <!-- Actual video iframe (initially hidden) -->
+                        <div class="ratio ratio-16x9 d-none" id="video-container">
+                            <iframe id="teaser-video-iframe"
+                                src="https://www.youtube.com/embed/9GUrxUK_GC8?autoplay=0&mute=0&rel=0&modestbranding=1"
+                                title="Festival Kora-Kora Official Teaser"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                allowfullscreen style="border: none;">
+                            </iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- JavaScript for video player functionality -->
+    <script>
+        function playVideo() {
+            // Hide overlay and thumbnail
+            document.getElementById('video-overlay').classList.add('d-none');
+            document.querySelector('.video-thumbnail').classList.add('d-none');
+
+            // Show and play video
+            const videoContainer = document.getElementById('video-container');
+            videoContainer.classList.remove('d-none');
+
+            // Update iframe src to autoplay
+            const iframe = document.getElementById('teaser-video-iframe');
+            const iframeSrc = iframe.src;
+            iframe.src = iframeSrc.replace('autoplay=0', 'autoplay=1');
+        }
+    </script>
+
+    <!-- Custom CSS for styling -->
+    <style>
+        /* Custom Orange Color Variables */
+        .btn-play {
+            transition: all 0.3s ease-in-out;
+        }
+
+        .btn-play:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 25px rgba(255, 123, 0, 0.8);
+        }
+
+        /* Efek animasi cahaya berdenyut */
+        .play-pulse {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120%;
+            height: 120%;
+            border-radius: 50%;
+            background: rgba(255, 123, 0, 0.4);
+            transform: translate(-50%, -50%);
+            animation: pulse 1.8s infinite ease-out;
+            z-index: -1;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: translate(-50%, -50%) scale(0.9);
+                opacity: 0.9;
+            }
+
+            70% {
+                transform: translate(-50%, -50%) scale(1.3);
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+        :root {
+            --bs-orange: #FF6600;
+            --bs-orange-rgb: 255, 102, 0;
+            --bs-orange-light: #FF8533;
+            --bs-light-gray: #E9ECEF;
+        }
+
+        /* Background and Text Colors */
+        .bg-orange {
+            background-color: var(--bs-orange) !important;
+        }
+
+        .text-orange {
+            color: var(--bs-orange) !important;
+        }
+
+        .bg-light-gray {
+            background-color: var(--bs-light-gray) !important;
+        }
+
+        /* Button Styles */
+        .btn-orange {
+            background-color: var(--bs-orange);
+            border-color: var(--bs-orange);
+            color: #fff;
+        }
+
+        .btn-orange:hover {
+            background-color: var(--bs-orange-light);
+            border-color: var(--bs-orange-light);
+            color: #fff;
+        }
+
+        .btn-outline-orange {
+            color: var(--bs-orange);
+            border-color: var(--bs-orange);
+        }
+
+        .btn-outline-orange:hover {
+            background-color: var(--bs-orange);
+            color: #fff;
+        }
+
+        /* Divider Custom */
+        .divider-custom {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 1rem 0 1.5rem;
+        }
+
+        .divider-custom .divider-custom-line {
+            width: 100%;
+            max-width: 6rem;
+            height: 0.25rem;
+            border-radius: 1rem;
+            opacity: 0.3;
+        }
+
+        .divider-custom .divider-custom-icon {
+            font-size: 1.5rem;
+            margin: 0 1rem;
+        }
+
+        /* Play Button */
+        .btn-play {
+            transition: all 0.3s ease;
+        }
+
+        .btn-play:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 102, 0, 0.5) !important;
+        }
+
+        /* Video Wrapper */
+        .video-wrapper {
+            transition: transform 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2) !important;
+        }
+
+        /* Social Share Links */
+        .social-share a {
+            transition: all 0.3s ease;
+        }
+
+        .social-share a:hover {
+            background-color: var(--bs-orange);
+            border-color: var(--bs-orange);
+            color: #fff;
+        }
+    </style>
+
+    <!-- Bootstrap Icons CSS - IMPORTANT: Add this to your head section -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
     <!-- Popular Destinations -->
     <section class="py-5" id="destinations" data-aos="fade-up">
         <div class="container">
