@@ -125,68 +125,76 @@
         </div>
     </div>
 
-    <!-- Video Teaser Festival Kora-Kora Section -->
-    <section id="teaser-video" class="py-5 bg-white position-relative" data-aos="fade-up">
+    <!-- Profil Kota Ternate - Video Section -->
+    <section id="profil-video" class="py-5 bg-white position-relative" data-aos="fade-up">
         <div class="container position-relative" style="z-index: 1;">
             <div class="row justify-content-center mb-4 text-center">
                 <div class="col-lg-8">
-                    <span class="badge bg-orange px-3 py-2 mb-2" data-aos="fade-down">OFFICIAL TEASER</span>
-                    <h2 class="display-5 fw-bold mb-3" data-aos="fade-right">Festival <span
-                            class="text-orange">Kora-Kora</span> 2026</h2>
+                    <span class="badge bg-orange px-3 py-2 mb-2" data-aos="fade-down">VIDEO PROFIL</span>
+                    <h2 class="display-5 fw-bold mb-3" data-aos="fade-right">Profil <span class="text-orange">Kota
+                            Ternate</span></h2>
+
                     <div class="d-flex justify-content-center">
                         <div class="divider-custom">
                             <div class="divider-custom-line bg-light-gray"></div>
                             <div class="divider-custom-icon">
-                                <!-- Changed from Font Awesome to Bootstrap icon -->
-                                <i class="bi bi-ship text-orange"></i>
+                                <i class="bi bi-geo-alt text-orange"></i>
                             </div>
                             <div class="divider-custom-line bg-light-gray"></div>
                         </div>
                     </div>
+
                     <p class="lead text-dark mb-0" data-aos="fade-left">
-                        Saksikan keindahan dan kemegahan Festival Kora-Kora, warisan budaya Kota Ternate yang menakjubkan
+                        Jelajahi keindahan, sejarah, dan budaya Kota Ternate yang kaya dan memukau.
                     </p>
                 </div>
             </div>
 
             <div class="row justify-content-center">
                 <div class="col-lg-10">
-                    <!-- Video wrapper with custom play button overlay -->
                     <div class="video-wrapper position-relative rounded-4 overflow-hidden shadow-lg" data-aos="zoom-in">
-                        <!-- Play button overlay -->
+
+                        <!-- Tombol Play -->
                         <div class="video-overlay position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center"
                             id="video-overlay">
                             <button
                                 class="btn btn-play text-white rounded-circle p-0 d-flex align-items-center justify-content-center shadow-lg position-relative"
                                 style="width: 100px; height: 100px; background: linear-gradient(135deg, #ff7b00, #ff3d00); border: none;"
-                                onclick="playVideo()">
-                                <!-- Changed from Font Awesome to Bootstrap icon -->
-                                <i class="bi bi-play-fill" style="font-size: 2.5rem; margin-left: 6px;"></i>
+                                onclick="playLocalVideo()">
 
-                                <!-- Lingkaran cahaya animasi -->
+                                <i class="bi bi-play-fill" style="font-size: 2.5rem; margin-left: 6px;"></i>
                                 <span class="play-pulse"></span>
                             </button>
                         </div>
 
-                        <!-- Video thumbnail with lazy loading -->
-                        <img src="assets/images/kora-kora-thumbnail.jpg" class="img-fluid w-100 video-thumbnail"
-                            alt="Festival Kora-Kora Teaser Thumbnail"
-                            onerror="this.src='https://img.youtube.com/vi/9GUrxUK_GC8/maxresdefault.jpg'">
+                        <!-- Thumbnail -->
+                        <img src="{{ asset('assets/tumbnail_profil_kota.png') }}" class="img-fluid w-100 video-thumbnail"
+                            alt="Profil Kota Ternate Thumbnail"
+                            onerror="this.src='{{ asset('assets/tumbnail_profil_kota.png') }}'">
 
-                        <!-- Actual video iframe (initially hidden) -->
-                        <div class="ratio ratio-16x9 d-none" id="video-container">
-                            <iframe id="teaser-video-iframe"
-                                src="https://www.youtube.com/embed/9GUrxUK_GC8?autoplay=0&mute=0&rel=0&modestbranding=1"
-                                title="Festival Kora-Kora Official Teaser"
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                                allowfullscreen style="border: none;">
-                            </iframe>
-                        </div>
+                        <!-- Video lokal -->
+                        <video id="local-video" class="w-100 d-none rounded-4" controls>
+                            <source src="assets/profil_kota_ternate.mp4" type="video/mp4">
+                            Browser Anda tidak mendukung video HTML5.
+                        </video>
+
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <script>
+        function playLocalVideo() {
+            document.getElementById('video-overlay').classList.add('d-none');
+            document.querySelector('.video-thumbnail').classList.add('d-none');
+
+            let video = document.getElementById('local-video');
+            video.classList.remove('d-none');
+            video.play();
+        }
+    </script>
+
 
     <!-- JavaScript for video player functionality -->
     <script>
