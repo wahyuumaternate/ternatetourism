@@ -27,9 +27,9 @@ return [
 
     'experiences' => [
         ['title' => 'wt.exp_adventure', 'text' => 'wt.exp_adventure_text', 'image' => 'batu-angus'],
-        ['title' => 'wt.exp_heritage', 'text' => 'wt.exp_heritage_text', 'image' => 'fora'],
+        ['title' => 'wt.exp_heritage', 'text' => 'wt.exp_heritage_text', 'image' => 'fort-oranje'],
         ['title' => 'wt.exp_culture', 'text' => 'wt.exp_culture_text', 'image' => 'kora-kora'],
-        ['title' => 'wt.exp_culinary', 'text' => 'wt.exp_culinary_text', 'image' => 'ikan-nimo'],
+        ['title' => 'wt.exp_culinary', 'text' => 'wt.exp_culinary_text', 'image' => 'rempah'],
         ['title' => 'wt.exp_island', 'text' => 'wt.exp_island_text', 'image' => 'hiri'],
     ],
 
