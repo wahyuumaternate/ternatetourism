@@ -16,7 +16,7 @@
 @section('body')
     <x-front.page-header :eyebrow="__('wt.footer_contact')" :title="__('wt.ct_title')" :subtitle="__('wt.ct_sub')" image="assets/kora_kora.jpg" />
 
-    <section class="mx-auto grid max-w-7xl gap-8 px-4 py-16 sm:px-6 lg:grid-cols-5 lg:px-8 lg:py-24">
+    <section class="mx-auto grid max-w-7xl grid-cols-1 gap-8 px-4 py-16 sm:px-6 lg:grid-cols-5 lg:px-8 lg:py-24">
         <div class="card p-6 sm:p-10 lg:col-span-3"
             x-data="{ count: {{ mb_strlen(old('pesan', '')) }}, submitting: false, captchaMissing: false }">
             <h2 class="font-display text-3xl text-volcanic">{{ __('wt.ct_send') }}</h2>

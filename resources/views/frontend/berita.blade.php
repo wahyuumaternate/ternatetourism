@@ -1,10 +1,10 @@
 @extends('frontend.layouts.app')
 
-@section('title', __('pesan.berita') . ' — ' . __('wt.brand'))
-@section('description', __('pesan.berita_desc'))
+@section('title', __('wt.news_title') . ' — ' . __('wt.brand'))
+@section('description', __('wt.news_sub'))
 
 @section('body')
-    <x-front.page-header :eyebrow="__('wt.nav_culture')" :title="__('pesan.berita')" :subtitle="__('pesan.berita_desc')" />
+    <x-front.page-header :eyebrow="__('wt.news_eyebrow')" :title="__('wt.news_title')" :subtitle="__('wt.news_sub')" />
 
     <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
         @if ($berita->isEmpty())

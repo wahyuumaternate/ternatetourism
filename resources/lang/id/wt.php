@@ -167,6 +167,16 @@ return [
     'ek_visit' => 'Kunjungi',
     'ek_back' => 'Semua ekraf',
 
+    'news_eyebrow' => 'Dinas Pariwisata Kota Ternate',
+    'news_title' => 'Berita & Kegiatan',
+    'news_sub' => 'Informasi dan kegiatan terbaru seputar kepariwisataan dan pemerintahan Kota Ternate.',
+    'news_cta' => 'Lihat Semua Berita',
+
+    'nw_read' => ':n mnt baca',
+    'nw_latest' => 'Berita Terbaru',
+    'nw_copy' => 'Salin tautan',
+    'nw_copied' => 'Tautan disalin',
+
     'placeholder' => 'Contoh konten',
     'placeholder_note' => 'Konten contoh — belum informasi resmi.',
 

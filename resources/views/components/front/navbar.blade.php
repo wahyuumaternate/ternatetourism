@@ -5,7 +5,7 @@
     $links = [
         ['label' => __('pesan.home'), 'href' => url('/')],
         ['label' => __('wt.nav_experience'), 'href' => url('/') . '#experience'],
-        ['label' => __('wt.nav_culture'), 'href' => route('berita.all')],
+        ['label' => __('pesan.news'), 'href' => route('berita.all')],
         ['label' => __('wt.nav_culinary'), 'href' => route('fasilitas.front', 'cafe-restorant')],
         ['label' => __('wt.nav_events'), 'href' => route('events.all')],
     ];
@@ -68,7 +68,7 @@
                 </ul>
             </div>
 
-            <a href="{{ route('destinasi.all') }}" class="btn-primary hidden !py-2.5 sm:inline-flex">{{ __('wt.plan_trip') }}</a>
+            <a href="{{ route('destinasi.all') }}" class="btn-primary hidden !py-2.5 sm:inline-flex">{{ __('wt.nav_destinations') }}</a>
 
             <button type="button" @click="open = !open" :aria-expanded="open" aria-controls="mobile-menu"
                 aria-label="{{ __('wt.menu') }}" class="rounded-full p-2 lg:hidden">
@@ -91,6 +91,6 @@
                 <li><a href="{{ $item['href'] }}" class="block rounded-xl bg-white/10 px-4 py-3">{{ $item['label'] }}</a></li>
             @endforeach
         </ul>
-        <a href="{{ route('destinasi.all') }}" class="btn-primary mt-8 w-full">{{ __('wt.plan_trip') }}</a>
+        <a href="{{ route('destinasi.all') }}" class="btn-primary mt-8 w-full">{{ __('wt.nav_destinations') }}</a>
     </div>
 </header>

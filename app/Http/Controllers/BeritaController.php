@@ -12,18 +12,21 @@ class BeritaController extends Controller
     public function index()
     {
         $berita = Berita::orderBy('created_at', 'desc')->get();
+
         return view('admin.publikasi.berita', compact('berita')); // Menampilkan daftar berita
     }
+
     public function create()
     {
         return view('admin.publikasi.berita_create'); // Menampilkan daftar berita
     }
+
     // Menampilkan detail berita berdasarkan ID
     public function show($id)
     {
         $berita = Berita::find($id);
 
-        if (!$berita) {
+        if (! $berita) {
             return redirect()->route('berita.index')->with('error', 'Berita tidak ditemukan');
         }
 
@@ -54,6 +57,7 @@ class BeritaController extends Controller
         ]);
 
         notify()->success('Berita berhasil ditambahkan');
+
         return redirect()->route('berita.index');
     }
 
@@ -62,7 +66,7 @@ class BeritaController extends Controller
     {
         $berita = Berita::find($id);
 
-        if (!$berita) {
+        if (! $berita) {
             return redirect()->route('berita.index')->with('error', 'Berita tidak ditemukan');
         }
 
@@ -71,66 +75,69 @@ class BeritaController extends Controller
 
     // Memperbarui berita
     public function update(Request $request, $id)
-{
-    $berita = Berita::findOrFail($id);
-// dd($berita->id);
-    $request->validate([
-        'title' => 'sometimes|required|string|max:255',
-        'slug' => [
-            'required',
-            'string',
-            'max:255',
-            Rule::unique('berita', 'slug')->ignore($id), // Abaikan slug milik record yang sedang diedit
-        ],
-        'content' => 'sometimes|required',
-        'image' => 'sometimes|required|string',
-        'excerpt' => 'sometimes|nullable|string|max:255',
-    ]);
+    {
+        $berita = Berita::findOrFail($id);
+        // dd($berita->id);
+        $request->validate([
+            'title' => 'sometimes|required|string|max:255',
+            'slug' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('berita', 'slug')->ignore($id), // Abaikan slug milik record yang sedang diedit
+            ],
+            'content' => 'sometimes|required',
+            'image' => 'sometimes|required|string',
+            'excerpt' => 'sometimes|nullable|string|max:255',
+        ]);
 
-     // Tetap gunakan slug lama jika tidak ada perubahan
-     $slug = $request->slug ?? $berita->slug;
+        // Tetap gunakan slug lama jika tidak ada perubahan
+        $slug = $request->slug ?? $berita->slug;
 
+        // Update excerpt jika tidak ada input
+        $excerpt = $request->excerpt ?? substr(strip_tags($request->content), 0, 150);
 
-    // Update excerpt jika tidak ada input
-    $excerpt = $request->excerpt ?? substr(strip_tags($request->content), 0, 150);
+        $berita->update([
+            'title' => $request->title,
+            'slug' => $slug,
+            'content' => $request->content,
+            'image' => $request->image,
+            'excerpt' => $excerpt,
+        ]);
+        notify()->success('Berita berhasil diperbarui');
 
-    $berita->update([
-        'title' => $request->title,
-        'slug' => $slug,
-        'content' => $request->content,
-        'image' => $request->image,
-        'excerpt' => $excerpt,
-    ]);
-    notify()->success('Berita berhasil diperbarui');
-    return redirect()->route('berita.index');
-}
+        return redirect()->route('berita.index');
+    }
 
     // Menghapus berita
     public function destroy($id)
     {
         $berita = Berita::find($id);
 
-        if (!$berita) {
+        if (! $berita) {
             return redirect()->route('berita.index')->with('error', 'Berita tidak ditemukan');
         }
 
         $berita->delete();
         notify()->success('Berita berhasil dihapus');
+
         return redirect()->route('berita.index');
     }
 
     public function front($slug)
     {
-        // Ambil data destinasi berdasarkan slug
         $news = Berita::where('slug', $slug)->firstOrFail();
 
-        // Kirim data ke view
-        return view('frontend.detail_berita', compact('news'));
+        return view('frontend.detail_berita', [
+            'news' => $news,
+            'latest' => Berita::where('id', '!=', $news->id)->latest()->take(5)->get(),
+        ]);
     }
 
     public function all()
     {
         $berita = Berita::latest()->paginate(9);
+
         return view('frontend.berita', compact('berita')); // Menampilkan daftar berita
     }
 }

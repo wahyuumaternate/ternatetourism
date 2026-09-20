@@ -27,13 +27,13 @@
 @section('body')
     <x-front.page-header :eyebrow="__('wt.nav_events')" :title="$event->name" :subtitle="$event->location" :image="$event->poster" />
 
-    <div class="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-3 lg:px-8 lg:py-24">
-        <article class="lg:col-span-2">
+    <div class="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-4 py-16 sm:px-6 lg:grid-cols-3 lg:px-8 lg:py-24">
+        <article class="min-w-0 lg:col-span-2">
             <p class="eyebrow">{{ __('wt.pg_event_detail') }}</p>
-            <div class="rich mt-4">{!! $event->detail !!}</div>
+            <div class="rich mt-4">{!! \App\Helpers\RichText::clean($event->detail) !!}</div>
         </article>
 
-        <aside class="space-y-6">
+        <aside class="min-w-0 space-y-6">
             <div class="card p-6">
                 <p class="eyebrow">{{ __('wt.pg_event_when') }}</p>
                 <p class="mt-2 font-display text-3xl text-volcanic">{{ $start->translatedFormat('d F Y') }}</p>

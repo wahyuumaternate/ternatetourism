@@ -167,6 +167,16 @@ return [
     'ek_visit' => 'Visit',
     'ek_back' => 'All creative businesses',
 
+    'news_eyebrow' => 'Ternate City Tourism Office',
+    'news_title' => 'News & Activities',
+    'news_sub' => 'The latest updates and activities on tourism and governance in Ternate City.',
+    'news_cta' => 'View All News',
+
+    'nw_read' => ':n min read',
+    'nw_latest' => 'Latest News',
+    'nw_copy' => 'Copy link',
+    'nw_copied' => 'Link copied',
+
     'placeholder' => 'Sample content',
     'placeholder_note' => 'Sample content — not official information.',
 

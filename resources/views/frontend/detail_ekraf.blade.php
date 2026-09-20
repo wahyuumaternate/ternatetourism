@@ -42,8 +42,8 @@
 @section('body')
     <x-front.page-header :eyebrow="$ekraf->category?->name ?? __('pesan.creative')" :title="$ekraf->name" />
 
-    <div class="mx-auto grid max-w-7xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-3 lg:px-8 lg:py-24">
-        <aside class="space-y-6 lg:order-2">
+    <div class="mx-auto grid max-w-7xl grid-cols-1 gap-10 px-4 py-16 sm:px-6 lg:grid-cols-3 lg:px-8 lg:py-24">
+        <aside class="min-w-0 space-y-6 lg:order-2">
             <div class="card p-6">
                 @if ($ekraf->logo)
                     <x-front.picture :src="$ekraf->logo" :alt="$ekraf->name" sizes="160px" :eager="true" class="mx-auto h-32 w-32 rounded-full object-cover ring-1 ring-black/10" />
@@ -71,9 +71,9 @@
             <a href="{{ route('ekraf.index') }}" class="btn-outline w-full">&larr; {{ __('wt.ek_back') }}</a>
         </aside>
 
-        <article class="lg:col-span-2 lg:order-1">
+        <article class="min-w-0 lg:col-span-2 lg:order-1">
             <p class="eyebrow">{{ __('wt.ek_about') }}</p>
-            <div class="rich mt-4">{!! $ekraf->description !!}</div>
+            <div class="rich mt-4">{!! \App\Helpers\RichText::clean($ekraf->description) !!}</div>
         </article>
     </div>
 

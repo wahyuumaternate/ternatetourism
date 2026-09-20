@@ -2,8 +2,10 @@
 
 namespace Tests\Feature;
 
+use App\Models\Berita;
 use App\Models\Destination;
 use App\Models\Events;
+use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
 use Tests\TestCase;
 
@@ -77,5 +79,40 @@ class InnerPagesTest extends TestCase
         }
 
         $this->get(route('fasilitas.front', 'hotel'))->assertOk();
+    }
+
+    private function news(string $title, string $slug, User $author): Berita
+    {
+        return Berita::create([
+            'title' => $title,
+            'slug' => $slug,
+            'excerpt' => 'Ringkasan uji',
+            'image' => 'assets/front/gamalama-800.webp',
+            'views' => 0,
+            'content' => '<p>'.str_repeat('Kata uji ', 450).'</p>',
+            'user_id' => $author->id,
+        ]);
+    }
+
+    public function test_news_detail_shows_article_layout_with_latest_news_sidebar(): void
+    {
+        $author = User::factory()->create();
+        $this->news('Berita Uji Utama', 'berita-uji-utama', $author);
+        $this->news('Berita Uji Lainnya', 'berita-uji-lainnya', $author);
+
+        $response = $this->get(route('berita.detail', 'berita-uji-utama'));
+
+        $response->assertOk();
+        $response->assertSee('Berita Uji Utama');
+        $response->assertSee('Breadcrumb', false);
+        $response->assertSee('Berita Terbaru');
+        $response->assertSee('Berita Uji Lainnya');
+        $response->assertSee('mnt baca');
+        $response->assertSee('NewsArticle', false);
+    }
+
+    public function test_news_detail_returns_404_for_unknown_slug(): void
+    {
+        $this->get(route('berita.detail', 'tidak-ada'))->assertNotFound();
     }
 }

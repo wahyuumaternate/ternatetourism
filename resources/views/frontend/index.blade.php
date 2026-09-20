@@ -133,13 +133,13 @@
     {{-- Stories --}}
     @if ($stories->isNotEmpty())
         <section class="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-36" aria-labelledby="stories-title">
-            <x-front.section-heading id="stories-title" :eyebrow="__('wt.nav_culture')" :title="__('wt.stories_title')" :subtitle="__('wt.stories_sub')" />
+            <x-front.section-heading id="stories-title" :eyebrow="__('wt.news_eyebrow')" :title="__('wt.news_title')" :subtitle="__('wt.news_sub')" />
             <div class="relative mt-12 grid gap-8 md:grid-cols-3">
                 @foreach ($stories as $i => $story)
                     <x-front.reveal :delay="$i * 100" class="{{ $i === 1 ? 'md:mt-16' : '' }}"><x-front.culture-card :story="$story" /></x-front.reveal>
                 @endforeach
             </div>
-            <a href="{{ route('berita.all') }}" class="btn-outline mt-12">{{ __('wt.stories_cta') }} &rarr;</a>
+            <a href="{{ route('berita.all') }}" class="btn-outline mt-12">{{ __('wt.news_cta') }} &rarr;</a>
         </section>
     @endif
 

@@ -22,7 +22,7 @@
             <p class="eyebrow">{{ __('wt.footer_explore') }}</p>
             <ul class="mt-4 space-y-2 text-sm">
                 <li><a class="hover:text-accent" href="{{ route('destinasi.all') }}">{{ __('wt.nav_destinations') }}</a></li>
-                <li><a class="hover:text-accent" href="{{ route('berita.all') }}">{{ __('wt.nav_culture') }}</a></li>
+                <li><a class="hover:text-accent" href="{{ route('berita.all') }}">{{ __('pesan.news') }}</a></li>
                 <li><a class="hover:text-accent" href="{{ route('fasilitas.front', 'cafe-restorant') }}">{{ __('wt.nav_culinary') }}</a></li>
                 <li><a class="hover:text-accent" href="{{ route('events.all') }}">{{ __('wt.nav_events') }}</a></li>
                 <li><a class="hover:text-accent" href="{{ route('frontFoto') }}">{{ __('pesan.gallery') }}</a></li>

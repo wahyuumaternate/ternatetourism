@@ -9,7 +9,7 @@
 
     <article class="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:py-24">
         @if (filled(strip_tags((string) ($visi_misi->content ?? ''))))
-            <div class="rich">{!! $visi_misi->content !!}</div>
+            <div class="rich">{!! \App\Helpers\RichText::clean($visi_misi->content) !!}</div>
         @else
             <p class="card p-6 text-volcanic/70">{{ __('wt.pg_profile_soon') }}</p>
         @endif

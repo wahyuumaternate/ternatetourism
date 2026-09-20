@@ -28,10 +28,10 @@
 @section('body')
     <x-front.page-header :eyebrow="__('pesan.destination')" :title="$title" :subtitle="$subtitle" :image="$destination->image" />
 
-    <div class="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-3 lg:px-8 lg:py-24">
-        <article class="lg:col-span-2">
+    <div class="mx-auto grid max-w-7xl grid-cols-1 gap-12 px-4 py-16 sm:px-6 lg:grid-cols-3 lg:px-8 lg:py-24">
+        <article class="min-w-0 lg:col-span-2">
             <p class="eyebrow">{{ __('wt.pg_overview') }}</p>
-            <div class="rich mt-4">{!! $destination->description !!}</div>
+            <div class="rich mt-4">{!! \App\Helpers\RichText::clean($destination->description) !!}</div>
 
             <div class="mt-10 flex flex-wrap items-center gap-3 border-t border-black/10 pt-6">
                 <span class="text-sm font-semibold text-volcanic">{{ __('wt.pg_share') }}:</span>
@@ -41,7 +41,7 @@
             </div>
         </article>
 
-        <aside class="space-y-8">
+        <aside class="min-w-0 space-y-8">
             @if ($hasCoords)
                 <div>
                     <p class="eyebrow">{{ __('wt.pg_location') }}</p>

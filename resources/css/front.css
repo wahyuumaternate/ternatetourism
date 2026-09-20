@@ -198,9 +198,10 @@
     }
 }
 
-/* Rich text from admin-authored HTML */
+/* Rich text from the admin editor (TinyMCE). Inline styles from the editor are left untouched. */
 .rich {
     @apply text-base leading-relaxed text-volcanic/85 sm:text-lg;
+    overflow-wrap: anywhere;
 }
 
 .rich > * + * {
@@ -210,8 +211,10 @@
 .rich h1,
 .rich h2,
 .rich h3,
-.rich h4 {
-    @apply font-display leading-tight text-volcanic;
+.rich h4,
+.rich h5,
+.rich h6 {
+    @apply font-display font-bold leading-tight text-volcanic;
 }
 
 .rich h1,
@@ -227,6 +230,11 @@
     @apply mt-6 text-xl;
 }
 
+.rich h5,
+.rich h6 {
+    @apply mt-6 text-lg;
+}
+
 .rich ul {
     @apply list-disc space-y-1 pl-6;
 }
@@ -235,14 +243,141 @@
     @apply list-decimal space-y-1 pl-6;
 }
 
+.rich ul ul,
+.rich ol ol,
+.rich ul ol,
+.rich ol ul {
+    @apply mt-1;
+}
+
 .rich a {
     @apply text-primary underline underline-offset-2;
 }
 
-.rich img {
-    @apply h-auto max-w-full rounded-2xl;
+.rich strong,
+.rich b {
+    @apply font-semibold;
 }
 
-.rich strong {
-    @apply font-semibold text-volcanic;
+.rich em,
+.rich i {
+    font-style: italic;
+}
+
+.rich u {
+    text-decoration: underline;
+}
+
+.rich s,
+.rich strike,
+.rich del {
+    text-decoration: line-through;
+}
+
+.rich sub,
+.rich sup {
+    font-size: 0.75em;
+}
+
+.rich blockquote {
+    @apply rounded-r-xl border-l-4 border-primary bg-primary/5 py-3 pl-5 pr-4 italic text-volcanic/80;
+}
+
+.rich hr {
+    @apply my-8 border-t border-black/15;
+}
+
+.rich pre {
+    @apply overflow-x-auto rounded-xl bg-volcanic p-4 text-sm text-white;
+}
+
+.rich code {
+    @apply rounded bg-black/5 px-1.5 py-0.5 text-[0.9em];
+}
+
+.rich pre code {
+    @apply bg-transparent p-0;
+}
+
+/* Tailwind's reset makes images block-level; restore inline behaviour so editor alignment works */
+.rich img {
+    display: inline-block;
+    max-width: 100%;
+    height: auto !important;
+    @apply rounded-xl align-middle;
+}
+
+.rich img[style*='float'] {
+    @apply mb-2;
+}
+
+.rich figure {
+    @apply text-center;
+}
+
+.rich figcaption {
+    @apply mt-2 text-sm text-volcanic/60;
+}
+
+.rich iframe,
+.rich video {
+    max-width: 100%;
+    @apply rounded-xl;
+}
+
+.rich iframe {
+    aspect-ratio: 16 / 9;
+    height: auto;
+}
+
+.rich table {
+    border-collapse: collapse;
+    max-width: 100%;
+}
+
+.rich td,
+.rich th {
+    @apply px-3 py-2 align-top;
+}
+
+.rich th {
+    @apply bg-black/5 font-semibold;
+}
+
+/* The reset also removes the border="1" attribute that TinyMCE writes on tables */
+.rich table[border]:not([border='0']),
+.rich table[border]:not([border='0']) td,
+.rich table[border]:not([border='0']) th {
+    border: 1px solid rgba(23, 32, 38, 0.25);
+}
+
+/* Wide tables scroll inside their own wrapper instead of stretching the page */
+.rich-table {
+    max-width: 100%;
+    overflow-x: auto;
+}
+
+.rich {
+    hyphens: auto;
+}
+
+@media (max-width: 640px) {
+    /* Justified text leaves wide gaps in narrow columns */
+    .rich [style*='text-align: justify'],
+    .rich [style*='text-align:justify'] {
+        text-align: left !important;
+    }
+
+    /* Floated images and deep indents squeeze the text on phones */
+    .rich img[style*='float'] {
+        display: block;
+        float: none !important;
+        margin: 0 auto 1rem !important;
+    }
+
+    .rich [style*='padding-left'],
+    .rich [style*='margin-left'] {
+        padding-left: 1.25rem !important;
+        margin-left: 0 !important;
+    }
 }
