@@ -125,7 +125,7 @@ Route::prefix('dashboard')->group(function () {
 Route::get('/kontak', [KontakController::class, 'create'])->name('kontak.create');
 Route::post('/kontak', [KontakController::class, 'store'])->name('kontak.store');
 
-Route::get('/tiket-pesawat', [FlightController::class, 'index'])->name('flights.index');
+// Route::get('/tiket-pesawat', [FlightController::class, 'index'])->name('flights.index');
 
 
 require __DIR__ . '/auth.php';
