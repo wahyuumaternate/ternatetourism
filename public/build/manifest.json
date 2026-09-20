@@ -1,0 +1,42 @@
+{
+  "_module.esm-CHQVXANy.js": {
+    "file": "assets/module.esm-CHQVXANy.js",
+    "name": "module.esm"
+  },
+  "resources/css/app.css": {
+    "file": "assets/app-dLxlYreP.css",
+    "src": "resources/css/app.css",
+    "isEntry": true,
+    "name": "app",
+    "names": [
+      "app.css"
+    ]
+  },
+  "resources/css/front.css": {
+    "file": "assets/front-BSUNjKkA.css",
+    "src": "resources/css/front.css",
+    "isEntry": true,
+    "name": "front",
+    "names": [
+      "front.css"
+    ]
+  },
+  "resources/js/app.js": {
+    "file": "assets/app-CedCGDVf.js",
+    "name": "app",
+    "src": "resources/js/app.js",
+    "isEntry": true,
+    "imports": [
+      "_module.esm-CHQVXANy.js"
+    ]
+  },
+  "resources/js/front.js": {
+    "file": "assets/front-B3I-5IUi.js",
+    "name": "front",
+    "src": "resources/js/front.js",
+    "isEntry": true,
+    "imports": [
+      "_module.esm-CHQVXANy.js"
+    ]
+  }
+}
