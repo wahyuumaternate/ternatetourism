@@ -1,5 +1,7 @@
 <?php
+
 // app/Http/Controllers/EkrafController.php
+
 namespace App\Http\Controllers;
 
 use App\Models\Ekraf;
@@ -12,12 +14,14 @@ class EkrafController extends Controller
     public function index()
     {
         $ekrafs = Ekraf::with('category')->get();
+
         return view('admin.ekraf.index', compact('ekrafs'));
     }
 
     public function create()
     {
         $categories = EkrafCategories::all();
+
         return view('admin.ekraf.create', compact('categories'));
     }
 
@@ -33,7 +37,7 @@ class EkrafController extends Controller
             'email' => 'nullable|email',
             'website' => 'nullable|string',
             'social_media' => 'nullable|string',
-            'jumlah_produk' => 'required|string'
+            'jumlah_produk' => 'required|string',
         ]);
 
         if ($request->has('logo')) {
@@ -43,20 +47,27 @@ class EkrafController extends Controller
         Ekraf::create($validated);
 
         notify()->success('EKRAF berhasil ditambahkan');
+
         return redirect()->route('ekrafs.index');
     }
 
     public function show($slug)
     {
         // Mencari ekraf berdasarkan slug
-        $ekraf = Ekraf::where('slug', $slug)->firstOrFail();
+        $ekraf = Ekraf::with('category')->where('slug', $slug)->firstOrFail();
+        $related = Ekraf::where('category_id', $ekraf->category_id)
+            ->where('id', '!=', $ekraf->id)
+            ->inRandomOrder()
+            ->take(3)
+            ->get();
 
-        return view('frontend.detail_ekraf', compact('ekraf'));
+        return view('frontend.detail_ekraf', compact('ekraf', 'related'));
     }
 
     public function edit(Ekraf $ekraf)
     {
         $categories = EkrafCategories::all();
+
         return view('admin.ekraf.edit', compact('ekraf', 'categories'));
     }
 
@@ -72,7 +83,7 @@ class EkrafController extends Controller
             'email' => 'nullable|email',
             'website' => 'nullable|string',
             'social_media' => 'nullable|string',
-            'jumlah_produk' => 'required|string'
+            'jumlah_produk' => 'required|string',
         ]);
 
         if ($request->has('logo')) {
@@ -83,6 +94,7 @@ class EkrafController extends Controller
         $ekraf->update($validated);
 
         notify()->success('EKRAF berhasil diperbarui');
+
         return redirect()->route('ekrafs.index');
     }
 
@@ -95,6 +107,7 @@ class EkrafController extends Controller
         $ekraf->delete();
 
         notify()->success('EKRAF berhasil dihapus');
+
         return redirect()->route('ekrafs.index');
     }
 
@@ -103,7 +116,7 @@ class EkrafController extends Controller
 
         $request->validate([
             'ids' => 'required|array|min:1',
-            'ids.*' => 'exists:ekraf,id'
+            'ids.*' => 'exists:ekraf,id',
         ]);
 
         $deletedCount = 0;
@@ -122,6 +135,7 @@ class EkrafController extends Controller
         }
 
         notify()->success("{$deletedCount} EKRAF berhasil dihapus");
+
         return redirect()->route('ekrafs.index');
     }
 
@@ -144,7 +158,7 @@ class EkrafController extends Controller
         $category = EkrafCategories::where('slug', $categorySlug)->first();
 
         // Jika kategori tidak ditemukan, kembalikan ke halaman utama dengan pesan error
-        if (!$category) {
+        if (! $category) {
             return redirect()->route('ekraf.index')->with('error', 'Kategori tidak ditemukan.');
         }
 
@@ -158,7 +172,6 @@ class EkrafController extends Controller
             'allCategories' => EkrafCategories::withCount('ekrafs')->get(), // Semua kategori untuk sidebar/filter
         ]);
     }
-
 
     public function category($slug)
     {
@@ -190,7 +203,7 @@ class EkrafController extends Controller
             ->get();
 
         return response()->json([
-            'data' => $ekrafs
+            'data' => $ekrafs,
         ]);
     }
 }

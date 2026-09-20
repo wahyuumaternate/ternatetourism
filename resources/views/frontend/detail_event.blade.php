@@ -1,171 +1,67 @@
-@extends('frontend.layouts.main')
-@push('meta')
-    <!-- SEO Meta Tags -->
-    <title>{{ $event->name }} - Event Wonderful Ternate</title>
-    <meta name="description"
-        content="{{ $event->name }} - {{ date('d M Y', strtotime($event->date)) }} di {{ $event->location }}. {{ Str::limit(strip_tags($event->detail), 120) }}">
-    <meta name="keywords"
-        content="{{ Str::slug($event->name) }}, event ternate, festival ternate, acara ternate, {{ date('F Y', strtotime($event->date)) }}, {{ $event->location }}">
-    <meta name="author" content="Wonderful Ternate">
-    <meta name="robots" content="index, follow">
+@extends('frontend.layouts.app')
 
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="event">
-    <meta property="og:title" content="{{ $event->name }} - Event Wonderful Ternate">
-    <meta property="og:description"
-        content="{{ $event->name }} - {{ date('d M Y', strtotime($event->date)) }} di {{ $event->location }}. {{ Str::limit(strip_tags($event->detail), 120) }}">
-    <meta property="og:image" content="{{ $event->poster }}">
-    <meta property="og:url" content="{{ url()->current() }}">
-    <meta property="og:site_name" content="Wonderful Ternate">
+@php
+    $start = \Illuminate\Support\Carbon::parse($event->date . ' ' . $event->time);
+    $plain = Str::limit(trim(preg_replace('/\s+/', ' ', html_entity_decode(strip_tags((string) $event->detail)))), 155);
+    $hasCoords = is_numeric($event->lat) && is_numeric($event->long);
+@endphp
 
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ $event->name }} - Event Wonderful Ternate">
-    <meta name="twitter:description"
-        content="{{ $event->name }} - {{ date('d M Y', strtotime($event->date)) }} di {{ $event->location }}. {{ Str::limit(strip_tags($event->detail), 120) }}">
-    <meta name="twitter:image" content="{{ $event->poster }}">
+@section('title', $event->name . ' — ' . __('wt.brand'))
+@section('description', $plain)
+@section('og_image', asset($event->poster))
 
-    <!-- Additional Meta Tags for Location -->
-    <meta name="geo.region" content="ID-MU">
-    <meta name="geo.placename" content="Ternate">
-    <meta name="geo.position" content="0.7833;127.3667">
-    <meta name="ICBM" content="0.7833, 127.3667">
-
-    <!-- Event Specific Meta Tags -->
-    <meta property="event:start_time" content="{{ date('c', strtotime($event->date . ' ' . $event->time)) }}">
-    <meta property="event:location:latitude" content="0.7833">
-    <meta property="event:location:longitude" content="127.3667">
-    <meta property="event:location:name" content="{{ $event->location }}">
-
+@push('head')
+    <script type="application/ld+json">
+        {!! json_encode([
+            '@context' => 'https://schema.org',
+            '@type' => 'Event',
+            'name' => $event->name,
+            'startDate' => $start->toIso8601String(),
+            'image' => asset($event->poster),
+            'description' => $plain,
+            'location' => ['@type' => 'Place', 'name' => $event->location],
+        ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
     </script>
 @endpush
-@include('frontend.layouts.navbar')
-@push('css')
-    <style>
-        .card {
-            transition: transform 0.3s ease;
-            text-decoration: none;
-            /* Menghilangkan garis bawah di link */
-            color: inherit;
-            /* Mengambil warna teks dari parent */
-        }
 
-        .card:hover {
-            transform: translateY(-5px);
-        }
-
-        .fas,
-        .far {
-            width: 20px;
-        }
-
-        .cover {
-            max-height: 2250px;
-            max-width: 1410px;
-
-            display: block;
-            /* Menghilangkan spasi di bawah gambar */
-            transition: transform 0.3s ease;
-            /* Efek transisi zoom */
-        }
-
-
-
-        .cover:hover {
-            transform: scale(1.05);
-            /* Zoom in */
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-            /* Shadow effect */
-        }
-
-        .image-container {
-            position: relative;
-            /* Posisi relatif untuk overlay */
-            display: inline-block;
-            /* Mengatur ukuran sesuai gambar */
-        }
-
-        .image-container:hover .event-image {
-            transform: scale(1.05);
-            /* Zoom in saat hover */
-        }
-
-        .overlay {
-            position: absolute;
-            /* Overlay di posisi absolut */
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ff660080;
-            /* Warna oranye */
-            opacity: 0;
-            /* Mulai dengan transparan */
-            transition: opacity 0.3s ease;
-            /* Transisi opacity */
-        }
-
-        .image-container:hover .overlay {
-            opacity: 1;
-            /* Menampilkan overlay saat hover */
-        }
-    </style>
-@endpush
 @section('body')
-    <!-- Events Section -->
-    <section class="py-5 mt-5" id="events" data-aos="fade-up">
-        <div class="container mt-5">
-            <div class="row align-items-center mb-5 justify-content-center">
-                <div class="col-md-8">
-                    <h1 class="fw-bold section-title" data-aos="fade-right">{{ $event->name }}</h1>
-                    <p class="text-muted" data-aos="fade-left">
-                        {{ date('d M Y', strtotime($event->date)) }}
-                    </p>
-                </div>
-            </div>
-            <div class="row g-4">
-                {{-- @foreach ($events as $event) --}}
-                <div class="col-md-8 d-flex justify-content-center" style="margin: 0 auto;" data-aos="zoom-in">
-                    <div class="card h-100 border-0 rounded-4 overflow-hidden">
-                        <!-- Event Image -->
-                        <div class="image-container">
-                            <img src="{{ $event->poster }}" alt="{{ $event->name }}" class="cover card-img-top"
-                                style="object-fit: cover;" />
-                            <div class="overlay"></div>
-                        </div>
-                        <!-- Event Details -->
-                        <div class="card-body p-4" style="background-color: #e67e22; color: white;">
-                            <h4 class="card-title text-uppercase mb-3">{{ $event->name }}</h4>
+    <x-front.page-header :eyebrow="__('wt.nav_events')" :title="$event->name" :subtitle="$event->location" :image="$event->poster" />
 
-                            <!-- Location -->
-                            <div class="mb-2">
-                                <i class="bi bi-geo-alt me-2"></i>
-                                {{ $event->location }}
-                            </div>
+    <div class="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-3 lg:px-8 lg:py-24">
+        <article class="lg:col-span-2">
+            <p class="eyebrow">{{ __('wt.pg_event_detail') }}</p>
+            <div class="rich mt-4">{!! $event->detail !!}</div>
+        </article>
 
-                            <!-- Time -->
-                            <div class="mb-3">
-                                <i class="bi bi-clock me-2"></i>
-                                {{ date('(l) H:i A', strtotime($event->time)) }}
-                            </div>
-
-                            <!-- Date Display -->
-                            <div class="mb-3">
-                                <span class="d-block" style="font-size: 2rem;">{{ date('d', strtotime($event->date)) }}
-                                    <span>{{ date('M', strtotime($event->date)) }}</span></span>
-
-                            </div>
-                            <h4 class="card-title text-uppercase mb-3"><i class="bi bi-list me-2"></i> Detail</h4>
-                            <div class="mb-3">
-                                <p class="d-block" style="font-size: 2rem;">{!! $event->detail !!}</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                {{-- @endforeach --}}
+        <aside class="space-y-6">
+            <div class="card p-6">
+                <p class="eyebrow">{{ __('wt.pg_event_when') }}</p>
+                <p class="mt-2 font-display text-3xl text-volcanic">{{ $start->translatedFormat('d F Y') }}</p>
+                <p class="text-volcanic/65">{{ $start->format('H:i') }}</p>
+                <p class="eyebrow mt-6">{{ __('wt.pg_event_where') }}</p>
+                <p class="mt-2 font-semibold text-volcanic">{{ $event->location }}</p>
             </div>
 
+            @if ($hasCoords)
+                <div id="detail-map" class="card h-72 w-full" role="application" aria-label="{{ __('wt.pg_location') }}"></div>
+            @endif
 
-        </div>
-    </section>
+            <a href="{{ route('events.all') }}" class="btn-outline w-full">{{ __('wt.all_events') }}</a>
+        </aside>
+    </div>
 @endsection
+
+@if ($hasCoords)
+    @push('head')
+        <link rel="stylesheet" href="{{ asset('leaflet/leaflet.css') }}">
+    @endpush
+    @push('scripts')
+        <script src="{{ asset('leaflet/leaflet.js') }}"></script>
+        <script>
+            const point = [{{ (float) $event->lat }}, {{ (float) $event->long }}];
+            const map = L.map('detail-map', { scrollWheelZoom: false }).setView(point, 15);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '&copy; OpenStreetMap contributors' }).addTo(map);
+            L.circleMarker(point, { radius: 10, color: '#fff', weight: 2, fillColor: '#0B6E69', fillOpacity: 1 }).addTo(map);
+        </script>
+    @endpush
+@endif

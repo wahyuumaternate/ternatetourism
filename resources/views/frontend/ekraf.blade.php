@@ -1,327 +1,105 @@
-@extends('frontend.layouts.main')
-@push('meta')
-    <!-- SEO Meta Tags -->
-    <title>Ekonomi Kreatif - Wonderful Ternate</title>
-    <meta name="description"
-        content="Jelajahi potensi ekonomi kreatif Kota Ternate melalui produk-produk unggulan UMKM, kerajinan tangan, kuliner khas, dan industri kreatif lainnya yang mencerminkan kearifan lokal.">
-    <meta name="keywords"
-        content="ekonomi kreatif ternate, umkm ternate, produk lokal ternate, kerajinan tangan ternate, kuliner khas ternate, industri kreatif ternate">
-    <meta name="author" content="Wonderful Ternate">
-    <meta name="robots" content="index, follow">
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Ekonomi Kreatif - Wonderful Ternate">
-    <meta property="og:description"
-        content="Jelajahi potensi ekonomi kreatif Kota Ternate melalui produk-produk unggulan UMKM, kerajinan tangan, kuliner khas, dan industri kreatif lainnya yang mencerminkan kearifan lokal.">
-    <meta property="og:image" content="{{ asset('assets/kora_kora.jpg') }}">
-    <meta property="og:url" content="{{ route('ekraf.index') }}">
-    <meta property="og:site_name" content="Wonderful Ternate">
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Ekonomi Kreatif - Wonderful Ternate">
-    <meta name="twitter:description"
-        content="Jelajahi potensi ekonomi kreatif Kota Ternate melalui produk-produk unggulan UMKM, kerajinan tangan, kuliner khas, dan industri kreatif lainnya yang mencerminkan kearifan lokal.">
-    <meta name="twitter:image" content="{{ asset('assets/kora_kora.jpg') }}">
-    <!-- Additional Meta Tags for Location -->
-    <meta name="geo.region" content="ID-MU">
-    <meta name="geo.placename" content="Ternate">
-    <meta name="geo.position" content="0.7833;127.3667">
-    <meta name="ICBM" content="0.7833, 127.3667">
-@endpush
+@extends('frontend.layouts.app')
+
+@php
+    $activeCategory = $category ?? null;
+    $pageTitle = $activeCategory ? $activeCategory->name : __('wt.ek_title');
+@endphp
+
+@section('title', $pageTitle . ' — ' . __('wt.brand'))
+@section('description', __('wt.ek_sub'))
+
 @section('body')
-    <div class="container ekraf">
-        <!-- Initial Categories -->
-        <div class="row mb-4">
-            <div class="col-12">
-                <div class="d-flex flex-wrap" id="category-container">
-                    <a href="{{ route('ekraf.index') }}" class="category-item text-decoration-none text-dark">
-                        <div class="category-box bg-body-tertiary rounded text-center">
-                            <i class="bi bi-grid-fill text-primary"></i>
-                            <div>Semua</div>
-                            <small class="text-muted">{{ $totalEkraf }}</small>
+    <x-front.page-header :eyebrow="__('pesan.creative')" :title="$pageTitle" :subtitle="__('wt.ek_sub')" />
+
+    <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24" x-data="ekrafSearch(@js(route('ekraf.search')), @js(url('/ekraf')))">
+        <nav class="scroll-row -mx-4 px-4 sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0" aria-label="{{ __('wt.pg_category') }}">
+            <a href="{{ route('ekraf.index') }}" @if (! $activeCategory) aria-current="page" @endif
+                @class(['shrink-0 rounded-full px-5 py-2 text-sm font-semibold transition', 'bg-primary text-white' => ! $activeCategory, 'bg-white text-volcanic ring-1 ring-black/10 hover:bg-black/5' => $activeCategory])>
+                {{ __('wt.ek_all') }} <span class="opacity-60">{{ $totalEkraf ?? $allCategories->sum('ekraf_count') }}</span>
+            </a>
+            @foreach ($allCategories->where('ekraf_count', '>', 0) as $item)
+                <a href="{{ route('ekraf.category', $item->slug) }}" @if ($activeCategory?->id === $item->id) aria-current="page" @endif
+                    @class(['shrink-0 rounded-full px-5 py-2 text-sm font-semibold transition', 'bg-primary text-white' => $activeCategory?->id === $item->id, 'bg-white text-volcanic ring-1 ring-black/10 hover:bg-black/5' => $activeCategory?->id !== $item->id])>
+                    {{ $item->name }} <span class="opacity-60">{{ $item->ekraf_count }}</span>
+                </a>
+            @endforeach
+        </nav>
+
+        <div class="relative mt-8 max-w-xl">
+            <label for="ekraf-search" class="sr-only">{{ __('wt.ek_search_ph') }}</label>
+            <input id="ekraf-search" type="search" x-model="query" @input.debounce.250ms="search()" autocomplete="off"
+                placeholder="{{ __('wt.ek_search_ph') }}"
+                class="w-full rounded-full border-black/15 bg-white px-6 py-3.5 text-volcanic placeholder:text-volcanic/40 focus:border-primary focus:ring-primary">
+        </div>
+
+        {{-- Live search results --}}
+        <div x-show="results !== null" x-cloak class="mt-10" aria-live="polite">
+            <p class="eyebrow">{{ __('wt.ek_results') }} <span x-text="results ? '(' + results.length + ')' : ''"></span></p>
+            <p x-show="results && results.length === 0" class="card mt-4 p-6 text-volcanic/70">{{ __('wt.ek_none') }}</p>
+            <div class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                <template x-for="item in results ?? []" :key="item.id">
+                    <a :href="baseUrl + '/' + item.slug" class="card group flex items-center gap-4 p-4 transition hover:-translate-y-0.5">
+                        <template x-if="item.logo"><img :src="item.logo" :alt="item.name" loading="lazy" class="h-16 w-16 shrink-0 rounded-full object-cover ring-1 ring-black/10"></template>
+                        <div class="min-w-0">
+                            <h3 class="line-clamp-2 font-semibold leading-snug text-volcanic group-hover:text-primary" x-text="item.name"></h3>
+                            <p class="mt-1 truncate text-sm text-volcanic/60" x-text="item.category ? item.category.name : ''"></p>
                         </div>
                     </a>
-
-                    <!-- Menampilkan 5 kategori pertama -->
-                    @foreach ($allCategories->take(5) as $category)
-                        <a href="{{ route('ekraf.filterByCategory', $category->slug) }}"
-                            class="category-item text-decoration-none text-dark">
-                            <div class="category-box bg-body-tertiary rounded text-center">
-                                <i class="bi {{ $category->icon ?? 'bi-collection' }} text-primary"></i>
-                                <div>{{ $category->name }}</div>
-                                <small class="text-muted">{{ $category->ekraf_count }}</small>
-                            </div>
-                        </a>
-                    @endforeach
-
-                    <!-- Menyembunyikan kategori sisanya -->
-                    @foreach ($allCategories->skip(5) as $category)
-                        <a href="{{ route('ekraf.filterByCategory', $category->slug) }}"
-                            class="category-item text-decoration-none text-dark hidden">
-                            <div class="category-box bg-body-tertiary rounded text-center">
-                                <i class="bi {{ $category->icon ?? 'bi-collection' }} text-primary"></i>
-                                <div>{{ $category->name }}</div>
-                                <small class="text-muted">{{ $category->ekraf_count }}</small>
-                            </div>
-                        </a>
-                    @endforeach
-
-                </div>
-
-                <!-- Tombol "Lihat Lebih Banyak" -->
-                @if ($allCategories->count() > 5)
-                    <div class="text-center">
-                        <button id="load-more" class="btn border-0 btn-primary">Lihat Lebih Banyak</button>
-                        <button id="collapse" class="btn border-0 btn-secondary" style="display:none;">Tutup</button>
-                    </div>
-                @endif
+                </template>
             </div>
-
-
-
         </div>
 
-        <!-- Search and Content Area -->
-        <div class="row">
-            <div class="d-flex justify-content-center mb-4">
-                <div class="col-6">
-                    <div class="search-box">
-                        <input type="text" class="form-control" placeholder="Cari Ekraf..." id="searchEkraf">
-                    </div>
+        {{-- Paginated list --}}
+        <div x-show="results === null">
+            @if ($ekrafs->isEmpty())
+                <p class="card mt-10 p-6 text-volcanic/70">{{ __('wt.pg_empty') }}</p>
+            @else
+                <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                    @foreach ($ekrafs as $i => $ekraf)
+                        <x-front.reveal :delay="($i % 3) * 60" class="flex">
+                            <x-front.ekraf-card :ekraf="$ekraf" class="w-full" />
+                        </x-front.reveal>
+                    @endforeach
                 </div>
-            </div>
-
-            <!-- Main Content -->
-            <div class="col-md-12">
-                <h3 class="text-center mb-4">
-                    Semua Ekraf
-                </h3>
-                <div class="row row-cols-1 row-cols-md-3 g-4" id="ekrafList">
-                    @forelse ($ekrafs as $ekraf)
-                        <div class="col">
-                            <a href="/ekraf/{{ $ekraf->slug }}" class="text-decoration-none text-dark border">
-                                <div class="d-flex align-items-center gap-3 p-3 border-0 rounded h-100">
-                                    <!-- Gambar -->
-                                    <img src="{{ $ekraf->logo }}" class="rounded-circle" alt="{{ $ekraf->name }}"
-                                        style="width: 60px; height: 60px; object-fit: cover;">
-                                    <!-- Teks -->
-                                    <div>
-                                        <h6 class="mb-1 fw-semibold">{{ $ekraf->name }}</h6>
-                                        <small class="text-muted">{{ $ekraf->category->name }}</small>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                    @empty
-                        <div class="col-12">
-                            <div class="text-center text-muted">Tidak ada data untuk kategori ini</div>
-                        </div>
-                    @endforelse
-                </div>
-                <div class="d-flex justify-content-center mt-4">
-                    {{ $ekrafs->links() }}
-                </div>
-            </div>
-
-
+                <div class="mt-12">{{ $ekrafs->links('pagination.front') }}</div>
+            @endif
         </div>
-    </div>
-
-    @push('css')
-        <style>
-            #ekrafList .col a {
-                display: flex;
-                align-items: center;
-                height: 100%;
-                /* Pastikan semua kolom memiliki tinggi yang sama */
-            }
-
-            #ekrafList .col img {
-                width: 60px;
-                height: 60px;
-                object-fit: cover;
-                flex-shrink: 0;
-                /* Pastikan gambar tidak mengecil */
-            }
-
-            #ekrafList .col .d-flex {
-                align-items: center;
-                /* Gambar dan teks sejajar vertikal */
-                min-height: 80px;
-                /* Tetapkan tinggi minimum untuk kontainer */
-            }
-
-            .btn-tampil {
-                cursor: pointer;
-                font-size: 14px;
-                border-radius: 10% !important;
-            }
-
-            .btn-tampil:hover span,
-            .btn-tampil:hover i {
-                color: #157347 !important;
-            }
-
-            .btn-tampil:focus {
-                outline: none;
-                box-shadow: none;
-            }
-
-            .category-item {
-                flex: 0 0 auto;
-                margin-right: 1rem;
-                margin-bottom: 1rem;
-            }
-
-            .category-box {
-                width: 120px;
-                padding: 1rem;
-                transition: all 0.3s ease;
-            }
-
-            .category-box:hover {
-                transform: translateY(-3px);
-                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            }
-
-            .category-box i {
-                font-size: 1.5rem;
-                margin-bottom: 0.5rem;
-            }
-
-            .bg-body-tertiary {
-                background-color: #f8f9fa;
-            }
-
-            .btn-link:hover {
-                background: none;
-            }
-
-            .kategori-section {
-                background: #fff;
-                padding: 20px;
-                border-radius: 8px;
-                border: 1px solid #dee2e6;
-            }
-
-            .form-check-input:checked {
-                background-color: #198754;
-                border-color: #198754;
-            }
-
-            .ekraf {
-                margin-top: 120px;
-                margin-bottom: 120px;
-            }
-
-            .text-primary {
-                color: #ff6500 !important;
-            }
-
-            .category-item.hidden {
-                display: none;
-            }
-        </style>
-    @endpush
-
-    @push('scripts')
-        <script>
-            // Fungsi untuk menampilkan kategori tambahan
-            document.getElementById('load-more').addEventListener('click', function() {
-                // Mengambil elemen dengan ID 'category-container'
-                const container = document.getElementById('category-container');
-
-                // Mengambil kategori yang tersembunyi dan menampilkannya
-                const hiddenCategories = container.querySelectorAll('.category-item.hidden');
-                hiddenCategories.forEach(item => {
-                    item.classList.remove('hidden'); // Hapus kelas 'hidden' untuk menampilkan
-                });
-
-                // Menyembunyikan tombol "Lihat Lebih Banyak"
-                this.style.display = 'none';
-
-                // Menampilkan tombol "Tutup"
-                document.getElementById('collapse').style.display = 'inline-block';
-            });
-
-            // Fungsi untuk menutup kategori tambahan
-            document.getElementById('collapse').addEventListener('click', function() {
-                // Mengambil elemen dengan ID 'category-container'
-                const container = document.getElementById('category-container');
-
-                // Menyembunyikan kategori tambahan
-                const allCategories = container.querySelectorAll('.category-item');
-                allCategories.forEach((item, index) => {
-                    if (index >= 5) {
-                        item.classList.add(
-                            'hidden'
-                        ); // Menambahkan kelas 'hidden' untuk menyembunyikan kategori ke-6 dan seterusnya
-                    }
-                });
-
-                // Menyembunyikan tombol "Tutup"
-                this.style.display = 'none';
-
-                // Menampilkan kembali tombol "Lihat Lebih Banyak"
-                document.getElementById('load-more').style.display = 'inline-block';
-            });
-
-            // Menambahkan kelas 'hidden' pada kategori selain 5 pertama
-            document.addEventListener('DOMContentLoaded', function() {
-                const categories = document.querySelectorAll('.category-item');
-                categories.forEach((item, index) => {
-                    if (index >= 5) {
-                        item.classList.add('hidden');
-                    }
-                });
-            });
-        </script>
-
-        <script>
-            // Search functionality
-            let searchTimer;
-            document.getElementById('searchEkraf').addEventListener('input', function(e) {
-                clearTimeout(searchTimer);
-                const query = e.target.value; // Ambil nilai input dari pencarian
-
-                searchTimer = setTimeout(() => {
-                    if (query.trim() !== '') { // Cek jika query tidak kosong
-                        fetch(`/ekraf/search?query=${encodeURIComponent(query)}`) // Encode query untuk URL
-                            .then(response => response.json())
-                            .then(data => {
-                                const ekrafList = document.getElementById('ekrafList');
-                                ekrafList.innerHTML = '';
-
-                                if (data.data.length === 0) {
-                                    ekrafList.innerHTML =
-                                        '<div class="text-center text-muted">Tidak ada hasil ditemukan</div>';
-                                } else {
-                                    data.data.forEach(ekraf => {
-                                        ekrafList.innerHTML += `
-                            <div class="col-md-4">
-                                <a href="/ekraf/${ekraf.slug}" class="text-decoration-none text-dark border">
-                                    <div class="d-flex align-items-center gap-3">
-
-                                        <img src="${ekraf.logo || 'https://via.placeholder.com/60'}" 
-                                             class="rounded-circle" alt="${ekraf.name}" 
-                                        style="width: 60px; height: 60px; object-fit: cover;">
-                                        <div>
-                                            <h6 class="mb-1 fw-semibold">${ekraf.name}</h6>
-                                            <small class="text-muted">${ekraf.category.name}</small>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        `;
-                                    });
-                                }
-                            })
-                            .catch(err => {
-                                console.error('Error fetching search results:', err);
-                            });
-                    }
-                }, 300);
-            });
-        </script>
-    @endpush
+    </section>
 @endsection
+
+@push('scripts')
+    <script>
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('ekrafSearch', (searchUrl, baseUrl) => ({
+                query: '',
+                results: null,
+                baseUrl,
+                controller: null,
+                async search() {
+                    const term = this.query.trim();
+
+                    if (term.length < 2) {
+                        this.results = null;
+                        return;
+                    }
+
+                    this.controller?.abort();
+                    this.controller = new AbortController();
+
+                    try {
+                        const response = await fetch(`${searchUrl}?query=${encodeURIComponent(term)}`, {
+                            headers: { Accept: 'application/json' },
+                            signal: this.controller.signal,
+                        });
+
+                        this.results = (await response.json()).data;
+                    } catch (error) {
+                        if (error.name !== 'AbortError') {
+                            this.results = [];
+                        }
+                    }
+                },
+            }));
+        });
+    </script>
+@endpush

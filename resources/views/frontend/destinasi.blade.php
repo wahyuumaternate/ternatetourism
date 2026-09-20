@@ -1,78 +1,23 @@
-@extends('frontend.layouts.main')
-@push('meta')
-    <!-- SEO Meta Tags -->
-    <title>Destinasi Wisata - Wonderful Ternate</title>
-    <meta name="description"
-        content="Temukan keindahan destinasi wisata Kota Ternate, mulai dari wisata sejarah, wisata alam, wisata budaya, hingga wisata kuliner yang menakjubkan.">
-    <meta name="keywords"
-        content="destinasi wisata ternate, objek wisata ternate, tempat wisata ternate, wisata alam ternate, wisata sejarah ternate, wisata budaya ternate">
-    <meta name="author" content="Wonderful Ternate">
-    <meta name="robots" content="index, follow">
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Destinasi Wisata - Wonderful Ternate">
-    <meta property="og:description"
-        content="Temukan keindahan destinasi wisata Kota Ternate, mulai dari wisata sejarah, wisata alam, wisata budaya, hingga wisata kuliner yang menakjubkan.">
-    <meta property="og:image" content="{{ asset('assets/kora_kora.jpg') }}">
-    <meta property="og:url" content="{{ route('destinasi.all') }}">
-    <meta property="og:site_name" content="Wonderful Ternate">
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Destinasi Wisata - Wonderful Ternate">
-    <meta name="twitter:description"
-        content="Temukan keindahan destinasi wisata Kota Ternate, mulai dari wisata sejarah, wisata alam, wisata budaya, hingga wisata kuliner yang menakjubkan.">
-    <meta name="twitter:image" content="{{ asset('assets/kora_kora.jpg') }}">
-    <!-- Additional Meta Tags for Location -->
-    <meta name="geo.region" content="ID-MU">
-    <meta name="geo.placename" content="Ternate">
-    <meta name="geo.position" content="0.7833;127.3667">
-    <meta name="ICBM" content="0.7833, 127.3667">
-@endpush
-@include('frontend.layouts.navbar')
+@extends('frontend.layouts.app')
+
+@section('title', __('pesan.destination') . ' — ' . __('wt.brand'))
+@section('description', __('pesan.destinasi_desc'))
 
 @section('body')
-    <!-- Popular Destinations -->
-    <section class="py-5 mt-5" id="destinations" data-aos="fade-up">
-        <div class="container mt-5">
-            <div class="row align-items-center mb-5">
-                <div class="col-md-8">
-                    <h1 class="fw-bold section-title" data-aos="fade-right">{{ __('pesan.populer_destinasi') }}</h1>
-                    <p class="text-muted" data-aos="fade-left">
-                        {{ __('pesan.destinasi_desc') }}
-                    </p>
-                </div>
-            </div>
-            <div class="row g-4">
-                @foreach ($destination as $item)
-                    <div class="col-md-4" data-aos="zoom-in" data-aos-delay="{{ $loop->index * 100 }}">
-                        <div class="position-relative destination-card">
-                            <!-- Gambar Destinasi -->
-                            <img src="{{ $item->image ? asset($item->image) : 'https://via.placeholder.com/300' }}"
-                                alt="{{ $item->name }}" class="w-100 h-100 object-fit-cover" />
+    <x-front.page-header :eyebrow="__('wt.brand')" :title="__('pesan.destination')" :subtitle="__('pesan.destinasi_desc')" />
 
-                            <!-- Detail Destinasi -->
-                            <div class="position-absolute bottom-0 start-0 p-4 text-white"
-                                style="
-                                    background: linear-gradient(
-                                        transparent,
-                                        rgba(0, 0, 0, 0.8)
-                                    );
-                                    width: 100%;
-                                ">
-                                <h5 class="mb-3">{{ $item->name }}</h5>
-                                <a href="{{ route('destinasi.show', $item->slug) }}" class="btn text-white btn-sm">
-                                    View Details
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+    <section class="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
+        @if ($destination->isEmpty())
+            <p class="card p-6 text-volcanic/70">{{ __('wt.pg_empty') }}</p>
+        @else
+            <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+                @foreach ($destination as $i => $item)
+                    <x-front.reveal :delay="($i % 3) * 80" class="flex">
+                        <x-front.destination-card :destination="$item" class="aspect-[4/5] w-full" />
+                    </x-front.reveal>
                 @endforeach
             </div>
-
-            <!-- Pagination Links -->
-            <div class="d-flex justify-content-center mt-4">
-                {{ $destination->links() }}
-            </div>
-        </div>
+            <div class="mt-12">{{ $destination->links('pagination.front') }}</div>
+        @endif
     </section>
 @endsection

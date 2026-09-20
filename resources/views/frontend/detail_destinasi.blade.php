@@ -1,246 +1,92 @@
-@extends('frontend.layouts.main')
+@extends('frontend.layouts.app')
 
-@push('meta')
-    <!-- SEO Meta Tags -->
-    @php
-        $imageExtension = pathinfo($destination->image, PATHINFO_EXTENSION);
-        $imageType = match (strtolower($imageExtension)) {
-            'jpg', 'jpeg' => 'image/jpeg',
-            'png' => 'image/png',
-            default => 'image/jpeg',
-        };
-    @endphp
+@php
+    $title = Str::before($destination->name, ':');
+    $subtitle = Str::contains($destination->name, ':') ? trim(Str::after($destination->name, ':')) : null;
+    $plain = Str::limit(trim(preg_replace('/\s+/', ' ', html_entity_decode(strip_tags((string) $destination->description)))), 155);
+    $hasCoords = is_numeric($destination->lat) && is_numeric($destination->long);
+@endphp
 
-    <link rel="preload" as="image" href="{{ $destination->image }}" type="image/jpeg">
+@section('title', $title . ' — ' . __('wt.brand'))
+@section('description', $plain)
+@section('og_image', asset($destination->image))
 
-    <!-- Canonical URL -->
-    <link rel="canonical" href="{{ url()->current() }}">
-
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-    <meta property="og:image:type" content="{{ $imageType }}">
-    <title>{{ $destination->name }} - Wonderful Ternate</title>
-    <meta name="description" content="{{ Str::limit(strip_tags($destination->description), 160) }}">
-    <meta name="keywords" content="{{ implode(',', ['destination', $destination->name, 'travel', 'tourism']) }}">
-    <meta name="author" content="Wonderful Ternate">
-    <meta name="robots" content="index, follow">
-
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="{{ $destination->name }} - Wonderful Ternate">
-    <meta property="og:description" content="{{ Str::limit(strip_tags($destination->description), 160) }}">
-    <meta property="og:image" content="{{ $destination->image }}">
-    <meta property="og:url" content="{{ route('destinasi.show', $destination->slug) }}">
-    <meta property="og:site_name" content="Wonderful Ternate">
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="{{ $destination->name }} - Wonderful Ternate">
-    <meta name="twitter:description" content="{{ Str::limit(strip_tags($destination->description), 160) }}">
-    <meta name="twitter:image" content="{{ $destination->image }}">
-@endpush
-
-
-@push('css')
-    <style>
-        /* Memberikan padding atas agar tidak mentok navbar */
-        body {
-            padding-top: 100px;
-            /* Sesuaikan dengan tinggi navbar */
-        }
-
-        /* Section untuk card utama */
-        .destination-section {
-            display: flex;
-            flex-wrap: wrap;
-            background-color: #ffffff;
-            /* Latar belakang ungu pucat */
-            border-radius: 15px;
-            padding: 30px;
-            align-items: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Gaya untuk gambar */
-        .destination-image {
-            width: 100%;
-            height: auto;
-            max-height: 400px;
-            /* Batasi tinggi gambar */
-            object-fit: cover;
-            /* Menjaga rasio gambar */
-            border-radius: 15px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        /* Konten teks di sebelah kanan gambar */
-        .destination-content {
-            padding: 20px;
-        }
-
-        .destination-title {
-            font-size: 2rem;
-            font-weight: bold;
-            margin-bottom: 15px;
-        }
-
-        .destination-description {
-            font-size: 1rem;
-            color: #555;
-            margin-bottom: 20px;
-        }
-
-        .destination-description a {
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        .destination-description a:hover {
-            text-decoration: underline;
-        }
-
-        /* Tombol modern */
-        .btn-destination {
-            background-color: #ffffff;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 30px;
-            font-size: 1rem;
-            font-weight: bold;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-
-        .btn-destination:hover {
-            background-color: #7d3c98;
-            transform: translateY(-2px);
-        }
-
-        /* Teks kecil untuk footer */
-        .powered-by {
-            font-size: 0.8rem;
-            color: #888;
-            margin-top: 10px;
-        }
-
-        .badge-beta {
-            background-color: #e6e6fa;
-            color: #333;
-            font-weight: bold;
-            font-size: 0.7rem;
-            border-radius: 5px;
-            padding: 3px 6px;
-        }
-
-        #map {
-            width: 100%;
-            height: 400px;
-            border-radius: 15px;
-            margin-top: 20px;
-        }
-
-        .share-buttons a i {
-            font-size: 1.5rem;
-            /* Ukuran ikon */
-            transition: transform 0.2s ease;
-        }
-
-        .share-buttons a i:hover {
-            transform: scale(1.2);
-            /* Membesarkan ikon saat hover */
-        }
-    </style>
+@push('head')
+    <script type="application/ld+json">
+        {!! json_encode(array_filter([
+            '@context' => 'https://schema.org',
+            '@type' => 'TouristAttraction',
+            'name' => $title,
+            'description' => $plain,
+            'image' => asset($destination->image),
+            'url' => url()->current(),
+            'geo' => $hasCoords ? ['@type' => 'GeoCoordinates', 'latitude' => (float) $destination->lat, 'longitude' => (float) $destination->long] : null,
+        ]), JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE) !!}
+    </script>
 @endpush
 
 @section('body')
-    <div class="container my-5">
-        <!-- Section Destinasi -->
-        <div class="destination-section">
-            <!-- Gambar -->
-            <div class="col-12 col-md-6">
-                <img src="{{ $destination->image }}" alt="{{ $destination->name }}" class="destination-image">
+    <x-front.page-header :eyebrow="__('pesan.destination')" :title="$title" :subtitle="$subtitle" :image="$destination->image" />
+
+    <div class="mx-auto grid max-w-7xl gap-12 px-4 py-16 sm:px-6 lg:grid-cols-3 lg:px-8 lg:py-24">
+        <article class="lg:col-span-2">
+            <p class="eyebrow">{{ __('wt.pg_overview') }}</p>
+            <div class="rich mt-4">{!! $destination->description !!}</div>
+
+            <div class="mt-10 flex flex-wrap items-center gap-3 border-t border-black/10 pt-6">
+                <span class="text-sm font-semibold text-volcanic">{{ __('wt.pg_share') }}:</span>
+                @foreach (['Facebook' => 'https://www.facebook.com/sharer/sharer.php?u=', 'WhatsApp' => 'https://api.whatsapp.com/send?text=', 'X' => 'https://twitter.com/intent/tweet?url='] as $network => $shareUrl)
+                    <a href="{{ $shareUrl . urlencode(url()->current()) }}" target="_blank" rel="noopener noreferrer" class="btn-outline !px-4 !py-2">{{ $network }}</a>
+                @endforeach
             </div>
+        </article>
 
-            <!-- Konten -->
-            <div class="col-12 col-md-6 destination-content">
-                <h2 class="destination-title">{{ $destination->name }}</h2>
-
-                <!-- Tombol Bagikan -->
-                <div class="share-buttons mt-4 d-flex align-items-center gap-3">
-                    <p class="mb-0 me-3">Bagikan ke:</p>
-
-                    <!-- Facebook -->
-                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ route('destinasi.show', $destination->slug) }}"
-                        class="text-primary" target="_blank" rel="noopener" title="Bagikan ke Facebook">
-                        <i class="bi bi-facebook fs-3"></i>
-                    </a>
-
-                    <!-- X (Twitter) -->
-                    <a href="https://twitter.com/intent/tweet?url={{ route('destinasi.show', $destination->slug) }}"
-                        class="text-info" target="_blank" rel="noopener" title="Bagikan ke Twitter">
-                        <i class="bi bi-twitter fs-3"></i>
-                    </a>
-
-                    <!-- Instagram -->
-                    <a href="https://www.instagram.com/" class="text-danger" target="_blank" rel="noopener"
-                        title="Bagikan ke Instagram">
-                        <i class="bi bi-instagram fs-3"></i>
-                    </a>
-
-                    <a href="https://api.whatsapp.com/send?text={{ route('destinasi.show', $destination->slug) }}"
-                        class="text-success" target="_blank" rel="noopener" title="Bagikan ke WhatsApp">
-                        <i class="bi bi-whatsapp fs-3"></i>
-                    </a>
+        <aside class="space-y-8">
+            @if ($hasCoords)
+                <div>
+                    <p class="eyebrow">{{ __('wt.pg_location') }}</p>
+                    <div id="detail-map" class="card mt-4 h-72 w-full" role="application" aria-label="{{ __('wt.pg_location') }}"></div>
+                    <p class="mt-3 text-sm text-volcanic/60">{{ __('wt.pg_coords') }}: {{ $destination->lat }}, {{ $destination->long }}</p>
                 </div>
+            @endif
 
-            </div>
-
-            {{-- <!-- Konten -->
-            <div class="col-12 col-md-12 destination-content">
-                <p class="destination-description">
-                    {!! $destination->description !!}
-                </p>
-
-            </div> --}}
-        </div>
-
+            @if ($nearby->isNotEmpty())
+                <div>
+                    <p class="eyebrow">{{ __('wt.pg_nearby') }}</p>
+                    <ul class="mt-4 space-y-3">
+                        @foreach ($nearby as $place)
+                            <li>
+                                <a href="{{ route('destinasi.show', $place['destination']->slug) }}" class="card flex items-center gap-4 p-3 transition hover:-translate-y-0.5">
+                                    <x-front.picture :src="$place['destination']->image" :alt="Str::before($place['destination']->name, ':')" sizes="80px" class="h-16 w-16 shrink-0 rounded-xl object-cover" />
+                                    <div class="min-w-0">
+                                        <p class="truncate font-semibold text-volcanic">{{ Str::before($place['destination']->name, ':') }}</p>
+                                        <p class="text-sm text-volcanic/60">≈ {{ number_format($place['km'], 1, ',', '.') }} km</p>
+                                    </div>
+                                </a>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+        </aside>
     </div>
-    <div class="container mt-5">
-        <div class="row">
-            <div class="col-12 col-md-8 destination-content">
-                <div class="destination-section">
-                    <!-- Konten (8 kolom) -->
-                    <p class="destination-description text-center">
-                        {!! $destination->description !!}
-                    </p>
-                </div>
-            </div>
 
-            <!-- Peta (4 kolom) -->
-            <div class="col-12 col-md-4">
-                <div class="destination-section">
-                    <div id="map" style="height: 400px; border-radius: 15px;"></div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <section class="dark-surface bg-volcanic px-4 py-20 text-center text-white">
+        <a href="{{ route('destinasi.all') }}" class="btn-primary">{{ __('wt.pg_explore_more') }} &rarr;</a>
+    </section>
 @endsection
-@push('scripts')
-    <!-- Script Peta (Leaflet) -->
-    <script>
-        var map = L.map('map').setView([{{ $destination->lat }}, {{ $destination->long }}], 16);
 
-        // Layer Satelit dari Esri
-        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-            attribution: '&copy; <a href="https://www.esri.com/en-us/home">Esri</a>',
-        }).addTo(map);
-
-        L.marker([{{ $destination->lat }}, {{ $destination->long }}]).addTo(map)
-            .bindPopup('<b>{{ $destination->name }}</b>')
-            .openPopup();
-    </script>
-@endpush
+@if ($hasCoords)
+    @push('head')
+        <link rel="stylesheet" href="{{ asset('leaflet/leaflet.css') }}">
+    @endpush
+    @push('scripts')
+        <script src="{{ asset('leaflet/leaflet.js') }}"></script>
+        <script>
+            const point = [{{ (float) $destination->lat }}, {{ (float) $destination->long }}];
+            const map = L.map('detail-map', { scrollWheelZoom: false }).setView(point, 15);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '&copy; OpenStreetMap contributors' }).addTo(map);
+            L.circleMarker(point, { radius: 10, color: '#fff', weight: 2, fillColor: '#0B6E69', fillOpacity: 1 }).addTo(map);
+        </script>
+    @endpush
+@endif
