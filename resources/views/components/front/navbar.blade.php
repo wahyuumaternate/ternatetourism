@@ -3,7 +3,7 @@
 @php
     $locale = app()->getLocale();
     $links = [
-        ['label' => __('wt.nav_destinations'), 'href' => route('destinasi.all')],
+        ['label' => __('pesan.home'), 'href' => url('/')],
         ['label' => __('wt.nav_experience'), 'href' => url('/') . '#experience'],
         ['label' => __('wt.nav_culture'), 'href' => route('berita.all')],
         ['label' => __('wt.nav_culinary'), 'href' => route('fasilitas.front', 'cafe-restorant')],
