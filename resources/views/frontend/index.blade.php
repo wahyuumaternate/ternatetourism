@@ -93,7 +93,6 @@
                     <x-front.experience-card :title="__($exp['title'])" :text="__($exp['text'])" :name="$exp['image']" />
                 @endforeach
             </div>
-            <p class="mx-auto mt-4 w-full max-w-7xl px-4 text-xs text-white/50 sm:px-6 lg:px-8">{{ __('wt.placeholder_note') }}</p>
         </div>
     </section>
 
@@ -201,22 +200,9 @@
         </div>
     </section>
 
-    {{-- Before you go --}}
-    <section class="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-36" aria-labelledby="before-title">
-        <x-front.section-heading id="before-title" :title="__('wt.before_title')" />
-        <div class="mt-12 grid grid-cols-2 gap-4 lg:grid-cols-3">
-            @foreach (config('tourism_placeholders.before_you_go') as $i => $info)
-                <x-front.reveal :delay="$i * 60">
-                    <x-front.travel-info-card :icon="$info['icon']" :title="__($info['title'])"
-                        :href="$info['route'] ? route(...$info['route']) : null" />
-                </x-front.reveal>
-            @endforeach
-        </div>
-    </section>
-
     {{-- Gallery --}}
     @if ($gallery->isNotEmpty())
-        <section class="mx-auto max-w-7xl px-4 pb-24 sm:px-6 lg:px-8 lg:pb-36" aria-labelledby="gallery-title">
+        <section class="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8 lg:py-36" aria-labelledby="gallery-title">
             <div class="flex flex-wrap items-end justify-between gap-4">
                 <x-front.section-heading id="gallery-title" :title="__('wt.gallery_title')" />
                 <a href="https://www.instagram.com/wonderfulternate" target="_blank" rel="noopener noreferrer" class="btn-primary">{{ __('wt.gallery_follow') }}</a>
